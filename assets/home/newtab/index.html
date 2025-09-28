@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New Tab</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  body {
+    margin: 0;
+    font-family: 'Orbitron', sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #fff;
+  }
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+  }
+  .link-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    width: 80%;
+    max-width: 800px;
+  }
+  .link-card {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    padding: 20px;
+    text-align: center;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .link-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+  }
+</style>
+</head>
+<body>
+
+<h1>Bloxcraft Newtab</h1>
+  <h2>Welcome To The Newtab! Select A Bloxcraft Page To Get Started.</h2>
+  <p>NOTE: This Not Not An Actual Browser That Opens Links, It Is Just A Way To Make All Bloxcraft UBG Links In One Spot!</p>
+
+<div class="link-grid">
+  <a href="/" class="link-card">Home</a>
+  <a href="/games" class="link-card">Games</a>
+  <a href="/featured-games" class="link-card">Featured Games</a>
+  <a href="/refined-beta" class="link-card">Refined Beta</a>
+</div>
+
+  
+</body>
+</html>
