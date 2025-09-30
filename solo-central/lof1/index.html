@@ -1,0 +1,74 @@
+<!-- Made By: Solo Central. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Loader</title>
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    iframe {
+      border: none;
+      width: 100%;
+      height: 100%;
+    }
+    #errorPopup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #222;
+      color: #fff;
+      padding: 20px 30px;
+      border-radius: 10px;
+      font-family: Arial, sans-serif;
+      display: none;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+  <iframe id="gameFrame"></iframe>
+  <div id="errorPopup">ERROR: 403 Game Blocked From Your Blocker Or Network</div>
+
+  <script>
+    const urls = [
+      "https://szvy.site/selfhosted/lof1/",
+      "https://cdn.teto.wtf/lof1"
+    ];
+    let current = 0;
+    const frame = document.getElementById("gameFrame");
+    const errorPopup = document.getElementById("errorPopup");
+
+    function tryLoad(urlIndex) {
+      if (urlIndex >= urls.length) {
+        errorPopup.style.display = "block";
+        return;
+      }
+
+      frame.src = urls[urlIndex];
+
+      let loaded = false;
+      const check = setTimeout(() => {
+        if (!loaded) {
+          tryLoad(urlIndex + 1);
+        }
+      }, 5000);
+
+      frame.onload = () => {
+        loaded = true;
+        clearTimeout(check);
+      };
+    }
+
+    tryLoad(current);
+  </script>
+</body>
+</html>
