@@ -1,0 +1,689 @@
+
+<!-- Copyright (c) 2025 Bloxcraft Studios -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bloxcraft UBG</title>
+<meta name="google-site-verification" content="UH4TWQbIOPSWvnFyIykY8XlsFwkDltZ7qeNsO0-moHM" />
+<meta name="description" content="The Unblocked Games Site For You To Play!">
+<meta property="og:title" content="Bloxcraft UBG">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Bloxcraft UBG">
+<meta name="theme-color" content="#5555FF"> 
+<meta property="og:image" content="/homepage_banner.png" />
+<meta property="og:description" content="The Unblocked Games Site You Can Play Everyday! It Also has Some Custom Games.">
+<meta property="og:url" content="/">
+  	<link rel="shortcut icon" type="image/png" href="/bloxcraft.png">
+     <style>
+    span {
+      display: inline-block;
+      background:#a7e0f8;
+      padding:10px 8px;
+      border: none;
+      border-radius: 4px;
+      margin-bottom:10px; 
+      font-size:18px; 
+    }
+   </style>
+  <style>
+  #tosPopup {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    z-index: 1000;
+  }
+
+  #tosPopupContent {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: #808080;
+    padding: 25px;
+    border-radius: 8px;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  }
+
+  #tosPopupContent a { color: #007BFF; text-decoration: none; }
+  #tosPopupContent a:hover { text-decoration: underline; }
+
+  #tosPopupContent button {
+    margin: 10px 5px 0 5px;
+    padding: 10px 20px;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  #agreeBtn { background-color: #007BFF; }
+  #agreeBtn:hover { background-color: #0056b3; }
+
+  #disagreeBtn { background-color: #dc3545; }
+  #disagreeBtn:hover { background-color: #a71d2a; }
+</style>
+    <style>
+    #searchBox {
+      width: 70%;
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    .highlight {
+      background-color: yellow;
+    }
+  </style>
+  <style>
+body {
+  background-image: url('/homepage_background.png'); 
+  background-repeat: no-repeat; 
+  background-position: center center; 
+  background-size: cover;  background-size: cover; 
+  background-attachment: fixed; 
+}
+</style>
+    <style>
+
+  .iframe-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .iframe-wrapper {
+    position: relative;
+    width: 80%;
+    height: 80%;
+    border: 2px solid white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  }
+
+  .iframe-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .close-button {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: red;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    z-index: 1001;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  }
+</style>
+<style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+.navbar {
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  background-color: #000;
+  padding: 10px 20px;
+  width: 100%; 
+  box-sizing: border-box;
+  
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+}
+
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 17px;
+  padding: 10px 16px;
+  transition: background 0.3s;
+}
+
+.navbar a:hover {
+  background-color: #444;
+}
+
+    .content {
+      background-color: #ddd;
+      padding: 40px 20px;
+      color: #333;
+    }
+  body {
+      background-color: #5555FF; 
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #fff; 
+      padding: 20px;
+    }
+  </style>
+  <style>
+.orange-black-button {
+background: linear-gradient(90deg, #FF6600 0%, #000000 100%);
+color: white;
+padding: 12px 24px;
+border: none;
+border-radius: 4px;
+font-size: 18px;
+text-decoration: none;
+display: inline-block;
+cursor: pointer;
+transition: transform 0.15s;
+}
+
+.orange-black-button:hover {
+transform: scale(0.9);
+}
+</style>
+  <style>
+      .IFRAMETEST_container {
+    position: relative;
+    width: 300px; 
+    transition: all 0.5s ease;
+  }
+
+  .IFRAMETEST_loadBtn {
+    width: 100%;
+    padding: 20px;
+    font-size: 1.5em;
+    background: linear-gradient(45deg, #007BFF, #00D4FF);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: all 0.5s ease;
+    z-index: 2;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .IFRAMETEST_closeBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5em;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 3;
+  }
+
+  .IFRAMETEST_iframe {
+    width: 100%;
+    height: 0;
+    border: 4px solid #007BFF; 
+    border-radius: 12px;
+    opacity: 0;
+    transition: all 0.8s ease;
+    display: block;
+    box-sizing: border-box;
+  }
+    </style>
+    <style>
+    .blue-rectangle-button {
+      background-color: #00008B;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 4px;
+      font-size: 18px;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+    }
+
+    .blue-rectangle-button:hover {
+      background-color: #111184;
+      transform: scale(0.9)
+    }
+  </style>
+  <style>
+.rainbow-rectangle-button {
+  background: linear-gradient(90deg, #FF5F6D 0%, #FFC371 16%, #47cf73 33%, #38f9d7 50%, #4f8cff 67%, #a259c1 83%, #FF5F6D 100%);
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  font-size: 18px;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.15s;
+}
+
+.rainbow-rectangle-button:hover {
+  background: linear-gradient(90deg, #FFC371 0%, #FF5F6D 16%, #a259c1 33%, #4f8cff 50%, #38f9d7 67%, #47cf73 83%, #FFC371 100%);
+  transform: scale(0.9);
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "WebSite",
+  "name": "Bloxcraft UBG",
+  "url": "/",
+  "description": "The Unblocked Games Site For You To Play!"
+</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-W0KXN0103E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-W0KXN0103E');
+</script>
+    <style>
+    :root {
+      --accent: #4f8cff;
+      --glass-bg: rgba(255, 255, 255, 0.15);
+      --glass-border: rgba(255, 255, 255, 0.3);
+      --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+      --radius: 1.5rem;
+    }
+    
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem 2rem 1rem;
+    }
+
+    main h2 {
+      color: #fff;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-size: 2rem;
+    }
+    
+.play-btn {
+  background: #4f8cff;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 0.65rem 1.8rem;
+  font-size: 1.1rem;
+  font-family: 'Montserrat', Arial, sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 3px 12px 0 #4f8cff55;
+  transition: background 0.2s, transform 0.15s;
+}
+.play-btn:hover {
+  background: #2563eb;
+  transform: scale(1.07);
+}
+</style>
+    <style>
+      .game-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .game-card {
+      background: var(--glass-bg);
+      border: 2px solid var(--glass-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem 1.5rem 1.5rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      backdrop-filter: blur(6px);
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+
+    .game-card:hover {
+      transform: translateY(-8px) scale(1.04);
+      box-shadow: 0 12px 32px 0 rgba(31, 38, 135, 0.28);
+      border-color: var(--accent);
+    }
+
+    .game-card img {
+      width: 72px;
+      height: 72px;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 2px 8px #0006);
+    }
+
+    .game-card h3 {
+      color: #fff;
+      margin: 0 0 1rem 0;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+    }
+
+    .game-card button {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 0.65rem 1.8rem;
+      font-size: 1.1rem;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 3px 12px 0 #4f8cff55;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .game-card button:hover {
+      background: #2563eb;
+      transform: scale(1.07);
+    }
+</style>
+</head>
+
+<body>
+  <div class="navbar">
+    <a href="/">Home</a>
+    <a href="/games">Games</a>
+    <a href="https://discord.gg/a65hcbpfct">Discord Server</a>
+    <a href="https://docs.google.com/document/d/1UC3Eo6UoPCVlq1SiOFEj0HahQGPqqbadXSho5NKHbQU/edit?tab=t.0">Bloxcraft Unblocked Games List</a>
+  </div>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <input type="text" id="searchBox" placeholder="Search Partners">
+
+<p>&nbsp;</p>
+<main>
+  <div class="game-grid">
+    <div class="game-card">
+  <img src="/partnership_page_assets.png" alt="Partnership">
+  <h3>Gaming Lair</h3>
+  <a class="play-btn" href="https://discord.gg/nRVBfhrfEf">Visit</a>
+</div>
+        <div class="game-card">
+  <img src="/partnership_page_assets.png" alt="Partnership">
+  <h3>Ham Labs</h3>
+  <a class="play-btn" href="https://discord.gg/QaQWFQHZ78">Visit</a>
+</div>
+        <div class="game-card">
+  <img src="/partnership_page_assets.png" alt="Partnership">
+  <h3>Angel2k Palace</h3>
+  <a class="play-btn" href="https://discord.gg/7ezVdEF4P9">Visit</a>
+</div>
+            <div class="game-card">
+  <img src="/partnership_page_assets.png" alt="Partnership">
+  <h3>Angel2k Palace</h3>
+  <a class="play-btn" href="https://discord.gg/7ezVdEF4P9">Visit</a>
+</div>
+                <div class="game-card">
+  <img src="/partnership_page_assets.png" alt="Partnership">
+  <h3>Petezah Games</h3>
+  <a class="play-btn" href="https://discord.gg/cYjHFDguxS">Visit</a>
+</div>
+                <div class="game-card">
+  <img src="/partnership_page_assets.png" alt="Partnership">
+  <h3>Skyrpt Services</h3>
+  <a class="play-btn" href="https://skryptonite.vercel.app/">Visit</a>
+</div>
+                    <div class="game-card">
+  <img src="/partnership_page_assets.png" alt="Partnership">
+  <h3>Vortex</h3>
+  <a class="play-btn" href="https://discord.gg/SHF57K3zeX">Visit</a>
+</div>
+              <div class="game-card">
+  <img src="/partnership_page_assets.png" alt="Partnership">
+  <h3>Wilway</h3>
+  <a class="play-btn" href="https://discord.gg/eTtPh2bqnD">Visit</a>
+</div>
+                  <div class="game-card">
+  <img src="/partnership_page_assets.png" alt="Partnership">
+  <h3>Dominum Network</h3>
+  <a class="play-btn" href="https://discord.gg/adeCpCBcwN">Visit</a>
+</div>
+                    <div class="game-card">
+  <img src="/partnership_page_assets.png" alt="Partnership">
+  <h3>Dominum Network</h3>
+  <a class="play-btn" href="https://discord.gg/adeCpCBcwN">Visit</a>
+</div>
+                    <div class="game-card">
+  <img src="/partnership_page_assets.png" alt="Partnership">
+  <h3>Flamed Services</h3>
+  <a class="play-btn" href="https://discord.gg/8Xx6KptcQS">Visit</a>
+</div>
+                        <div class="game-card">
+  <img src="/partnership_page_assets.png" alt="Partnership">
+  <h3>GamerGlalaxy's Squad</h3></h3>
+  <a class="play-btn" href="https://discord.gg/uzYP28tmYh">Visit</a>
+</div>
+  </div>
+</main>
+  <p>&nbsp;</p>
+    <h1>Views:</h1>
+  <a href="https://bloxcraft-ubg.pages.dev" target="_blank">
+<img src="https://hitwebcounter.com/counter/counter.php?page=21379887&style=0010&nbdigits=9&type=page&initCount=0" title="Counter Widget" Alt="Visit counter For Websites"   border="0" /></a>                             
+<p>Copyright (c) 2025 Bloxcraft Studios</p>
+    <div id="iframeOverlay" class="iframe-container">
+  <div class="iframe-wrapper">
+    <button class="close-button" onclick="closeIframe()">X</button>
+    <iframe id="dynamicIframe" src=""></iframe>
+  </div>
+</div>
+
+<script>
+function openIframe() {
+  var overlay = document.getElementById("iframeOverlay");
+  var iframe = document.getElementById("dynamicIframe");
+  
+  iframe.src = "/iframe-sites/bloxcraft-ubg-chat"; 
+  
+  overlay.style.display = "flex";
+}
+
+function closeIframe() {
+  var overlay = document.getElementById("iframeOverlay");
+  var iframe = document.getElementById("dynamicIframe");
+  
+  iframe.src = "";
+  
+  overlay.style.display = "none";
+}
+</script>
+    
+
+<div id="supportWindowOverlay" class="iframe-container">
+  <div class="iframe-wrapper">
+    <button class="close-button" onclick="supportWindow_close()">X</button>
+    <iframe id="supportWindowFrame" src=""></iframe>
+  </div>
+</div>
+
+<script>
+function supportWindow_open() {
+  var overlay = document.getElementById("supportWindowOverlay");
+  var iframe = document.getElementById("supportWindowFrame");
+  
+  iframe.src = "/iframe-sites/bloxcraft-ubg-support"; 
+  
+  overlay.style.display = "flex";
+}
+
+function supportWindow_close() {
+  var overlay = document.getElementById("supportWindowOverlay");
+  var iframe = document.getElementById("supportWindowFrame");
+  
+  iframe.src = "";
+  overlay.style.display = "none";
+}
+</script>
+
+<div id="proxyOverlay" class="iframe-container">
+  <div class="iframe-wrapper">
+    <button class="close-button" onclick="closeProxyIframe()">X</button>
+    <iframe id="proxyIframe" src=""></iframe>
+  </div>
+</div>
+
+<script>
+  function openProxyIframe() {
+    var overlay = document.getElementById("proxyOverlay");
+    var iframe = document.getElementById("proxyIframe");
+    
+    iframe.src = "/proxy-with-no-nav-bar"; 
+    overlay.style.display = "flex";
+  }
+
+  function closeProxyIframe() {
+    var overlay = document.getElementById("proxyOverlay");
+    var iframe = document.getElementById("proxyIframe");
+    
+    iframe.src = "";
+    overlay.style.display = "none";
+  }
+</script>
+  <script>
+  const searchBox = document.getElementById('searchBox');
+
+  const allElements = Array.from(document.querySelectorAll('div.game-card'));
+
+  const originalHTML = allElements.map(el => el.innerHTML);
+
+  function liveSearch() {
+    const query = searchBox.value.toLowerCase().trim();
+
+    allElements.forEach((el, i) => {
+      const text = el.textContent.toLowerCase();
+      if (query === "") {
+        el.innerHTML = originalHTML[i];
+        el.style.display = "";
+      } else if (text.includes(query)) {
+        const regex = new RegExp(`(${query})`, 'gi');
+        el.innerHTML = originalHTML[i].replace(regex, '<span class="highlight">$1</span>');
+        el.style.display = "";
+      } else {
+        el.style.display = "none";
+      }
+    });
+  }
+
+  searchBox.addEventListener('input', liveSearch);
+</script>
+  <script>
+  const IFRAMETEST_loadBtn = document.getElementById('IFRAMETEST_loadBtn');
+  const IFRAMETEST_closeBtn = document.getElementById('IFRAMETEST_closeBtn');
+  const IFRAMETEST_iframe = document.getElementById('IFRAMETEST_iframe');
+  const IFRAMETEST_container = document.getElementById('IFRAMETEST_container');
+
+  IFRAMETEST_loadBtn.addEventListener('click', () => {
+    IFRAMETEST_container.style.width = "80%";
+    IFRAMETEST_container.style.maxWidth = "800px";
+
+    IFRAMETEST_loadBtn.style.height = "0";
+    IFRAMETEST_loadBtn.style.padding = "0";
+    IFRAMETEST_loadBtn.style.opacity = "0";
+
+    setTimeout(() => {
+      IFRAMETEST_closeBtn.style.opacity = 1;
+    }, 500);
+
+    setTimeout(() => {
+      IFRAMETEST_iframe.style.height = "500px";
+      IFRAMETEST_iframe.style.opacity = 1;
+    }, 300);
+  });
+
+  IFRAMETEST_closeBtn.addEventListener('click', () => {
+    IFRAMETEST_iframe.style.height = "0";
+    IFRAMETEST_iframe.style.opacity = 0;
+
+    IFRAMETEST_closeBtn.style.opacity = 0;
+
+
+    setTimeout(() => {
+      IFRAMETEST_loadBtn.style.height = "auto";
+      IFRAMETEST_loadBtn.style.padding = "20px";
+      IFRAMETEST_loadBtn.style.opacity = "1";
+    }, 500);
+
+    IFRAMETEST_container.style.width = "300px";
+    IFRAMETEST_container.style.maxWidth = "300px";
+  });
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
