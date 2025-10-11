@@ -181,24 +181,117 @@ body {
       padding: 20px;
     }
   </style>
-  <style>
-.orange-black-button {
-background: linear-gradient(90deg, #FF6600 0%, #000000 100%);
-color: white;
-padding: 12px 24px;
-border: none;
-border-radius: 4px;
-font-size: 18px;
-text-decoration: none;
-display: inline-block;
-cursor: pointer;
-transition: transform 0.15s;
-}
+  
 
-.orange-black-button:hover {
-transform: scale(0.9);
-}
-</style>
+  <style>
+    
+    .bloxy-btn {
+      position: relative;
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 12px;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+      text-transform: uppercase;
+      text-decoration: none;
+      letter-spacing: 1px;
+      cursor: pointer;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      display: inline-block;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .bloxy-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s ease;
+      z-index: 1;
+    }
+
+    .bloxy-btn:hover::before {
+      left: 100%;
+    }
+
+    .bloxy-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.5);
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 0 40px rgba(139, 92, 246, 0.6),
+                  0 12px 48px rgba(0, 0, 0, 0.3);
+    }
+
+    .bloxy-btn:active {
+      transform: translateY(-1px) scale(1.02);
+    }
+
+ 
+    .bloxy-orange-btn {
+      background: linear-gradient(135deg, rgba(255, 102, 0, 0.3), rgba(0, 0, 0, 0.3));
+      border-color: rgba(255, 102, 0, 0.5);
+    }
+
+    .bloxy-orange-btn:hover {
+      background: linear-gradient(135deg, rgba(255, 102, 0, 0.5), rgba(0, 0, 0, 0.5));
+      box-shadow: 0 0 40px rgba(255, 102, 0, 0.6),
+                  0 12px 48px rgba(0, 0, 0, 0.3);
+    }
+
+  
+    .bloxy-blue-btn {
+      background: rgba(0, 0, 139, 0.3);
+      border-color: rgba(0, 0, 139, 0.5);
+    }
+
+    .bloxy-blue-btn:hover {
+      background: rgba(0, 0, 139, 0.5);
+      box-shadow: 0 0 40px rgba(0, 0, 255, 0.6),
+                  0 12px 48px rgba(0, 0, 0, 0.3);
+    }
+
+ 
+    .bloxy-rainbow-btn {
+      background: linear-gradient(135deg, rgba(255, 95, 109, 0.3), rgba(255, 195, 113, 0.3), rgba(71, 207, 115, 0.3), rgba(56, 249, 215, 0.3));
+      border-color: rgba(255, 95, 109, 0.5);
+      animation: rainbow-shift 3s infinite;
+    }
+
+    @keyframes rainbow-shift {
+      0%, 100% { border-color: rgba(255, 95, 109, 0.5); }
+      25% { border-color: rgba(255, 195, 113, 0.5); }
+      50% { border-color: rgba(71, 207, 115, 0.5); }
+      75% { border-color: rgba(56, 249, 215, 0.5); }
+    }
+
+    .bloxy-rainbow-btn:hover {
+      background: linear-gradient(135deg, rgba(255, 95, 109, 0.5), rgba(255, 195, 113, 0.5), rgba(71, 207, 115, 0.5), rgba(56, 249, 215, 0.5));
+      box-shadow: 0 0 50px rgba(255, 95, 109, 0.8),
+                  0 0 80px rgba(71, 207, 115, 0.4),
+                  0 12px 48px rgba(0, 0, 0, 0.3);
+    }
+
+
+    .bloxy-grn-btn {
+      background: rgba(34, 197, 94, 0.2);
+      border-color: rgba(34, 197, 94, 0.5);
+    }
+
+    .bloxy-grn-btn:hover {
+      background: rgba(34, 197, 94, 0.3);
+      box-shadow: 0 0 40px rgba(34, 197, 94, 0.6),
+                  0 12px 48px rgba(0, 0, 0, 0.3);
+    }
+  </style>
+  
   <style>
       .IFRAMETEST_container {
     position: relative;
@@ -252,43 +345,6 @@ transform: scale(0.9);
     box-sizing: border-box;
   }
     </style>
-    <style>
-    .blue-rectangle-button {
-      background-color: #00008B;
-      color: white;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 4px;
-      font-size: 18px;
-      text-decoration: none;
-      display: inline-block;
-      cursor: pointer;
-    }
-
-    .blue-rectangle-button:hover {
-      background-color: #111184;
-      transform: scale(0.9)
-    }
-  </style>
-  <style>
-.rainbow-rectangle-button {
-  background: linear-gradient(90deg, #FF5F6D 0%, #FFC371 16%, #47cf73 33%, #38f9d7 50%, #4f8cff 67%, #a259c1 83%, #FF5F6D 100%);
-  color: white;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 4px;
-  font-size: 18px;
-  text-decoration: none;
-  display: inline-block;
-  cursor: pointer;
-  transition: background 0.25s, transform 0.15s;
-}
-
-.rainbow-rectangle-button:hover {
-  background: linear-gradient(90deg, #FFC371 0%, #FF5F6D 16%, #a259c1 33%, #4f8cff 50%, #38f9d7 67%, #47cf73 83%, #FFC371 100%);
-  transform: scale(0.9);
-}
-</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org/",
@@ -296,6 +352,7 @@ transform: scale(0.9);
   "name": "Bloxcraft UBG",
   "url": "/",
   "description": "The Unblocked Games Site For You To Play!"
+}
 </script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-W0KXN0103E"></script>
 <script>
@@ -333,42 +390,48 @@ transform: scale(0.9);
 
 <p>&nbsp;</p>
   <div class="IFRAMETEST_container" id="IFRAMETEST_container">
-  <button class="orange-black-button" id="IFRAMETEST_loadBtn">Test Iframe Modes</button>
+  <button class="bloxy-btn bloxy-orange-btn" id="IFRAMETEST_loadBtn">Test Iframe Modes</button>
   <button class="IFRAMETEST_closeBtn" id="IFRAMETEST_closeBtn">X</button>
   <iframe class="IFRAMETEST_iframe" id="IFRAMETEST_iframe" src="/iframe-sites/iframe-test-list"></iframe>
 </div>
-  <a href="/browser-mode" class="orange-black-button">Browse Mode</a>
-  <a href="/partners" class="orange-black-button">Partnerships</a>
-  <a href="/request-dmca" class="orange-black-button">DMCA Request</a>
+  <a href="/browser-mode" class="bloxy-btn bloxy-orange-btn">Browse Mode</a>
+  <a href="/partners" class="bloxy-btn bloxy-orange-btn">Partnerships</a>
+  <a href="/request-dmca" class="bloxy-btn bloxy-orange-btn">DMCA Request</a>
   <p>&nbsp;</p>
-  <a href="/chat" class="blue-rectangle-button">Chat</a>
-  <button class="rainbow-rectangle-button" onclick="openIframe()">Open Chat In New Window</button>
-  <a href="/support" class="blue-rectangle-button">Support</a> 
+  <a href="/chat" class="bloxy-btn bloxy-blue-btn">Chat</a>
+  <button class="bloxy-btn bloxy-rainbow-btn" onclick="openIframe()">Open Chat In New Window</button>
+  <a href="/support" class="bloxy-btn bloxy-blue-btn">Support</a> 
 <p>&nbsp;</p>
-    <button class="rainbow-rectangle-button" onclick="supportWindow_open()">Open Support In New Window</button>
-    <a href="/developers-servers" class="blue-rectangle-button">Developer's Discord Servers</a>
-    <a href="https://github.com/tharun9772/tharun9772.github.io" class="blue-rectangle-button">Source Code</a>
+    <a href="https://github.com/tharun9772/tharun9772.github.io" class="bloxy-btn bloxy-blue-btn">Source Code</a>
+    <button class="bloxy-btn bloxy-rainbow-btn" onclick="supportWindow_open()">Open Support In New Window</button>
+    <a href="/landing" class="bloxy-btn bloxy-blue-btn">Bloxcraft UBG - Landing</a>
     <p>&nbsp;</p>
     <h2>If You Are Finding One That Opens The Game Tab In A Seperate Window, Checkout The Games Tab!</h2>
     <h3>NOTE: We Recommend NOT Using The Seperate Window Tab For Games. This Might Not Save Your Progress On Some Games That Are Supposed To!</h3>
 <p>&nbsp;</p>
-  <a href="/refined-beta" class="rainbow-rectangle-button">Bloxcraft UBG - Refined Beta</a>
-  <a href="https://youtube.com/@bloxcraftstudios" class="blue-rectangle-button">Youtube Channel</a>
-  <a href="https://www.roblox.com/communities/35721688/The-Craft-Community" class="blue-rectangle-button">Roblox Commmunity</a>
+  <a href="/refined-beta" class="bloxy-btn bloxy-rainbow-btn">Bloxcraft UBG - Refined Beta</a>
+  <a href="https://youtube.com/@bloxcraftstudios" class="bloxy-btn bloxy-blue-btn">Youtube Channel</a>
+  <a href="https://www.roblox.com/communities/35721688/The-Craft-Community" class="bloxy-btn bloxy-blue-btn">Roblox Commmunity</a>
 <p>&nbsp;</p>
-  <a href="/minecraft-tools" class="blue-rectangle-button">Minecraft Tools</a>
-  <a href="/privacy-policy" class="rainbow-rectangle-button">Privacy Policy</a>
-  <a href="/terms" class="rainbow-rectangle-button">TOS (Terms Of Service)</a>
+  <a href="/minecraft-tools" class="bloxy-btn bloxy-blue-btn">Minecraft Tools</a>
+  <a href="/privacy-policy" class="bloxy-btn bloxy-rainbow-btn">Privacy Policy</a>
+  <a href="/terms" class="bloxy-btn bloxy-rainbow-btn">TOS (Terms Of Service)</a>
       <p>&nbsp;</p>
 
-    <a href="/featured-games" class="rainbow-rectangle-button">Featured Games</a>
-<a href="https://ubghub.org/?site=Bloxcraft%20UBG&utm_source=https%3A%2F%2Fbloxcraft-ubg.pages.dev" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; background: linear-gradient(135deg, #00ff9d 0%, #00cc7a 100%); color: #1a1a1a; border: none; border-radius: 8px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: none; box-shadow: 0 2px 4px rgba(0, 255, 157, 0.2); transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 8px rgba(0, 255, 157, 0.3)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0, 255, 157, 0.2)'">
-  <svg style="width: 16px; height: 16px; fill: currentColor;" viewBox="0 0 20 20">
+    <a href="/featured-games" class="bloxy-btn bloxy-rainbow-btn">Featured Games</a>
+    
+<a href="https://ubghub.org/?site=Bloxcraft%20UBG&utm_source=https%3A%2F%2Fbloxcraft-ubg.pages.dev" 
+   target="_blank" 
+   rel="noopener" 
+   class="bloxy-btn bloxy-grn-btn"
+   style="display: inline-flex; align-items: center; gap: 8px;">
+  <svg style="width: 16px; height: 16px; fill: currentColor; position: relative; z-index: 10;" viewBox="0 0 20 20">
     <path d="M3 10l4-4v3h4V2l4 4v14H3V10z"/>
   </svg>
-  <span style="font-weight: 700; margin-left: 4px;">Vote on UBGHub</span>
+  <span style="position: relative; z-index: 10;">Vote on UBGHub</span>
 </a>
-     <a href="/updates" class="blue-rectangle-button">Updates</a>
+
+     <a href="/updates" class="bloxy-btn bloxy-blue-btn">Updates</a>
 <p>Me And The Developers Are Making A Proxy! This Will Take A While...</p>
 
 
@@ -525,7 +588,7 @@ function supportWindow_close() {
   });
 </script>
   <script>
-  const POLICY_VERSION = '3.1'; // FOR DEVELOEPRS: If TOS Or Privacy Polict Changed, Plese Update The Number, Thank You :)
+  const POLICY_VERSION = '4.0'; // FOR DEVELOEPRS: If TOS Or Privacy Polict Changed, Plese Update The Number, Thank You :)
 
   function getCookie(name) {
     const value = `; ${document.cookie}`;
@@ -566,55 +629,5 @@ function supportWindow_close() {
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
