@@ -14,337 +14,8 @@
 <meta property="og:description" content="The Unblocked Games Site You Can Play Everyday! It Also has Some Custom Games.">
 <meta property="og:url" content="/">
   	<link rel="shortcut icon" type="image/png" href="/bloxcraft.png">
-     <style>
-    span {
-      display: inline-block;
-      background:#a7e0f8;
-      padding:10px 8px;
-      border: none;
-      border-radius: 4px;
-      margin-bottom:10px; 
-      font-size:18px; 
-    }
-   </style>
-  <style>
-  #tosPopup {
-    display: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.6);
-    z-index: 1000;
-  }
+    <link rel="stylesheet" href="/main_home.css">
 
-  #tosPopupContent {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    background: #808080;
-    padding: 25px;
-    border-radius: 8px;
-    max-width: 400px;
-    text-align: center;
-    box-shadow: 0 0 15px rgba(0,0,0,0.3);
-  }
-
-  #tosPopupContent a { color: #007BFF; text-decoration: none; }
-  #tosPopupContent a:hover { text-decoration: underline; }
-
-  #tosPopupContent button {
-    margin: 10px 5px 0 5px;
-    padding: 10px 20px;
-    border: none;
-    color: #fff;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-
-  #agreeBtn { background-color: #007BFF; }
-  #agreeBtn:hover { background-color: #0056b3; }
-
-  #disagreeBtn { background-color: #dc3545; }
-  #disagreeBtn:hover { background-color: #a71d2a; }
-</style>
-    <style>
-    #searchBox {
-      width: 70%;
-      padding: 10px;
-      font-size: 16px;
-      margin-bottom: 20px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-    }
-    .highlight {
-      background-color: yellow;
-    }
-  </style>
-  <style>
-body {
-  background-image: url('/homepage_background.png'); 
-  background-repeat: no-repeat; 
-  background-position: center center; 
-  background-size: cover;  background-size: cover; 
-  background-attachment: fixed; 
-}
-</style>
-    <style>
-
-  .iframe-container {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .iframe-wrapper {
-    position: relative;
-    width: 80%;
-    height: 80%;
-    border: 2px solid white;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  }
-
-  .iframe-wrapper iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
-
-  .close-button {
-    position: absolute;
-    top: -15px;
-    right: -15px;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    background-color: red;
-    border-radius: 50%;
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-    cursor: pointer;
-    z-index: 1001;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  }
-</style>
-<style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-    }
-
-.navbar {
-  display: flex; 
-  justify-content: center; 
-  align-items: center;
-  background-color: #000;
-  padding: 10px 20px;
-  width: 100%; 
-  box-sizing: border-box;
-  
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-  right: 0; 
-}
-
-.navbar a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 17px;
-  padding: 10px 16px;
-  transition: background 0.3s;
-}
-
-.navbar a:hover {
-  background-color: #444;
-}
-
-    .content {
-      background-color: #ddd;
-      padding: 40px 20px;
-      color: #333;
-    }
-  body {
-      background-color: #5555FF; 
-      margin: 0;
-      font-family: Arial, sans-serif;
-      color: #fff; 
-      padding: 20px;
-    }
-  </style>
-  
-
-  <style>
-    
-    .bloxy-btn {
-      position: relative;
-      padding: 12px 24px;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      border-radius: 12px;
-      color: #fff;
-      font-size: 18px;
-      font-weight: 700;
-      text-transform: uppercase;
-      text-decoration: none;
-      letter-spacing: 1px;
-      cursor: pointer;
-      overflow: hidden;
-      transition: all 0.3s ease;
-      display: inline-block;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    }
-
-    .bloxy-btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-      transition: left 0.5s ease;
-      z-index: 1;
-    }
-
-    .bloxy-btn:hover::before {
-      left: 100%;
-    }
-
-    .bloxy-btn:hover {
-      background: rgba(255, 255, 255, 0.2);
-      border-color: rgba(255, 255, 255, 0.5);
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 0 40px rgba(139, 92, 246, 0.6),
-                  0 12px 48px rgba(0, 0, 0, 0.3);
-    }
-
-    .bloxy-btn:active {
-      transform: translateY(-1px) scale(1.02);
-    }
-
- 
-    .bloxy-orange-btn {
-      background: linear-gradient(135deg, rgba(255, 102, 0, 0.3), rgba(0, 0, 0, 0.3));
-      border-color: rgba(255, 102, 0, 0.5);
-    }
-
-    .bloxy-orange-btn:hover {
-      background: linear-gradient(135deg, rgba(255, 102, 0, 0.5), rgba(0, 0, 0, 0.5));
-      box-shadow: 0 0 40px rgba(255, 102, 0, 0.6),
-                  0 12px 48px rgba(0, 0, 0, 0.3);
-    }
-
-  
-    .bloxy-blue-btn {
-      background: rgba(0, 0, 139, 0.3);
-      border-color: rgba(0, 0, 139, 0.5);
-    }
-
-    .bloxy-blue-btn:hover {
-      background: rgba(0, 0, 139, 0.5);
-      box-shadow: 0 0 40px rgba(0, 0, 255, 0.6),
-                  0 12px 48px rgba(0, 0, 0, 0.3);
-    }
-
- 
-    .bloxy-rainbow-btn {
-      background: linear-gradient(135deg, rgba(255, 95, 109, 0.3), rgba(255, 195, 113, 0.3), rgba(71, 207, 115, 0.3), rgba(56, 249, 215, 0.3));
-      border-color: rgba(255, 95, 109, 0.5);
-      animation: rainbow-shift 3s infinite;
-    }
-
-    @keyframes rainbow-shift {
-      0%, 100% { border-color: rgba(255, 95, 109, 0.5); }
-      25% { border-color: rgba(255, 195, 113, 0.5); }
-      50% { border-color: rgba(71, 207, 115, 0.5); }
-      75% { border-color: rgba(56, 249, 215, 0.5); }
-    }
-
-    .bloxy-rainbow-btn:hover {
-      background: linear-gradient(135deg, rgba(255, 95, 109, 0.5), rgba(255, 195, 113, 0.5), rgba(71, 207, 115, 0.5), rgba(56, 249, 215, 0.5));
-      box-shadow: 0 0 50px rgba(255, 95, 109, 0.8),
-                  0 0 80px rgba(71, 207, 115, 0.4),
-                  0 12px 48px rgba(0, 0, 0, 0.3);
-    }
-
-
-    .bloxy-grn-btn {
-      background: rgba(34, 197, 94, 0.2);
-      border-color: rgba(34, 197, 94, 0.5);
-    }
-
-    .bloxy-grn-btn:hover {
-      background: rgba(34, 197, 94, 0.3);
-      box-shadow: 0 0 40px rgba(34, 197, 94, 0.6),
-                  0 12px 48px rgba(0, 0, 0, 0.3);
-    }
-  </style>
-  
-  <style>
-      .IFRAMETEST_container {
-    position: relative;
-    width: 300px; 
-    transition: all 0.5s ease;
-  }
-
-  .IFRAMETEST_loadBtn {
-    width: 100%;
-    padding: 20px;
-    font-size: 1.5em;
-    background: linear-gradient(45deg, #007BFF, #00D4FF);
-    color: white;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    transition: all 0.5s ease;
-    z-index: 2;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .IFRAMETEST_closeBtn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 40px;
-    height: 40px;
-    background: red;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    font-size: 1.5em;
-    cursor: pointer;
-    opacity: 0;
-    transition: all 0.3s ease;
-    z-index: 3;
-  }
-
-  .IFRAMETEST_iframe {
-    width: 100%;
-    height: 0;
-    border: 4px solid #007BFF; 
-    border-radius: 12px;
-    opacity: 0;
-    transition: all 0.8s ease;
-    display: block;
-    box-sizing: border-box;
-  }
-    </style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org/",
@@ -385,57 +56,154 @@ body {
 </div>
   <p>&nbsp;</p>
   <input type="text" id="searchBox" placeholder="Search Bloxcraft UBG - Home Page">
+  <main>
 <p>Tharun9772Gaming Is Also Known As:</p>
 <p>Bloxy The Dev, Tharun9772, Tharun</p>
 
 <p>&nbsp;</p>
   <div class="IFRAMETEST_container" id="IFRAMETEST_container">
-  <button class="bloxy-btn bloxy-orange-btn" id="IFRAMETEST_loadBtn">Test Iframe Modes</button>
+      
+          <h1>Test Iframe</h1>
+  <a class="bloxy-btn bloxy-orange-btn" id="IFRAMETEST_loadBtn">Test Iframe Modes</a>
+
   <button class="IFRAMETEST_closeBtn" id="IFRAMETEST_closeBtn">X</button>
   <iframe class="IFRAMETEST_iframe" id="IFRAMETEST_iframe" src="/iframe-sites/iframe-test-list"></iframe>
 </div>
-  <a href="/browser-mode" class="bloxy-btn bloxy-orange-btn">Browse Mode</a>
-  <a href="/partners" class="bloxy-btn bloxy-orange-btn">Partnerships</a>
-  <a href="/request-dmca" class="bloxy-btn bloxy-orange-btn">DMCA Request</a>
-  <p>&nbsp;</p>
-  <a href="/chat" class="bloxy-btn bloxy-blue-btn">Chat</a>
-  <button class="bloxy-btn bloxy-rainbow-btn" onclick="openIframe()">Open Chat In New Window</button>
-  <a href="/support" class="bloxy-btn bloxy-blue-btn">Support</a> 
+
 <p>&nbsp;</p>
-    <a href="https://github.com/tharun9772/tharun9772.github.io" class="bloxy-btn bloxy-blue-btn">Source Code</a>
-    <button class="bloxy-btn bloxy-rainbow-btn" onclick="supportWindow_open()">Open Support In New Window</button>
-    <a href="/landing" class="bloxy-btn bloxy-blue-btn">Bloxcraft UBG - Landing</a>
+
+
+<h1>Bloxcraft UBG - Modes & Beta</h1>
+  <a href="/browser-mode" class="bloxy-btn bloxy-orange-btn">Browse Mode</a>
+  <a href="/refined-beta" class="bloxy-btn bloxy-rainbow-btn">Bloxcraft UBG - Refined Beta</a>
+  <a href="/featured-games" class="bloxy-btn bloxy-rainbow-btn">Featured Games</a>
+ <p>&nbsp;</p>
+  <h1>General</h1>
+  <a href="/partners" class="bloxy-btn bloxy-orange-btn">Partnerships</a>
+  
+  <a href="https://ubghub.org/?site=Bloxcraft%20UBG&utm_source=https%3A%2F%2Fbloxcraft-ubg.pages.dev" target="_blank" class="bloxy-grn-btn bloxy-btn">
+  <svg style="width:16px;height:16px;fill:currentColor;vertical-align:middle;margin-right:6px;" viewBox="0 0 20 20">
+    <path d="M3 10l4-4v3h4V2l4 4v14H3V10z"/>
+  </svg>
+  Vote on UBGHub
+</a>
+ 
+<a href="/landing" class="bloxy-btn bloxy-blue-btn">Bloxcraft UBG - Landing</a>
+ <a href="/updates" class="bloxy-btn bloxy-blue-btn">Updates</a>
+  <p>&nbsp;</p>
+  <h1>Chats</h1>
+   <a href="/support" class="bloxy-btn bloxy-blue-btn">Support</a> 
+  <a href="/chat" class="bloxy-btn bloxy-blue-btn">Chat</a>
+  <p>&nbsp;</p>
+  <h1>Pop Ups</h1>
+  
+  <a class="bloxy-btn bloxy-rainbow-btn" onclick="openIframe()">Open Chat In New Window</a>
+  <a id="palet_blox_open" class="bloxy-btn bloxy-rainbow-btn">Annoucements</a>
+  
+    
+    <a class="bloxy-btn bloxy-rainbow-btn" onclick="supportWindow_open()">Open Support In New Window</a>
+    
     <p>&nbsp;</p>
     <h2>If You Are Finding One That Opens The Game Tab In A Seperate Window, Checkout The Games Tab!</h2>
-    <h3>NOTE: We Recommend NOT Using The Seperate Window Tab For Games. This Might Not Save Your Progress On Some Games That Are Supposed To!</h3>
+
 <p>&nbsp;</p>
-  <a href="/refined-beta" class="bloxy-btn bloxy-rainbow-btn">Bloxcraft UBG - Refined Beta</a>
+  <h1>Social Accounts</h1>
   <a href="https://youtube.com/@bloxcraftstudios" class="bloxy-btn bloxy-blue-btn">Youtube Channel</a>
   <a href="https://www.roblox.com/communities/35721688/The-Craft-Community" class="bloxy-btn bloxy-blue-btn">Roblox Commmunity</a>
 <p>&nbsp;</p>
+<h1>Tools</h1>
   <a href="/minecraft-tools" class="bloxy-btn bloxy-blue-btn">Minecraft Tools</a>
+  <p>&nbsp;</p>
+  <h1>Legal</h1>
   <a href="/privacy-policy" class="bloxy-btn bloxy-rainbow-btn">Privacy Policy</a>
   <a href="/terms" class="bloxy-btn bloxy-rainbow-btn">TOS (Terms Of Service)</a>
       <p>&nbsp;</p>
 
-    <a href="/featured-games" class="bloxy-btn bloxy-rainbow-btn">Featured Games</a>
     
-<a href="https://ubghub.org/?site=Bloxcraft%20UBG&utm_source=https%3A%2F%2Fbloxcraft-ubg.pages.dev" 
-   target="_blank" 
-   rel="noopener" 
-   class="bloxy-btn bloxy-grn-btn"
-   style="display: inline-flex; align-items: center; gap: 8px;">
-  <svg style="width: 16px; height: 16px; fill: currentColor; position: relative; z-index: 10;" viewBox="0 0 20 20">
-    <path d="M3 10l4-4v3h4V2l4 4v14H3V10z"/>
-  </svg>
-  <span style="position: relative; z-index: 10;">Vote on UBGHub</span>
-</a>
-
-     <a href="/updates" class="bloxy-btn bloxy-blue-btn">Updates</a>
-<p>Me And The Developers Are Making A Proxy! This Will Take A While...</p>
+    <h1>Other</h1>
+<a href="/request-dmca" class="bloxy-btn bloxy-orange-btn">DMCA Request</a>
 
 
-  <p>&nbsp;</p>
+<div id="palet_blox_popup" class="palet_blox_hidden" style="
+  position: fixed;
+  top: 2cm;
+  left: 2cm;
+  right: 2cm;
+  bottom: 2cm;
+  z-index: 9999;
+  background: radial-gradient(circle at top left, #001a33, #002a55, #003b80);
+  border: 2px solid rgba(0, 183, 255, 0.4);
+  box-shadow: 0 0 40px rgba(0, 183, 255, 0.6);
+  border-radius: 16px;
+  padding: 12px;
+  backdrop-filter: blur(12px);
+  animation: fadeIn 0.3s ease forwards;
+  display: flex;
+  flex-direction: column;
+">
+  <div style="
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    background: rgba(0,0,0,0.3);
+    border-bottom: 1px solid rgba(0,183,255,0.4);
+    border-radius: 12px 12px 0 0;
+  ">
+    <button id="palet_blox_fullscreen" style="
+      background: rgba(0,0,0,0.5);
+      color: #00bfff;
+      border: none;
+      font-size: 18px;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0, 183, 255, 0.6);
+      transition: 0.2s;
+    " onmouseover="this.style.background='rgba(0,183,255,0.3)'" onmouseout="this.style.background='rgba(0,0,0,0.5)'">
+      🖵
+    </button>
+    <button id="palet_blox_close" style="
+      background: rgba(0, 0, 0, 0.5);
+      color: #00bfff;
+      border: none;
+      font-size: 22px;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0, 183, 255, 0.6);
+      transition: 0.2s;
+    " onmouseover="this.style.background='rgba(0,183,255,0.3)'" onmouseout="this.style.background='rgba(0,0,0,0.5)'">
+      ✖
+    </button>
+  </div>
+  <div style="
+    flex: 1;
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    width: 100%;
+    background: linear-gradient(90deg, #001f3f 0%, #0074D9 50%, #00BFFF 100%);
+    box-shadow: inset 0 0 20px rgba(0, 183, 255, 0.3);
+  ">
+    <iframe 
+      src="https://padlet.com/embed/nhocearj1z6ibdyy"
+      frameborder="0"
+      allow="camera;microphone;geolocation;display-capture;clipboard-write"
+      style="
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 12px;
+      ">
+    </iframe>
+  </div>
+</div>
+
+  <a href="https://github.com/tharun9772/tharun9772.github.io" class="bloxy-btn bloxy-blue-btn">Source Code</a>
     <h1>Views:</h1>
   <a href="https://bloxcraft-ubg.pages.dev" target="_blank">
 <img src="https://hitwebcounter.com/counter/counter.php?page=21379887&style=0010&nbdigits=9&type=page&initCount=0" title="Counter Widget" Alt="Visit counter For Websites"   border="0" /></a>                             
@@ -627,7 +395,34 @@ function supportWindow_close() {
   });
 </script>
 
+<script>
+  const palet_blox_open = document.getElementById('palet_blox_open');
+  const palet_blox_close = document.getElementById('palet_blox_close');
+  const palet_blox_fullscreen = document.getElementById('palet_blox_fullscreen');
+  const palet_blox_popup = document.getElementById('palet_blox_popup');
+
+  palet_blox_open.addEventListener('click', () => {
+    palet_blox_popup.classList.remove('palet_blox_hidden');
+    palet_blox_popup.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  });
+
+  palet_blox_close.addEventListener('click', () => {
+    palet_blox_popup.style.display = 'none';
+    palet_blox_popup.style.top = '2cm';
+    palet_blox_popup.style.left = '2cm';
+    palet_blox_popup.style.right = '2cm';
+    palet_blox_popup.style.bottom = '2cm';
+    document.body.style.overflow = '';
+  });
+
+  palet_blox_fullscreen.addEventListener('click', () => {
+    palet_blox_popup.style.top = '0';
+    palet_blox_popup.style.left = '0';
+    palet_blox_popup.style.right = '0';
+    palet_blox_popup.style.bottom = '0';
+  });
+</script>
+</main>
 </body>
 </html>
-
-
