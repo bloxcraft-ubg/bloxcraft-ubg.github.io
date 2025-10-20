@@ -14,6 +14,7 @@
 <meta name="theme-color" content="#5555FF"> 
 <meta property="og:description" content="The Unblocked Games Site You Can Play Everyday! It Also has Some Custom Games.">
   <link rel="shortcut icon" type="image/png" href="/bloxcraft.png">
+  <link rel="stylesheet" href="/assets/background/frame.css">
   <style>
     :root {
       --accent: #4f8cff;
@@ -312,14 +313,6 @@ transform: scale(0.9);
   box-shadow: 0 0 40px rgba(34,197,94,0.6), 0 12px 48px rgba(0,0,0,0.6);
 }
 </style>
-  <style>
-body {
-  background-image: url('/gamepage_banner.png'); 
-  background-repeat: no-repeat; 
-  background-size: cover; 
-  background-attachment: fixed; 
-}
-</style>
 <style>
     body {
       margin: 0;
@@ -359,7 +352,7 @@ body {
       color: #333;
     }
   body {
-      background-color: #5555FF; 
+      background: linear-gradient(-45deg, #1e1b4b, #312e81, #3730a3, #1e3a8a);
       margin: 0;
       font-family: Arial, sans-serif;
       color: #fff; 
@@ -423,7 +416,6 @@ body {
   transform: scale(1.07);
 }
 </style>
-</head>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-W0KXN0103E"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -432,8 +424,9 @@ body {
 
   gtag('config', 'G-W0KXN0103E');
 </script>
+</head>
 <body>
-
+<iframe id="bgFrame" src="/assets/background/games"></iframe>
   <div class="navbar">
     <a href="/">Home</a>
     <a href="/games">Games</a>

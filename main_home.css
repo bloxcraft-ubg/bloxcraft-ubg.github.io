@@ -71,8 +71,8 @@
     }
 
 body {
-  background-image: url('/homepage_background.png'); 
   background-repeat: no-repeat; 
+  background: linear-gradient(-45deg, #1e1b4b, #312e81, #3730a3, #1e3a8a);
   background-position: center center; 
   background-size: cover;  background-size: cover; 
   background-attachment: fixed; 
@@ -162,7 +162,6 @@ body {
       color: #333;
     }
   body {
-      background-color: #5555FF; 
       margin: 0;
       font-family: Arial, sans-serif;
       color: #fff; 
