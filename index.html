@@ -16,8 +16,9 @@
   	<link rel="shortcut icon" type="image/png" href="/bloxcraft.png">
     <link rel="stylesheet" href="/main_home.css">
     <link rel="stylesheet" href="/assets/background/frame.css">
-    
-<style>
+      <style>
+    .funcard{padding:2rem;border-radius:12px;background:rgba(255,255,255,0.04);max-width:800px;text-align:center;opacity:0;transform:translateY(8px);transition:all .35s}
+    .funcard.show{opacity:1;transform:none}
   
     .sponsor-container {
       position: absolute;
@@ -148,7 +149,8 @@
   <main>
 <p>Tharun9772Gaming Is Also Known As:</p>
 <p>Bloxy The Dev, Tharun9772, Tharun</p>
-
+    <p>&nbsp;</p>
+<div id="card" class="funcard">Loading...</div>
 <p>&nbsp;</p>
           <h1>Test Iframe</h1>
   <a class="bloxy-btn bloxy-orange-btn" id="IFRAMETEST_loadBtn">Test Iframe Modes</a>
@@ -528,10 +530,12 @@ function supportWindow_close() {
     palet_blox_popup.style.bottom = '0';
   });
 </script>
+<script src="/funcard.js"></script>
 <script src="/assets/timachinecodes.js"></script>
 </main>
 </body>
 </html>
+
 
 
 
