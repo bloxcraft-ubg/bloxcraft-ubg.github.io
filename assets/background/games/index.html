@@ -24,7 +24,10 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: transparent;
+   
+        background-color: black; 
+  background: linear-gradient(-45deg, #1e1b4b, #312e81, #3730a3, #1e3a8a);
+  background-colour: linear-gradient(-45deg, #1e1b4b, #312e81, #3730a3, #1e3a8a);
       background-size: 400% 400%;
       animation: gradientMove 10s ease infinite;
       overflow: hidden;
@@ -39,7 +42,7 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* Falling Dots (Snow) */
+
     .dot {
       position: absolute;
       background: white;
@@ -131,7 +134,7 @@
 </head>
 <body>
 
-  <!-- Snow dots -->
+
   <script>
     const numDots = 500;
     for (let i = 0; i < numDots; i++) {

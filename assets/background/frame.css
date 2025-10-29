@@ -16,3 +16,13 @@ h1, h2, h3, h4, h5, h6, p, span, div, input, a, button {
     background: transparent;
   }
 
+body {
+  background-color: black; 
+  background: linear-gradient(-45deg, #1e1b4b, #312e81, #3730a3, #1e3a8a);
+  background-colour: linear-gradient(-45deg, #1e1b4b, #312e81, #3730a3, #1e3a8a);
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #fff; 
+  padding: 20px;
+}
+
