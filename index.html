@@ -139,7 +139,7 @@
     <p id="tosMessage">By using this site, you agree to our 
       <a href="/terms" target="_blank">Terms of Service</a> and 
       <a href="/privacy-policy" target="_blank">Privacy Policy</a>. 
-      You also allow us to use cookies on our site.</p>
+      You also allow us to use cookies and localstorage on our site.</p>
     <button id="agreeBtn">I Agree</button>
     <button id="disagreeBtn">I Disagree</button>
   </div>
@@ -186,12 +186,19 @@
   <a href="/chat" class="bloxy-btn bloxy-blue-btn">Chat</a>
   <p>&nbsp;</p>
   <h1>Pop Ups</h1>
-  
+  <a class="bloxy-btn bloxy-rainbow-btn" onclick="padletcommentsOpen()">Open Comments</a>
   <a class="bloxy-btn bloxy-rainbow-btn" onclick="openIframe()">Open Chat In New Window</a>
   <a id="palet_blox_open" class="bloxy-btn bloxy-rainbow-btn">Annoucements</a>
   <a class="bloxy-btn bloxy-rainbow-btn" onclick="supportWindow_open()">Open Support In New Window</a>
   <a class="bloxy-btn bloxy-rainbow-btn" id="openPopup">Enter Secret Code</a>
 
+    <div class="padletcomments-overlay" id="padletcomments-overlay">
+  <div class="padletcomments-window">
+    <button class="padletcomments-close-btn" onclick="padletcommentsClose()">✕</button>
+    <iframe class="padletcomments-iframe" src="/iframe-sites/comments"></iframe>
+  </div>
+</div>
+    
 <div class="popup-overlay" id="popupOverlay">
   <div class="popup">
     <button class="close" id="closePopup">✕</button>
@@ -454,8 +461,17 @@ function supportWindow_close() {
     IFRAMETEST_container.style.maxWidth = "300px";
   });
 </script>
+    <script>
+  function padletcommentsOpen() {
+    document.getElementById("padletcomments-overlay").style.display = "flex";
+  }
+
+  function padletcommentsClose() {
+    document.getElementById("padletcomments-overlay").style.display = "none";
+  }
+</script>
   <script>
-  const POLICY_VERSION = '4.0'; // FOR DEVELOEPRS: If TOS Or Privacy Polict Changed, Plese Update The Number, Thank You :)
+  const POLICY_VERSION = '5.0'; // FOR DEVELOEPRS: If TOS Or Privacy Polict Changed, Plese Update The Number, Thank You :)
 
   function getCookie(name) {
     const value = `; ${document.cookie}`;
@@ -480,7 +496,7 @@ function supportWindow_close() {
         "We've updated our Terms of Service and Privacy Policy. Please review and agree to continue using the site.<br>" +
         '<a href="/terms" target="_blank">Terms of Service</a> and ' +
         '<a href="/privacy-policy" target="_blank">Privacy Policy</a>. ' +
-        'You also allow us to use cookies on our site.';
+        'You also allow us to use cookies and localstorage on our site.';
     }
   }
 
@@ -527,6 +543,7 @@ function supportWindow_close() {
 </main>
 </body>
 </html>
+
 
 
 
