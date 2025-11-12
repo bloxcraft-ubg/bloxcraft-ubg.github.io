@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bloxcraft UBG - Games</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link id="favicon" rel="shortcut icon" type="image/png" href="/bloxcraft.png">
+  <link rel="stylesheet" href="/app-viewer/app-viewer-default.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-W0KXN0103E"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} 
+    gtag('js', new Date());
+    gtag('config', 'G-W0KXN0103E');
+  </script>
+</head>
+<body>
+  <div id="viewerBar">
+    <p id="viewerTitle">Loading...</p>
+    <div id="Btn-Group">
+      <a class="bloxy-blue-btn bloxy-btn" id="closeViewer">Close</a>
+      <a class="bloxy-blue-btn bloxy-btn" id="openNewTab">Play In New Tab</a>
+    </div>
+  </div>
+
+  <iframe id="viewerFrame"></iframe>
+
+<script>
+(async () => {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("gn-id");
+
+  const viewerFrame = document.getElementById("viewerFrame");
+  const viewerTitle = document.getElementById("viewerTitle");
+  const closeViewer = document.getElementById("closeViewer");
+  const openNewTab = document.getElementById("openNewTab");
+
+  function show404() {
+    viewerFrame.srcdoc = `<style>body{background:black;color:white;font-family:sans-serif;display:flex;justify-content:center;align-items:center;height:100vh;font-size:24px}</style>404 Blocked Or Not Found`;
+    viewerTitle.textContent = " ";
+  }
+
+  if (!id || isNaN(id) || Number(id) < 0) {
+    show404();
+    return;
+  }
+
+  try {
+    const zones = await fetch("https://cdn.jsdelivr.net/gh/gn-math/assets/zones.json").then(r => r.json());
+    const game = zones.find(z => String(z.id) === String(id));
+
+    if (!game) {
+      show404();
+      return;
+    }
+
+    const title = game.name || " ";
+    viewerTitle.textContent = title;
+
+    const fileUrl = `https://cdn.jsdelivr.net/gh/gn-math/html@master/${id}.html`;
+
+    fetch(fileUrl)
+      .then(r => {
+        if (!r.ok) throw new Error();
+        return r.text();
+      })
+      .then(html => {
+        viewerFrame.srcdoc = html;
+      })
+      .catch(() => show404());
+
+ 
+    openNewTab.addEventListener("click", async () => {
+      try {
+        const res = await fetch(fileUrl);
+        if (!res.ok) throw new Error();
+
+        const html = await res.text();
+        const newTab = window.open("about:blank", "_blank");
+        if (!newTab) {
+          alert("Popup blocked! Enable popups to open game.");
+          return;
+        }
+        newTab.document.open();
+        newTab.document.write(html);
+        newTab.document.close();
+      } catch (err) {
+        alert("Failed to open in new tab");
+      }
+    });
+
+  } catch {
+    show404();
+  }
+
+  closeViewer.addEventListener("click", () => window.top.location.href = "/games");
+})();
+
+
+</script>
+<script src="/main-injection.js"></script>
+</body>
+</html>
+
+
+
