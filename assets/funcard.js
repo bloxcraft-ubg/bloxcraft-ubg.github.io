@@ -1,7 +1,7 @@
 
     const key = 'bloxcraft_key_funcard_847599277577499887583948582';
     const messages = [
-        "New Games Are Added Oftem, Check Back Soon!",
+"New Games Are Added Oftem, Check Back Soon!",
 "Tip: Bookmark Bloxcraft UBG So You Never Lose It!",
 "Fun Fact: Bloxcraft UBG Was Made With HTML, CSS & JavaScript!",
 "Join The Fun — Share Bloxcraft UBG With Friends!",
@@ -319,6 +319,8 @@
 "Some of Bloxcraft UBG's chats are powerd by Vortex!",
 "Rectangle screens size of a chromebook works perfect! Ipads/tablets is better, phone is not that good, click 'Play In Newtab/NewTab' to view the game without the rectangle toolbar!",
 "Tharun9772Gaming's Birthday is at Feburary 21 EDT, Bloxcraft Studios is June 29 EDT!",
+"TIP: If Game Images Don't Load, It Is Likely It Is Blocked.",
+"Checkout UBGHub for unblocked game sites like this!",
         
     ];
 
