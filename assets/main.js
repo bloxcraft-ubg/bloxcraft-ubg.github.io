@@ -3,8 +3,9 @@
   const w0ord = ["bloxcraft-wins-offi", "bloxyubg", "goldenmonmn", "cookenmone"];
   const word = ["Some", "BetaSigma", "School"]
   
-  const urlparma = "code-378297"
+  
   const openPopup = document.getElementById("openPopup");
+  const urlparma = "code-378297"
   const popupOverlay = document.getElementById("popupOverlay");
   const closePopup = document.getElementById("closePopup");
   const submitCode = document.getElementById("submitCode");
