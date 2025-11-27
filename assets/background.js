@@ -1,14 +1,14 @@
   const secretwords = ["fakeuser", "notexter", "frwendsec"]
   const wordlist =  ["fekeusa", "nttss", "okay"]
-  const w0ord = ["bloxcraft-wins-offi", "bloxyubg", "goldenmonmn", "cookenmone"];
+  const w0ord = ["bloxcraft-is-the-goat", "bloxcraft-ubg-is-ubg", "golden-wiggle-wiggle", "ubgisunblocked"];
   const word = ["Some", "BetaSigma", "School"]
   
   
   const openPopup = document.getElementById("openPopup");
-  const urlparma = "code-378297"
   const popupOverlay = document.getElementById("popupOverlay");
   const closePopup = document.getElementById("closePopup");
   const submitCode = document.getElementById("submitCode");
+  const localstoragekey = "code-37829767"
   const secretInput = document.getElementById("secretInput");
   const message = document.getElementById("message");
 
@@ -27,7 +27,7 @@
     const code = secretInput.value.trim();
     if (w0ord.includes(code)) {
       
-      window.location.href = `/apps/secret-code/${urlparma}`;
+      window.location.href = `/apps/secret-code/${localstoragekey}`;
     } else {
      
       message.textContent = "❌ Wrong! Try Again!";

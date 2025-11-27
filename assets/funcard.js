@@ -125,6 +125,7 @@
 "Fun Fact: We track game popularity—your plays help determine the top list!",
 "Try the 'Strategy' games if you're looking for a mental workout!",
 "Remember: Don't share personal information in the public chat!",
+"You found the code for teh secret code menu almost everybody wants! the code is 'bloxcraft-ubg-is-ubg'! Enjoy seeing the secret!",
 "Tip: Clear your cache *and* cookies if you see old site elements.",
 "Stay Tuned: A major site redesign is planned for the next school semester!",
 "Every time you share the site, you help us bring more games!",
@@ -312,7 +313,7 @@
 "Somtimes the message of the visit repeats...",
 "thousands and soon millions or even billions of visits come to Bloxcraft UBG!",
 "We usually updated Weekly with games and new features.",
-"Try swticthing tabs, Bloxcraft UBG turns to Google CLassroom when you switch tabs! Useful to escape danger at school.",
+"Try swticthing tabs, Bloxcraft UBG turns to Google Classroom when you switch tabs! Useful to escape danger at school.",
 "Here is a way to prank your friends, open their ChromeBook and click CTRL, SHIFT, And Q two times, watch the prank happen!",
 "Try entering a secret code to see cool stuff!",
 "Bloxcraft UBG chats and support page are always moderated, be carful!",
@@ -321,6 +322,17 @@
 "Tharun9772Gaming's Birthday is at Feburary 21 EDT, Bloxcraft Studios is June 29 EDT!",
 "TIP: If Game Images Don't Load, It Is Likely It Is Blocked.",
 "Checkout UBGHub for unblocked game sites like this!",
+"If you got accses to the secret menu, you are lucky.",
+"You can share the code with friends, try not to tell the whole internet!",
+"Checkout the chat! We now have one for Vortex (vortexos.net)",
+"6x7=42! 42+2025=2067!",
+"There are many sites, millions and billions and soon trillions of people use Youtube!",
+"bloxcraft-ubg.unblocked-games.workers.dev!",
+"Tryout our new game site, Bloxcraft Unblocked Hub (bloxcraft-unblcoked-hub.pages.dev)!",
+"We have lots and lots of people visit Bloxcraft UBG, please help us by spreading the site and make this the best game site ever!",
+"Google Sites is one way to make unblocked games, they are unblocked in many schools and blockers!",
+"There is more than one secret code for the secret menu... They could be for accsesing different secret pages...",
+"To see views and unique visitors count, scroll down in the home page and you will find it!"
         
     ];
 
