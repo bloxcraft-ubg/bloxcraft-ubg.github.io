@@ -181,11 +181,15 @@
     <a href="https://discord.gg/sqPFYEsz8F">Discord Server</a>
     <a href="https://docs.google.com/document/d/1UC3Eo6UoPCVlq1SiOFEj0HahQGPqqbadXSho5NKHbQU/edit?tab=t.0">Bloxcraft Unblocked Games List</a>
   </div>
-  <br<
+  <br>
+  <div id="main-content">
+  <h1>Some chats are made by friends, Base44 Chat is vibecoded, No developer, not even the owner(s) made the Base44 chat</h1>
+  </div>
   <div id="selector">
     <h2>Select A Chat</h2>
     <a class="a bloxy-blue-btn" onclick="loadChat1()">Discord (Wigetbot) Chat</a>
     <a class="a bloxy-blue-btn"onclick="loadVortexChat()">Vortex Chat</a>
+    <a class="a bloxy-blue-btn" onclick="loadChat3()">Base44 (Buggy) Chat</a>
   </div>
 
 
@@ -217,6 +221,37 @@ document.getElementById('chatContainer').innerHTML = `
 `;
 }
 
+function loadChat3() {
+clearContainer();
+document.getElementById('chatContainer').innerHTML = `
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden; 
+        }
+
+        iframe {
+            display: block; 
+            width: 100%;
+            height: 100%;
+            border: none; 
+        }
+    </style>
+</head>
+<body>
+    <iframe src="https://bloxcraft-ubg.base44.app/chat" title="Chat"></iframe>
+</body>
+<!--Idk why friend used bloxcraft-ubg as subdomain main...-->
+<!--He doesn't even want to be credited for having his chat here-->
+`;
+}
+
 
 function loadVortexChat() {
 const c = document.getElementById('chatContainer');
@@ -230,13 +265,16 @@ c.innerHTML = `
 <a class="a bloxy-grn-btn" onclick=\"loadProxy('https://vtx.chat/embed/bloxcraft')\">Vortex Chat Link</a>
 <a class="a bloxy-grn-btn" onclick=\"loadProxy('https://vortexos.net/embed/bloxcraft')\">Vortex Main Link</a>
 <a class="a bloxy-grn-btn" onclick=\"loadProxy('https://vtx.bloxcraft-ubg.workers.dev/')\">Proxy Station #1</a>
-<a class="a bloxy-grn-btn" onclick=\"loadProxy('https://vtx.bloxcraft-studios.workers.dev/embed/bloxcraft')\">Proxy Station #2</a>
-<a class="a bloxy-grn-btn" onclick=\"loadProxy('https://vtx.bloxcraft-start.workers.dev/embed/bloxcraft')\">Proxy Station #3</a>
-<a class="a bloxy-grn-btn" onclick=\"loadProxy('https://vtx.bs-minecraft-pe.workers.dev/embed/bloxcraft')\">Proxy Station #4</a>
-<a class="a bloxy-grn-btn" onclick=\"loadProxy('https://school-static.bs-bloxcraft.workers.dev/embed/bloxcraft')\">Proxy Station #5</a>
+<a class="a bloxy-grn-btn" onclick=\"loadProxy('https://vtx.bloxcraft-studios.workers.dev/embed/bloxcraft')\">Cloudflare Workers #2</a>
+<a class="a bloxy-grn-btn" onclick=\"loadProxy('https://vtx.bloxcraft-start.workers.dev/embed/bloxcraft')\">Cloudflare Workers #3</a>
+<a class="a bloxy-grn-btn" onclick=\"loadProxy('https://vtx.bs-minecraft-pe.workers.dev/embed/bloxcraft')\">Cloudflare Workers #4</a>
+<a class="a bloxy-grn-btn" onclick=\"loadProxy('https://school-static.bs-bloxcraft.workers.dev/embed/bloxcraft')\">Cloudflare Workers #5</a>
 <a class="a bloxy-grn-btn" onclick=\"loadProxy('https://vortexos.global.ssl.fastly.net/embed/bloxcraft')\">Fastly Link</a>
 <a class="a bloxy-grn-btn" onclick=\"loadProxy('https://vortexos.net.cdn.cloudflare.net/embed/bloxcraft')\">Cloudflare Link #1</a>
 <a class="a bloxy-grn-btn" onclick=\"loadProxy('https://vtx.chat.cdn.cloudflare.net/embed/bloxcraft')\">Cloudflare Link #2</a>
+<a class="a bloxy-grn-btn" onclick=\"loadProxy('https://vortex.unblocked-games.workers.dev/embed/bloxcraft')\">Cloudflare Workers #6</a>
+<a class="a bloxy-grn-btn" onclick=\"loadProxy('https://vortexos.ubg-games.workers.dev/embed/bloxcraft')\">Cloudflare Workers #7</a>
+<a class="a bloxy-grn-btn" onclick=\"loadProxy('https://vtx-cdn.edu-cdn.workers.dev/embed/bloxcraft')\">Cloudflare Workers #8/a>
 `;
 }
 
