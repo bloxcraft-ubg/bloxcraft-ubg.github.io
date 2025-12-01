@@ -89,6 +89,8 @@ h1 { text-align:center; font-size:28px; margin-bottom:18px; text-shadow:0 0 8px 
   <button class="bloxy-btn" onclick="openXP('xp1')">Secret Updates</button>
   <button class="bloxy-btn" onclick="openXP('xp2',37)">Play Owner's Favourite Game</button>
   <button class="bloxy-btn" onclick="openXP('xp3')">DId You Know This?</button>
+  <button class="bloxy-btn" onclick="window.open('/apps/secret-code/code-37829767/green', '_blank');">Enter Hacker Theme</button>
+  <button class="bloxy-btn" onclick="window.open('/', '_blank');">Enter Normal Theme</button>
 </div>
 
 <div id="hint">Press CTRL + B</div>
@@ -109,6 +111,10 @@ h1 { text-align:center; font-size:28px; margin-bottom:18px; text-shadow:0 0 8px 
       <p>Hall Of SHame Removed On Site</p>
       <p>Chat Is Back Up</p>
       <p>Vortex Chat Is Coming Soon...</p>
+      <p>Secret Hacker Theme Added.</p>
+      <h1>Hacker Menu Details:</h1>
+    <h2>Username: <span style="color: blue;">unblocked</span></h2>
+    <h2>Password: <span style="color: blue;">bypassblockerscreens</h2>
   </div>
 </div>
 
@@ -163,7 +169,7 @@ function openXP(id, paddingPx=0){
   w.classList.remove("minimized","fullscreen");
   removeTaskButton(id);
 
-  // Lazy-load iframe
+ 
   const iframe = w.querySelector("iframe.xp-iframe");
   if(iframe && !iframe.src){
     iframe.src = iframe.dataset.src;
