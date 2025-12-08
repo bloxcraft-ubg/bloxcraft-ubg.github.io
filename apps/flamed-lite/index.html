@@ -1,0 +1,273 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Flamed-Games/Flamed-Lite@master/style.css">
+<link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/gh/Flamed-Games/Flamed-Lite@master/favicon.ico">
+<title>Flamed</title>
+
+<style>
+.hacker-window {
+  position: fixed;
+  top: 100px;
+  left: 100px;
+  width: 900px;
+  height: 600px;
+  background: #0a0a0a;
+  border: 2px solid #00ff00;
+  display: none;
+  flex-direction: column;
+  resize: both;
+  overflow: hidden;
+  box-shadow: 0 0 20px #00ff00;
+  transition: all 0.2s ease;
+}
+
+.hacker-content iframe {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+
+.hacker-titlebar {
+  background: #003300;
+  color: #00ff00;
+  padding: 8px;
+  cursor: move;
+  display: flex;
+  justify-content: space-between;
+  user-select: none;
+  font-family: monospace;
+}
+
+.hacker-btns span {
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 18px;
+}
+
+.hacker-content {
+  flex: 1;
+  background: black;
+  display: flex;
+}
+
+#game-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.window.focused {
+  box-shadow: 0 0 28px #00ff00;
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const input = document.getElementById("terminal-input");
+    const form = document.getElementById("terminal-form");
+    const output = document.getElementById("terminal-output");
+    const windowsRoot = document.body;
+
+    let pages = [];
+    let zCounter = 100;
+    const windowsState = {}; 
+
+    fetch("https://cdn.jsdelivr.net/gh/Flamed-Games/Flamed-Lite@main/cmd.json")
+        .then(r => r.json()).then(d => pages = d);
+
+    const filenameToTitle = name => name.replace(/\.html$/i, '');
+
+    function bringToFront(win){
+        zCounter++;
+        win.style.zIndex = zCounter;
+        Object.values(windowsState).forEach(w=>w.el!==win && w.el.classList.remove("focused"));
+        win.classList.add("focused");
+    }
+
+    function createWindow(pageName){
+        if(windowsState[pageName]){
+            const msg = document.createElement("div");
+            msg.textContent = "ERROR: This Game Is Already Open";
+            output.appendChild(msg);
+            return;
+        }
+
+        const win = document.createElement("div");
+        win.className = "hacker-window";
+        win.style.top = (100 + Object.keys(windowsState).length*20)+"px";
+        win.style.left = (100 + Object.keys(windowsState).length*20)+"px";
+        win.style.display = "flex";
+        win.style.zIndex = ++zCounter;
+
+        const titlebar = document.createElement("div");
+        titlebar.className = "hacker-titlebar";
+        const title = document.createElement("span");
+        title.textContent = filenameToTitle(pageName);
+        const btns = document.createElement("div");
+        btns.className = "hacker-btns";
+        const fullBtn = document.createElement("span"); fullBtn.innerText="🗖";
+        const closeBtn = document.createElement("span"); closeBtn.innerText="❌";
+        btns.appendChild(fullBtn); btns.appendChild(closeBtn);
+        titlebar.appendChild(title); titlebar.appendChild(btns);
+        win.appendChild(titlebar);
+
+        const content = document.createElement("div");
+        content.className = "hacker-content";
+        const iframe = document.createElement("iframe");
+        content.appendChild(iframe);
+        win.appendChild(content);
+
+        windowsRoot.appendChild(win);
+        windowsState[pageName] = {el:win, iframe};
+
+        bringToFront(win);
+
+        // drag
+        let drag=false, offsetX=0, offsetY=0;
+        titlebar.addEventListener("mousedown", e=>{
+            drag=true;
+            offsetX=e.clientX - win.offsetLeft;
+            offsetY=e.clientY - win.offsetTop;
+            bringToFront(win);
+        });
+        document.addEventListener("mouseup", ()=> drag=false);
+        document.addEventListener("mousemove", e=>{
+            if(!drag) return;
+            win.style.left=(e.clientX-offsetX)+"px";
+            win.style.top=(e.clientY-offsetY)+"px";
+            saveWindowState(pageName, win);
+        });
+
+        // fullscreen toggle
+        let isFull=false;
+        fullBtn.addEventListener("click", ()=>{
+            if(!isFull){
+                win.dataset.prev = JSON.stringify({top:win.style.top,left:win.style.left,width:win.style.width,height:win.style.height});
+                win.style.top="0"; win.style.left="0"; win.style.width="100vw"; win.style.height="100vh";
+                isFull=true;
+                saveWindowState(pageName, win);
+            } else {
+                const s = JSON.parse(win.dataset.prev);
+                win.style.top=s.top; win.style.left=s.left; win.style.width=s.width; win.style.height=s.height;
+                isFull=false;
+                saveWindowState(pageName, win);
+            }
+        });
+
+        closeBtn.addEventListener("click", ()=>{
+            win.remove();
+            delete windowsState[pageName];
+            localStorage.removeItem("win_"+pageName);
+        });
+
+        // restore saved position
+        const saved = localStorage.getItem("win_"+pageName);
+        if(saved){
+            try{
+                const s = JSON.parse(saved);
+                win.style.top = s.top;
+                win.style.left = s.left;
+                win.style.width = s.width;
+                win.style.height = s.height;
+            } catch(e){}
+        }
+
+       
+        fetch("https://cdn.jsdelivr.net/gh/Flamed-Games/Flamed-Lite@main/src/" + pageName)
+            .then(r=>r.text())
+            .then(html=>{
+                const doc = iframe.contentDocument;
+                doc.open();
+                doc.write(html);
+                doc.close();
+            }).catch(e=>{
+                const doc = iframe.contentDocument;
+                doc.open();
+                doc.write(`<pre style="color:red;background:#111;padding:12px;">Failed to load ${pageName}</pre>`);
+                doc.close();
+            });
+    }
+
+    function saveWindowState(pageName, win){
+        localStorage.setItem("win_"+pageName, JSON.stringify({
+            top: win.style.top,
+            left: win.style.left,
+            width: win.style.width,
+            height: win.style.height
+        }));
+    }
+
+    form.addEventListener("submit", function(e){
+        e.preventDefault();
+        const val = input.value.trim().toLowerCase();
+        if(!val) return;
+
+        const cmdDiv = document.createElement("div");
+        cmdDiv.textContent = "$ "+val;
+        output.appendChild(cmdDiv);
+
+        if(val==="list"){
+            const msg = document.createElement("div");
+            msg.innerHTML = pages.map(p=>`- <span style='color:#00ff00'>${p.name.replace(".html","")}</span>: ${p.desc}`).join("<br>");
+
+            
+            output.appendChild(msg);
+        } else if(val.startsWith("search ")){
+            const q = val.replace("search ","").trim();
+            const r = pages.filter(p=>p.name.toLowerCase().includes(q)||p.desc.toLowerCase().includes(q));
+            const msg = document.createElement("div");
+            msg.innerHTML = r.length ? r.map(p=>`- <span style='color:#00ff00'>${p.name.replace(".html","")}</span>: ${p.desc}`).join("<br>") : "No results found";
+            output.appendChild(msg);
+        } else {
+            const page = pages.find(p=>val===p.name.toLowerCase()||val===p.name.replace(".html","").toLowerCase());
+            if(!page){
+                const msg = document.createElement("div");
+                msg.textContent = "$ "+val+": command not found";
+                output.appendChild(msg);
+            } else {
+                if(page.name==="chat.html"){
+                    const m = document.createElement("div");
+                    m.textContent="Chat is temporarily disabled.";
+                    output.appendChild(m);
+                } else if(page.name==="login.html"){
+                    const m = document.createElement("div");
+                    m.textContent="Login is temporarily disabled.";
+                    output.appendChild(m);
+                } else {
+                    createWindow(page.name);
+                }
+            }
+        }
+
+        input.value="";
+        output.scrollTop=output.scrollHeight;
+    });
+
+    const credits = document.createElement("div");
+    credits.innerHTML = `<br><span style="color:#888;">Credits to Genizy for the files</span>
+    <br><span style="color:#888;">DMCA takedown requests: <a href="mailto:dmca@flamed.site" style="color:#00ff00;">dmca@flamed.site</a></span>`;
+    output.appendChild(credits);
+});
+</script>
+</head>
+<body>
+
+<div class="terminal">
+    <div id="terminal-output">
+        <div>Welcome to Flamed Lite</div>
+        <div><a>Join The Discord!</a></div>
+        <div>Type the name of the page and press Enter.</div>
+        <div>Type <span style="color:#00ff00;">list</span> to see all games and apps.</div>
+    </div>
+    <form id="terminal-form" autocomplete="off" style="width:100%;">
+        <label>$ </label>
+        <input id="terminal-input" type="text" autofocus style="background:transparent;border:none;color:#00ff00;font-family:inherit;font-size:1em;outline:none;width:80%;">
+    </form>
+     
+</div>
+</body>
+</html>
