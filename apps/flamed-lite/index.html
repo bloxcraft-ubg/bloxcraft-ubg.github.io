@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +28,6 @@
   height: 100%;
   border: none;
 }
-
 
 .hacker-titlebar {
   background: #003300;
@@ -74,12 +72,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let pages = [];
     let zCounter = 100;
-    const windowsState = {}; 
+    const windowsState = {};
 
     fetch("https://cdn.jsdelivr.net/gh/Flamed-Games/Flamed-Lite@main/cmd.json")
         .then(r => r.json()).then(d => pages = d);
 
-    const filenameToTitle = name => name.replace(/\.html$/i, '');
+    const filenameToTitle = n => n.replace(/\.html$/i, '');
 
     function bringToFront(win){
         zCounter++;
@@ -88,18 +86,24 @@ document.addEventListener("DOMContentLoaded", function () {
         win.classList.add("focused");
     }
 
-    function createWindow(pageName){
+    function ensureHTML(name) {
+        return name.toLowerCase().endsWith(".html") ? name : name + ".html";
+    }
+
+    function createWindow(pageNameRaw){
+        const pageName = ensureHTML(pageNameRaw);
+
         if(windowsState[pageName]){
             const msg = document.createElement("div");
-            msg.textContent = "ERROR: This Game Is Already Open";
+            msg.textContent = "ERROR: This Page Is Already Open";
             output.appendChild(msg);
             return;
         }
 
         const win = document.createElement("div");
         win.className = "hacker-window";
-        win.style.top = (100 + Object.keys(windowsState).length*20)+"px";
-        win.style.left = (100 + Object.keys(windowsState).length*20)+"px";
+        win.style.top = (100 + Object.keys(windowsState).length * 20) + "px";
+        win.style.left = (100 + Object.keys(windowsState).length * 20) + "px";
         win.style.display = "flex";
         win.style.zIndex = ++zCounter;
 
@@ -111,8 +115,10 @@ document.addEventListener("DOMContentLoaded", function () {
         btns.className = "hacker-btns";
         const fullBtn = document.createElement("span"); fullBtn.innerText="🗖";
         const closeBtn = document.createElement("span"); closeBtn.innerText="❌";
-        btns.appendChild(fullBtn); btns.appendChild(closeBtn);
-        titlebar.appendChild(title); titlebar.appendChild(btns);
+        btns.appendChild(fullBtn);
+        btns.appendChild(closeBtn);
+        titlebar.appendChild(title);
+        titlebar.appendChild(btns);
         win.appendChild(titlebar);
 
         const content = document.createElement("div");
@@ -122,50 +128,57 @@ document.addEventListener("DOMContentLoaded", function () {
         win.appendChild(content);
 
         windowsRoot.appendChild(win);
-        windowsState[pageName] = {el:win, iframe};
+        windowsState[pageName] = {el: win, iframe};
 
         bringToFront(win);
 
-        // drag
-        let drag=false, offsetX=0, offsetY=0;
+        let drag = false, offsetX = 0, offsetY = 0;
         titlebar.addEventListener("mousedown", e=>{
-            drag=true;
-            offsetX=e.clientX - win.offsetLeft;
-            offsetY=e.clientY - win.offsetTop;
+            drag = true;
+            offsetX = e.clientX - win.offsetLeft;
+            offsetY = e.clientY - win.offsetTop;
             bringToFront(win);
         });
-        document.addEventListener("mouseup", ()=> drag=false);
+        document.addEventListener("mouseup", ()=> drag = false);
         document.addEventListener("mousemove", e=>{
             if(!drag) return;
-            win.style.left=(e.clientX-offsetX)+"px";
-            win.style.top=(e.clientY-offsetY)+"px";
+            win.style.left = (e.clientX - offsetX) + "px";
+            win.style.top = (e.clientY - offsetY) + "px";
             saveWindowState(pageName, win);
         });
 
-        // fullscreen toggle
-        let isFull=false;
+        let isFull = false;
         fullBtn.addEventListener("click", ()=>{
             if(!isFull){
-                win.dataset.prev = JSON.stringify({top:win.style.top,left:win.style.left,width:win.style.width,height:win.style.height});
-                win.style.top="0"; win.style.left="0"; win.style.width="100vw"; win.style.height="100vh";
-                isFull=true;
-                saveWindowState(pageName, win);
+                win.dataset.prev = JSON.stringify({
+                    top: win.style.top,
+                    left: win.style.left,
+                    width: win.style.width,
+                    height: win.style.height
+                });
+                win.style.top = "0";
+                win.style.left = "0";
+                win.style.width = "100vw";
+                win.style.height = "100vh";
+                isFull = true;
             } else {
                 const s = JSON.parse(win.dataset.prev);
-                win.style.top=s.top; win.style.left=s.left; win.style.width=s.width; win.style.height=s.height;
-                isFull=false;
-                saveWindowState(pageName, win);
+                win.style.top = s.top;
+                win.style.left = s.left;
+                win.style.width = s.width;
+                win.style.height = s.height;
+                isFull = false;
             }
+            saveWindowState(pageName, win);
         });
 
         closeBtn.addEventListener("click", ()=>{
             win.remove();
             delete windowsState[pageName];
-            localStorage.removeItem("win_"+pageName);
+            localStorage.removeItem("win_" + pageName);
         });
 
-        // restore saved position
-        const saved = localStorage.getItem("win_"+pageName);
+        const saved = localStorage.getItem("win_" + pageName);
         if(saved){
             try{
                 const s = JSON.parse(saved);
@@ -176,24 +189,26 @@ document.addEventListener("DOMContentLoaded", function () {
             } catch(e){}
         }
 
-       
-        fetch("https://cdn.jsdelivr.net/gh/Flamed-Games/Flamed-Lite@main/src/" + pageName)
-            .then(r=>r.text())
-            .then(html=>{
+        const url = "https://cdn.jsdelivr.net/gh/Flamed-Games/Flamed-Lite@master/src/" + pageName;
+
+        fetch(url)
+            .then(r => r.text())
+            .then(html => {
                 const doc = iframe.contentDocument;
                 doc.open();
                 doc.write(html);
                 doc.close();
-            }).catch(e=>{
+            })
+            .catch(e => {
                 const doc = iframe.contentDocument;
                 doc.open();
-                doc.write(`<pre style="color:red;background:#111;padding:12px;">Failed to load ${pageName}</pre>`);
+                doc.write("<pre style='color:red;background:#111;padding:12px;'>Failed to load " + pageName + "</pre>");
                 doc.close();
             });
     }
 
     function saveWindowState(pageName, win){
-        localStorage.setItem("win_"+pageName, JSON.stringify({
+        localStorage.setItem("win_" + pageName, JSON.stringify({
             top: win.style.top,
             left: win.style.left,
             width: win.style.width,
@@ -207,44 +222,38 @@ document.addEventListener("DOMContentLoaded", function () {
         if(!val) return;
 
         const cmdDiv = document.createElement("div");
-        cmdDiv.textContent = "$ "+val;
+        cmdDiv.textContent = "$ " + val;
         output.appendChild(cmdDiv);
 
-        if(val==="list"){
+        if(val === "list"){
             const msg = document.createElement("div");
-            msg.innerHTML = pages.map(p=>`- <span style='color:#00ff00'>${p.name.replace(".html","")}</span>: ${p.desc}`).join("<br>");
-
-            
+            msg.innerHTML = pages.map(p => "- <span style='color:#00ff00'>" + p.name.replace(".html","") + "</span>: " + p.desc).join("<br>");
             output.appendChild(msg);
+
         } else if(val.startsWith("search ")){
             const q = val.replace("search ","").trim();
-            const r = pages.filter(p=>p.name.toLowerCase().includes(q)||p.desc.toLowerCase().includes(q));
+            const r = pages.filter(p => p.name.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q));
             const msg = document.createElement("div");
-            msg.innerHTML = r.length ? r.map(p=>`- <span style='color:#00ff00'>${p.name.replace(".html","")}</span>: ${p.desc}`).join("<br>") : "No results found";
+            msg.innerHTML = r.length ? r.map(p => "- <span style='color:#00ff00'>" + p.name.replace(".html","") + "</span>: " + p.desc).join("<br>") : "No results found";
             output.appendChild(msg);
+
         } else {
-            const page = pages.find(p=>val===p.name.toLowerCase()||val===p.name.replace(".html","").toLowerCase());
+            const page = pages.find(p =>
+                val === p.name.toLowerCase() ||
+                val === p.name.replace(".html","").toLowerCase()
+            );
+
             if(!page){
                 const msg = document.createElement("div");
-                msg.textContent = "$ "+val+": command not found";
+                msg.textContent = "$ " + val + ": command not found";
                 output.appendChild(msg);
             } else {
-                if(page.name==="chat.html"){
-                    const m = document.createElement("div");
-                    m.textContent="Chat is temporarily disabled.";
-                    output.appendChild(m);
-                } else if(page.name==="login.html"){
-                    const m = document.createElement("div");
-                    m.textContent="Login is temporarily disabled.";
-                    output.appendChild(m);
-                } else {
-                    createWindow(page.name);
-                }
+                createWindow(page.name);
             }
         }
 
-        input.value="";
-        output.scrollTop=output.scrollHeight;
+        input.value = "";
+        output.scrollTop = output.scrollHeight;
     });
 
     const credits = document.createElement("div");
@@ -254,12 +263,12 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 </head>
-<body>
 
+<body>
 <div class="terminal">
     <div id="terminal-output">
         <div>Welcome to Flamed Lite</div>
-        <div><a>Join The Discord!</a></div>
+        <div><a href="https://discord.gg/8Xx6KptcQS">Join The Discord!</a></div>
         <div>Type the name of the page and press Enter.</div>
         <div>Type <span style="color:#00ff00;">list</span> to see all games and apps.</div>
     </div>
@@ -267,7 +276,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <label>$ </label>
         <input id="terminal-input" type="text" autofocus style="background:transparent;border:none;color:#00ff00;font-family:inherit;font-size:1em;outline:none;width:80%;">
     </form>
-     
 </div>
 </body>
 </html>
+
