@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.removeItem("win_" + pageName);
         });
 
-        const saved = localStorage.getItem("win_" + pageName);
+        const saved = "dis"
         if(saved){
             try{
                 const s = JSON.parse(saved);
@@ -276,6 +276,37 @@ document.addEventListener("DOMContentLoaded", function () {
         <label>$ </label>
         <input id="terminal-input" type="text" autofocus style="background:transparent;border:none;color:#00ff00;font-family:inherit;font-size:1em;outline:none;width:80%;">
     </form>
+ <div id="updated-checker" style="color: #5555FF;">
+  v.5.6 (Beta)<span id="update"></span>
+</div>
+
+<script>
+async function checkVersion() {
+  const checker = document.getElementById("updated-checker");
+  const span = document.getElementById("update");
+
+  let fullText = checker.childNodes[0].textContent.trim();
+  let localVersion = fullText.replace("v.", "").split(" ")[0];
+
+  try {
+    const res = await fetch("https://cdn.jsdelivr.net/gh/Flamed-Games/Flamed-Lite@master/vrs.json");
+    const data = await res.json();
+    const latestVersion = data.version;
+
+    if (localVersion === latestVersion) {
+      span.textContent = " (Up To Date)";
+      span.style.color = "green";
+    } else {
+      span.textContent = " (Needs An Update)";
+      span.style.color = "red";
+    }
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+checkVersion();
+</script>
 </div>
 </body>
 </html>
