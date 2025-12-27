@@ -10,7 +10,7 @@ The Default Background Colour For Bloxcraft UBG Is `#5555FF`
 Need To Request A DMCA Takdown To Us?
 https://bloxcraft-ubg.pages.dev/request-dmca/ Visit This Page For More Info On How To DO That.
 
-`Copyright (c) 2025 Bloxcraft Studios`
+`Copyright (c) 2026 Bloxcraft Studios`
 
 ```
 Bloxcraft UBG

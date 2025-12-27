@@ -1,4 +1,26 @@
-<!-- Copyright (c) 2025 Bloxcraft Studios -->
+<!--
+MIT License
+
+Copyright (c) 2026 Bloxcraft Studios
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+-->
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,7 +36,7 @@
   button{padding:8px 14px;border-radius:6px;border:none;background:var(--accent);color:white;cursor:pointer;font-weight:600}
   #healthBarWrap{position:fixed;left:12px;top:12px;width:220px;height:22px;border-radius:6px;background:#111;border:2px solid #333;overflow:hidden;z-index:1200}
   #healthBar{height:100%;width:100%;background:linear-gradient(90deg,#2ecc71,#27ae60);transition:width 0.3s}
-  /* Inventory modal */
+
   #invModal{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.9);color:#fff;padding:18px;border-radius:10px;display:none;z-index:1300;width:480px;max-width:94vw}
   .grid{display:grid;gap:8px}
   .inv-grid{grid-template-columns:repeat(4,80px)}
@@ -24,11 +46,11 @@
   .count{position:absolute;right:6px;bottom:6px;background:rgba(0,0,0,0.6);padding:2px 6px;border-radius:8px;font-weight:700}
   #craftResult{width:64px;height:64px;border:2px solid #444;display:flex;align-items:center;justify-content:center;flex-direction:column;background:#111;border-radius:8px}
   #msg{height:20px;color:#ff7676;text-align:center;margin-top:8px}
-  /* Modals for controls & book */
+ 
   .modalOverlay{position:fixed;inset:0;background:rgba(0,0,0,0.8);display:none;align-items:center;justify-content:center;z-index:1400}
   .modalCard{background:#222;color:#fff;padding:18px;border-radius:10px;max-width:600px;max-height:80vh;overflow:auto}
   .closeBtn{position:absolute;right:12px;top:12px;background:var(--accent);color:#fff;border:none;padding:6px 8px;border-radius:6px;cursor:pointer}
-  /* Created By: Bloxcraft Studios. Notes Added To Remember What To Edit Incase There Are Buga */
+  /* Created By: Bloxcraft Studios. Notes Added To Remember What To Edit Incase There Are Bugs lol */
   #inventoryLabel{font-weight:700;color:#fff;margin-bottom:8px}
 </style>
 </head>
@@ -47,7 +69,7 @@
     <div id="healthBar"></div>
   </div>
 
-  <!-- Inventory / Crafting Modal -->
+ 
   <div id="invModal" role="dialog" aria-hidden="true">
     <div id="inventoryLabel">Inventory</div>
     <div id="messageArea"></div>
@@ -67,7 +89,6 @@
     <div id="msg"></div>
   </div>
 
-  <!-- Controls modal -->
   <div id="controlsModal" class="modalOverlay"><div class="modalCard">
     <button class="closeBtn" id="closeControls">X</button>
     <h2>Controls</h2>
@@ -82,7 +103,6 @@
     </ul>
   </div></div>
 
-  <!-- Craft Book Modal -->
   <div id="bookModal" class="modalOverlay"><div class="modalCard">
     <button class="closeBtn" id="closeBook">X</button>
     <h2>Crafting Book</h2>
@@ -92,9 +112,6 @@
   </div></div>
 
 <script>
-/* -------------------------
-   Assets (images)
-   -------------------------*/
 const ASSETS = {
   sky: 'https://bloxcraft-ubg.pages.dev/game-sky.png',
   player: 'https://bloxcraft-ubg.pages.dev/playerhead-survival-game.png',
@@ -106,7 +123,7 @@ const ASSETS = {
   book: 'https://bloxcraft-ubg.pages.dev/item_book_game.png'
 };
 
-// preload images
+
 const IMAGES = {};
 let loadedCount = 0;
 const assetKeys = Object.keys(ASSETS);
@@ -117,22 +134,17 @@ assetKeys.forEach(k=>{
   IMAGES[k] = img;
 });
 
-/* -------------------------
-   Canvas + basic world setup
-   -------------------------*/
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
 const CANVAS_W = canvas.width;
 const CANVAS_H = canvas.height;
 
-/* Sky drawing: we'll draw the sky image scaled to canvas each frame */
 const skyImg = IMAGES.sky;
 
-/* Grass area */
 const GRASS_HEIGHT = 96;
 const grassY = CANVAS_H - GRASS_HEIGHT;
 
-/* Player */
+
 const player = {
   w: 64, h: 64,
   x: CANVAS_W/2 - 32,
