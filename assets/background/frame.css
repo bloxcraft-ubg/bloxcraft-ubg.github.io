@@ -26,3 +26,6 @@ body {
   padding: 20px;
 }
 
+.navbar a {
+    z-index: 1000;
+}
