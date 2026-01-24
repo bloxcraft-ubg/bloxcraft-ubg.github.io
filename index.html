@@ -254,6 +254,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>&nbsp;</p>
 <h1>Tools</h1>
   <a href="/minecraft-tools" class="bloxy-btn bloxy-blue-btn">Minecraft Tools</a>
+  <a href="javascript:void(0)" class="bloxy-btn" onclick="openIframe()">Open VM</a>
   <p>&nbsp;</p>
   <h1>Legal</h1>
   <a href="/privacy-policy" class="bloxy-btn bloxy-rainbow-btn">Privacy Policy</a>
@@ -576,11 +577,35 @@ function supportWindow_close() {
     palet_blox_popup.style.bottom = '0';
   });
 </script>
+<div class="iframe-container" id="iframeContainer">
+  <div class="iframe-wrapper">
+    <div class="close-button" onclick="closeIframe()">×</div>
+    <iframe
+      src="https://vms-link.jamdudelovescakelol.workers.dev/"
+      allow="clipboard-read; clipboard-write; fullscreen; microphone; camera"
+      referrerpolicy="no-referrer"
+    ></iframe>
+  </div>
+</div>
+
+<script>
+  const iframeContainer = document.getElementById("iframeContainer");
+
+  function openIframe() {
+    iframeContainer.style.display = "flex";
+  }
+
+  function closeIframe() {
+    iframeContainer.style.display = "none";
+  }
+</script>
+
 <script src="/main-injection.js"></script>
 <script src="/assets/funcard.js"></script>
 </main>
 </body>
 </html>
+
 
 
 
