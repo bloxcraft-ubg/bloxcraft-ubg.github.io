@@ -1,3 +1,4 @@
+
 <!--
 MIT License
 
@@ -666,6 +667,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div id="gamesContainer" class="game-grid"></div>
 </main>
   </main>
+  <main>
+    <h1>Games (Elite Gamez)</h1>
+<div class="game-grid" id="ELITE-GAMEZ-GEN-GRID"></div>
+</main>
 
         
 <p>&nbsp;</p>
@@ -758,6 +763,38 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   loadGames();
 </script>
-<script src="/main-injection.js"></script>
+<script id="ELITE-GAMEZ-GEN-SCRIPT">
+const ELITE_GAMEZ_GEN_GRID = document.getElementById("ELITE-GAMEZ-GEN-GRID");
+
+const ELITE_GAMEZ_GEN_BASE_IMAGE = "https://cdn.jsdelivr.net/gh/elite-gamez/elite-gamez.github.io@main/";
+
+function ELITE_GAMEZ_GEN_encodeURL(url) {
+  return encodeURIComponent(url).replace(/%2F/g, "/");
+}
+
+fetch("https://cdn.jsdelivr.net/gh/elite-gamez/elite-gamez.github.io@main/games.json")
+  .then(res => res.json())
+  .then(data => {
+    data.forEach(game => {
+      const card = document.createElement("div");
+      card.className = "game-card";
+
+      const imageUrl = ELITE_GAMEZ_GEN_BASE_IMAGE + game.image;
+      const playUrl = `/app-viewer/elite-gamez?url=${ELITE_GAMEZ_GEN_encodeURL(game.url)}`;
+
+      card.innerHTML = `
+        <img src="${imageUrl}" alt="${game.title}">
+        <h3>${game.title}</h3>
+        <a class="play-btn" href="${playUrl}">Play</a>
+      `;
+
+      ELITE_GAMEZ_GEN_GRID.appendChild(card);
+    });
+  })
+  .catch(err => {
+    console.error("ELITE-GAMEZ-GEN ERROR:", err);
+  });
+</script>
+
 </body>
 </html>
