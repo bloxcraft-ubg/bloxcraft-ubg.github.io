@@ -32,6 +32,7 @@ iframe,#htmlContainer{width:100%;height:100%;border:none;display:none;background
   overflow:auto;
 }
 #extraOverlay h2{color:var(--accent);margin-bottom:10px}
-#extraOverlay .extraItem{margin-bottom:5px;display:flex;align-items:center;gap:10px}
+#extraOverlay .extraItem{margin-bottom:5px;display:flex;align-items:center;gap:10px;fill:#FFFFFF}
 #extraOverlay button{padding:5px 8px;margin-bottom:5px;border-radius:4px;border:none;background:var(--accent);color:#fff;cursor:pointer}
 .extraIconPreview{width:24px;height:24px;display:flex;align-items:center;justify-content:center}
+#extraOverlay svg{fill:#FFFFFF}
