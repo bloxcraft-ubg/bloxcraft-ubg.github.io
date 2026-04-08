@@ -696,13 +696,144 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <h1>Games (Elite Gamez)</h1>
 <div class="game-grid" id="ELITE-GAMEZ-GEN-GRID"></div>
 </main>
-
+  <main>
+    <h1>Games (UGS Files)</h1>
+<div class="game-grid" id="UGSSIGMADOCS-output">Fetching...</div>
+  </main>
+<main>
+  <h1>Sea Bean Games</h1>
+  <div id="seedbeansloadgamesskiddersstopskidding" class="game-grid"></div>
+</main>
         
 <p>&nbsp;</p>
     <p>Copyright (c) 2026 Bloxcraft Studios</p>
 
-      
+<script>
+const CONFIG = {
+  json: "https://cdn.jsdelivr.net/gh/sea-bean-unblocked/sde@main/zzz.json",
+  coverBase: "https://cdn.jsdelivr.net/gh/sea-bean-unblocked/Singlemile@main/Icon/",
+  htmlBase: "https://cdn.jsdelivr.net/gh/sea-bean-unblocked/Singlemile@main/games/"
+};
 
+const container = document.getElementById("seedbeansloadgamesskiddersstopskidding");
+
+async function seedbeansloadgamesskiddersstopskiddinggames() {
+  try {
+    const res = await fetch(CONFIG.json);
+    if (!res.ok) throw new Error("JSON fetch failed");
+
+    const games = await res.json();
+
+    console.log("Loaded games:", games);
+
+    const html = games
+      .map(g => {
+        const name = g?.name || "Unnamed Game";
+        const id = g?.id;
+
+        if (!id) return "";
+
+        const coverRaw = g?.cover || "";
+
+        const coverFile = coverRaw.includes("{COVER_URL}")
+          ? coverRaw.replace("{COVER_URL}/", "")
+          : coverRaw;
+
+        const finalCover = coverFile.startsWith("http")
+          ? coverFile
+          : CONFIG.coverBase + coverFile;
+
+        return `
+          <div class="game-card">
+            <img src="${finalCover}" alt="${name}" onerror="this.src='${CONFIG.coverBase}fallback.png'">
+            <h3>${name}</h3>
+            <a class="play-btn" href="/app-viewer/sea-bean?view=${encodeURIComponent(id)}">
+              Play
+            </a>
+          </div>
+        `;
+      })
+      .join("");
+
+    container.innerHTML = html || "<p>No games found.</p>";
+
+  } catch (err) {
+    console.error("Load failed:", err);
+    container.innerHTML = "<p>Failed to load games (check console).</p>";
+  }
+}
+
+seedbeansloadgamesskiddersstopskiddinggames();
+</script>
+<script>
+const UGSSIGMADOCS_repos = [
+  "tharun9772/ugs-1",
+  "tharun9772/ugs-2",
+  "tharun9772/ugs-3"
+];
+
+const UGSSIGMADOCS_logo =
+  "https://cdn.jsdelivr.net/gh/tharun9772/game-assets@main/5968517.png";
+
+let UGSSIGMADOCS_games = [];
+
+const output = document.getElementById("UGSSIGMADOCS-output");
+
+async function fetchRepo(repo) {
+  try {
+    const res = await fetch(
+      `https://api.github.com/repos/${repo}/contents/`
+    );
+
+    const data = await res.json();
+
+    if (!Array.isArray(data)) return [];
+
+    return data
+      .filter(
+        f =>
+          f.type === "file" &&
+          f.name.startsWith("cl") &&
+          f.name.endsWith(".html")
+      )
+      .map(f => ({
+        name: f.name.replace(/^cl/, "").replace(".html", ""),
+        file: f.name,
+        repo
+      }));
+  } catch (e) {
+    console.error("Repo failed:", repo);
+    return [];
+  }
+}
+
+async function UGSSIGMADOCS_loadGames() {
+  const results = await Promise.all(
+    UGSSIGMADOCS_repos.map(r => fetchRepo(r))
+  );
+
+  UGSSIGMADOCS_games = results.flat();
+  UGSSIGMADOCS_render();
+}
+
+function UGSSIGMADOCS_render() {
+  output.innerHTML = UGSSIGMADOCS_games
+    .map(
+      g => `
+      <div class="game-card">
+        <img src="${UGSSIGMADOCS_logo}">
+        <h3>${g.name}</h3>
+        <a class="play-btn" href="/app-viewer/ugs-files?view=${encodeURIComponent(
+          g.file
+        )}">Play</a>
+      </div>
+    `
+    )
+    .join("");
+}
+
+UGSSIGMADOCS_loadGames();
+</script>
 <script>
   const searchBox = document.getElementById('searchBox');
   const countElement = document.getElementById('gameCount');
