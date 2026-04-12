@@ -12,7 +12,7 @@ body {
   font-family: Arial, sans-serif;
   color: #fff;
   padding: 20px;
-  background: linear-gradient(-45deg, #1e1b4b, #312e81, #3730a3, #1e3a8a);
+  background: radial-gradient(circle at top,#0b0f2a,#05060d);
 }
 
 main {
@@ -64,7 +64,7 @@ main h2 {
 
 
 .play-btn {
-  background: #4f8cff;
+  background: #7668ff;
   color: #fff;
   border: none;
   border-radius: 999px;

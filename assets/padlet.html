@@ -75,6 +75,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 *{box-sizing:border-box;margin:0;padding:0}
 body{height:100vh;background:radial-gradient(circle at top,#0b0f2a,#05060d);font-family:system-ui,sans-serif;color:var(--text);}
+body (
+        display: flex; 
+        justify-content: 
+        center; align-items: 
+        center; height: 
+        100vh;
+        }
 .app{display:flex;height:100%}
 .sidebar{width:64px;background:rgba(10,12,30,.85);border-right:1px solid rgba(255,255,255,.05);display:flex;flex-direction:column;justify-content:space-between;padding:12px 0}
 .nav-group,.extra-nav-group{display:flex;flex-direction:column;align-items:center;gap:14px}
@@ -106,7 +113,17 @@ iframe,#htmlContainer{width:100%;height:100%;border:none;display:none;background
 #extraOverlay button{padding:5px 8px;margin-bottom:5px;border-radius:4px;border:none;background:var(--accent);color:#fff;cursor:pointer}
 .extraIconPreview{width:24px;height:24px;display:flex;align-items:center;justify-content:center}
     </style>
-
+<style>
+    .play-btn {
+  margin:6px;
+  padding:5px;
+  text-align:center;
+  background: #7668ff;
+  color:white;
+  border-radius:6px;
+  text-decoration:none;
+}
+</style>
     <h1>Select One Padlet Link:</h1>
-    <a class="bloxy-btn" href="/iframe-sites/comments/">Comments</a>
-    <a class="bloxy-btn" href="https://padlet.com/embed/nhocearj1z6ibdyy">Annoucements</a>
+    <a class="play-btn" href="/iframe-sites/comments/">Comments</a>
+    <a class="play-btn" href="https://padlet.com/embed/nhocearj1z6ibdyy">Annoucements</a>
