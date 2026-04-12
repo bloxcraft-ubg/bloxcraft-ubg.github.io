@@ -49,6 +49,7 @@ SOFTWARE.
 <meta property="og:description" content="The Unblocked Games Site You Can Play Everyday! It Also has Some Custom Games. Thousands of games and has a proxy!">
 <meta property="og:url" content="/">
 <link rel="stylesheet" href="/navbarsettings.css">
+  <link rel="stylesheet" href="/clock.css">
 <link rel="icon" type="image/png" id="favicon" href="/bloxcraft_transparent.png">
 <script type="application/ld+json">
 {
@@ -102,7 +103,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </button>
   <input type="file" id="importSaveInput" accept=".json" style="display:none" onchange="importSiteSave(this)">
 </div>
-
+<div id="clock-container">
+        <div class="time-wrapper">
+            <span id="time-display">00:00</span>
+            <span id="seconds-display">00</span>
+        </div>
+        <div class="details-wrapper">
+            <span><span class="status-dot"></span><span id="source-tag">System</span></span>
+            <span id="date-display">APR 12</span>
+        </div>
+    </div>
 <div class="stats">
       <h1>Views:</h1>
       <a href="https://www.hitwebcounter.com/" target="_blank" rel="noopener">
@@ -128,5 +138,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script src="/script-home-page.js"></script>
 <script src="/main-injection.js"></script>
 <script src="/assets-homepage.js"></script>
+<script src="/assets/userstyleclock.js"></script>
 </body>
 </html>
