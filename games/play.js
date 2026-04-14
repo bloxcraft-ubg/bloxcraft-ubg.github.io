@@ -5,13 +5,12 @@ let DATA = {
   gn: [],
   elite: [],
   sea: [],
-  ugs: []
+  ugs: [],
+  seraph: []
 };
 
 let CURRENT = [];
 let FILTERED = [];
-
-
 
 async function loadBlox(){
   if(DATA.blox.length) return;
@@ -100,6 +99,24 @@ async function loadUGS(){
   DATA.ugs = games;
 }
 
+async function loadSeraph(){
+  if(DATA.seraph.length) return;
+
+  const r = await fetch("https://cdn.jsdelivr.net/gh/DominumNetwork/dominum@main/src/assets/libraries/seraph/games.json");
+  const d = await r.json();
+
+  const BASE = "https://cdn.jsdelivr.net/gh/a456pur/seraph@main/games/";
+
+  DATA.seraph = d.map(g => {
+    const remaining = g.url.replace(BASE, "");
+
+    return {
+      name: g.name,
+      img: g.img,
+      url: '/app-viewer/seraph/?view=' + encodeURIComponent(remaining)
+    };
+  });
+}
 
 document.querySelectorAll(".cat").forEach(btn=>{
   btn.onclick = async () => {
@@ -114,6 +131,7 @@ document.querySelectorAll(".cat").forEach(btn=>{
     if(cat === "elite") await loadElite();
     if(cat === "sea") await loadSea();
     if(cat === "ugs") await loadUGS();
+    if(cat === "seraph") await loadSeraph();
 
     if(cat === "all"){
       await Promise.all([
@@ -121,7 +139,8 @@ document.querySelectorAll(".cat").forEach(btn=>{
         loadGN(),
         loadElite(),
         loadSea(),
-        loadUGS()
+        loadUGS(),
+        loadSeraph()
       ]);
 
       CURRENT = Object.values(DATA).flat();
@@ -135,8 +154,6 @@ document.querySelectorAll(".cat").forEach(btn=>{
   };
 });
 
-
-
 search.oninput = () => {
   const v = search.value.toLowerCase();
 
@@ -147,8 +164,6 @@ search.oninput = () => {
   updateCount();
   render();
 };
-
-
 
 function render(){
   const fallback = "https://via.placeholder.com/300x200?text=Game";
@@ -174,13 +189,9 @@ function render(){
     }).join("");
 }
 
-
-
 function updateCount(){
   count.textContent = FILTERED.length + " games";
 }
-
-
 
 (async ()=>{
   await loadBlox();
