@@ -1,309 +1,668 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Sea Ban - Games</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" id="favicon" href="">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sea Bean </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:ital,wght@0,300;0,400;0,600;0,800;0,900;1,400&display=swap" rel="stylesheet">
     <style>
-        /* --- THEME VARIABLES --- */
-        :root { 
-            --accent: #00d2ff; 
-            --accent-dark: #0077ff;
-            --bg-deep: #000814; 
-            --bg-light: #001f3f;
-            --grid-size: 220px; 
+        :root {
+            --bg-outer: #0a0e14;
+            --bg-panel: #060b15;
+            --border-color: #1a2332;
+            --accent-cyan: #00e5ff;
+            --accent-glow: rgba(0, 229, 255, 0.6);
+            --text-main: #ffffff;
+            --text-sub: #8b9bb4;
+            --grid-color: rgba(255, 255, 255, 0.03);
         }
-        
-        /* FORCE DEEP SEA THEME */
-        html, body {
-            background-color: var(--bg-deep) !important;
-            margin: 0; padding: 0;
-            height: 100vh; width: 100vw;
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+
+        body {
+            background-color: var(--bg-outer);
+            color: var(--text-main);
+            height: 100vh;
+            width: 100vw;
+            display: flex;
             overflow: hidden;
-            font-family: 'Inter', sans-serif;
-            color: white;
-            transition: background-color 0.5s ease;
+            position: relative;
         }
 
-        body { 
-            background: radial-gradient(circle at center, var(--bg-light), var(--bg-deep));
+        .panel-container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+        }
+
+        .main-panel {
+            flex-grow: 1;
+            background-color: transparent;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .grid-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
             background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
+                linear-gradient(var(--grid-color) 1px, transparent 1px), 
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 1;
         }
 
-        /* STARTUP PICKER */
-        #startupOverlay { position: fixed; inset: 0; background: rgba(0, 5, 15, 0.95); display: none; align-items: center; justify-content: center; z-index: 5000; backdrop-filter: blur(15px); }
-        .startup-box { background: rgba(10, 15, 30, 0.95); padding: 40px; border-radius: 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 20px; border: 1px solid var(--accent-dark); width: 90%; max-width: 600px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
-        .startup-btn { padding: 20px; border-radius: 16px; cursor: pointer; text-align: center; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); transition: .25s; }
-        .startup-btn:hover { background: var(--accent-dark); transform: translateY(-5px); color: #fff; box-shadow: 0 5px 20px var(--accent); border-color: var(--accent); }
+        .content-scroll {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            padding: 80px 40px 100px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-        /* TOP BAR */
-        .top-bar-container { position: fixed; top: 15px; left: 0; right: 0; display: flex; flex-direction: column; align-items: center; z-index: 20; gap: 8px; pointer-events: none; }
-        .search-bar { pointer-events: auto; height: 50px; padding: 0 18px; display: flex; align-items: center; gap: 12px; background: rgba(0, 0, 0, 0.5); border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.15); backdrop-filter: blur(12px); transition: border-color 0.3s; }
-        .search-bar:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0, 210, 255, 0.15); }
-        .search-bar input { background: none; border: none; outline: none; color: white; font-size: 16px; width: 250px; }
-        #liveCount { font-size: 12px; background: var(--accent); color: #000; padding: 2px 8px; border-radius: 8px; font-weight: 800; transition: background 0.5s; }
-        #sysStatus { font-size: 10px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; font-weight: bold; transition: color 0.5s; }
+        .content-scroll::-webkit-scrollbar { width: 8px; }
+        .content-scroll::-webkit-scrollbar-track { background: transparent; }
+        .content-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+        .content-scroll::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
 
-        /* SETTINGS */
-        #settingsBtn { position: fixed; top: 20px; right: 25px; width: 45px; height: 45px; border-radius: 12px; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.15); display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 30; transition: all 0.3s; }
-        #settingsBtn:hover { border-color: var(--accent); color: var(--accent); }
-        #settingsOverlay { position: fixed; inset: 0; background: rgba(0,0,0,.7); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; z-index: 2000; }
-        .settings-panel { width: 340px; padding: 25px; border-radius: 18px; background: rgba(10, 15, 30, 0.95); border: 1px solid rgba(255, 255, 255, 0.1); border-top: 4px solid var(--accent); display: flex; flex-direction: column; gap: 20px; transition: border-top-color 0.5s; }
+        .top-bar-actions {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            z-index: 50;
+            display: flex;
+            gap: 15px;
+        }
+
+        .action-btn {
+            background: rgba(11, 20, 38, 0.8);
+            border: 1px solid var(--border-color);
+            color: var(--text-sub);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn:hover {
+            color: var(--accent-cyan);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .header-titles { text-align: center; margin-bottom: 20px; }
         
-        /* DATA GRID */
-        #container { position: fixed; inset: 0; display: grid; grid-template-columns: repeat(auto-fill, var(--grid-size)); justify-content: center; gap: 20px; padding: 130px 30px 50px 30px; overflow-y: auto; }
-        #container::-webkit-scrollbar { display: none; }
-        .zone-item { width: var(--grid-size); height: 175px; border-radius: 20px; position: relative; overflow: hidden; background: rgba(255, 255, 255, 0.05); cursor: pointer; transition: .3s; border: 1px solid rgba(255, 255, 255, 0.1); }
-        .zone-item:hover { transform: translateY(-8px) scale(1.02); border-color: var(--accent); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); }
-        .zone-item img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6); transition: 0.3s; }
-        .zone-item:hover img { filter: brightness(0.9); }
-        .zone-item b { position: absolute; bottom: 12px; left: 14px; color: white; font-size: 14px; text-shadow: 0 2px 10px #000; width: 85%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .main-title {
+            font-size: 4.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
 
-        /* GAME VIEWER & LOADER */
-        #zoneViewer { position: fixed; inset: 0; background: #000; display: none; flex-direction: column; z-index: 6000; }
-        #zoneFrame { flex: 1; border: none; background: #fff; }
-        #closeBtn { position: absolute; top: 20px; right: 25px; width: 45px; height: 45px; border-radius: 12px; background: #ff4d4d; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 6001; color: white; border: 1px solid rgba(255,255,255,0.2); transition: 0.3s; }
-        #closeBtn:hover { background: #ff1a1a; transform: scale(1.05); }
+        .subtitle {
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .search-wrapper { 
+            width: 100%; 
+            max-width: 500px; 
+            margin: 0 auto 40px auto; 
+            position: relative; 
+        }
         
-        #loaderBar { 
-            position: absolute; 
-            top: 0; left: 0; 
-            width: 0%; height: 4px; 
-            background: var(--accent); 
-            box-shadow: 0 0 15px var(--accent);
-            transition: width 0.2s ease, opacity 0.3s ease; 
-            z-index: 6005;
+        .inputcontainer {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            position: relative;
+            z-index: 101;
+        }
+
+        .inputcontainer:focus-within {
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .inputcontainer input {
+            background: none; border: none; outline: none;
+            color: var(--text-main); font-size: 1.1rem; width: 100%;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .inputcontainer input:focus {
+            text-align: left;
+            font-style: normal;
+        }
+        
+        .inputcontainer input::placeholder { color: rgba(255, 255, 255, 0.5); }
+
+        .combined-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .zone-item {
+            background: #111827;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 1;
+            cursor: pointer;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .zone-item:hover {
+            transform: scale(1.05);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px rgba(0, 229, 255, 0.15);
+        }
+
+        .zone-item img {
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover;
+            transition: opacity 0.2s;
+        }
+
+        .zone-item:hover img {
+            opacity: 0.7;
+        }
+
+        .source-tag {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(6, 11, 21, 0.85);
+            color: var(--accent-cyan);
+            border: 1px solid var(--accent-cyan);
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            backdrop-filter: blur(4px);
+            z-index: 5;
             pointer-events: none;
         }
+
+        .zone-name {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.95));
+            color: white;
+            padding: 30px 15px 15px 15px;
+            font-size: 1rem;
+            font-weight: 800;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.2s;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .zone-item:hover .zone-name {
+            opacity: 1;
+        }
+
+        #zoneViewer {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: #000; z-index: 2000; display: none; flex-direction: column;
+        }
         
-        /* Settings Inputs */
-        select { padding: 12px; background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.15); color: white; border-radius: 8px; outline: none; font-family: 'Inter', sans-serif; cursor: pointer; width: 100%; }
-        select:focus { border-color: var(--accent); }
+        .zone-header {
+            background: var(--bg-panel); border-bottom: 1px solid var(--border-color);
+            padding: 15px 30px; display: flex; align-items: center; justify-content: space-between;
+        }
+        
+        .zone-title h2 { color: var(--text-main); font-weight: 800; font-size: 1.2rem; }
+        .zone-title span { color: var(--accent-cyan); font-weight: 600; font-size: 0.8rem; text-transform: uppercase;}
+        
+        .zone-controls button {
+            background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: white;
+            padding: 8px 16px; font-weight: 600; cursor: pointer; margin-left: 10px; transition: 0.2s; border-radius: 8px;
+        }
+        .zone-controls button:hover { background: var(--accent-cyan); border-color: var(--accent-cyan); color: #000; }
+        
+        #zoneFrame { flex-grow: 1; border: none; background: #000; }
+
+        #infoModal {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(5px);
+            z-index: 3000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: var(--bg-panel);
+            border: 1px solid var(--accent-cyan);
+            padding: 40px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            box-shadow: 0 0 50px rgba(0, 229, 255, 0.1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px; right: 20px;
+            background: none; border: none;
+            color: var(--text-sub);
+            font-size: 1.5rem; cursor: pointer;
+            transition: color 0.2s;
+        }
+        .modal-close:hover { color: var(--accent-cyan); }
+
+        .modal-title { font-size: 2rem; font-weight: 900; color: #fff; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px;}
+        
+        .info-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-color);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .info-card h4 { color: var(--accent-cyan); font-size: 0.9rem; text-transform: uppercase; margin-bottom: 5px; }
+        .info-card p { color: var(--text-main); font-weight: 600; font-size: 1.1rem; }
+
+        .loading-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            grid-column: 1 / -1;
+            padding: 40px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(0, 229, 255, 0.1);
+            border-left-color: var(--accent-cyan);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 15px;
+        }
+
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        .loading-text { color: var(--text-sub); font-style: italic; font-size: 1.2rem; }
     </style>
 </head>
 <body>
 
-<div id="startupOverlay">
-    <div class="startup-box" id="startupBox"></div>
-</div>
+    <div class="panel-container">
+        <main class="main-panel">
+            <div class="grid-bg"></div>
 
-<div class="top-bar-container">
-    <div id="sysStatus"></div>
-    <div class="search-bar">
-        <i class="fas fa-search" style="opacity: 0.5"></i>
-        <input id="searchBar" placeholder="Search the depths..." oninput="filterZones()">
-        <span id="liveCount">0</span>
+            <div class="top-bar-actions">
+                <button class="action-btn" onclick="openSiteInAboutBlank()" title="Open Hub in about:blank">
+                    <i class="fa-solid fa-up-right-from-square"></i>
+                </button>
+                <button class="action-btn" onclick="document.getElementById('infoModal').style.display='flex'" title="System Info">
+                    <i class="fa-solid fa-circle-info"></i>
+                </button>
+            </div>
+
+            <div class="content-scroll">
+                
+                <div class="header-titles">
+                    <h1 class="main-title">Games</h1>
+                    <p class="subtitle" id="gameCount">Loading libraries...</p>
+                </div>
+
+                <div class="search-wrapper">
+                    <div class="inputcontainer">
+                        <input type="text" id="dumbSearchInput" placeholder="Search games..." autocomplete="off">
+                    </div>
+                </div>
+
+                <div id="zonesWrapper" class="combined-grid">
+                    <div class="loading-container">
+                        <div class="spinner"></div>
+                        <p class="loading-text">Fetching and loading data...</p>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
-</div>
 
-<div id="settingsBtn" onclick="toggleSettings()"><i class="fas fa-gear"></i></div>
+    <div id="zoneViewer">
+        <div class="zone-header">
+            <div class="zone-title">
+                <h2 id="zoneName">Zone Name</h2>
+                <span id="zoneAuthor">by Author</span>
+            </div>
+            <div class="zone-controls">
+                <button onclick="openGameInAboutBlank()" title="Open Game in about:blank"><i class="fa-solid fa-up-right-from-square"></i></button>
+                <button onclick="fullscreenZone()" title="Fullscreen"><i class="fa-solid fa-expand"></i></button>
+                <button onclick="closeZone()">LEAVE</button>
+            </div>
+        </div>
+        <iframe id="zoneFrame" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock"></iframe>
+    </div>
 
-<div id="settingsOverlay" onclick="toggleSettings(event)">
-    <div class="settings-panel" onclick="event.stopPropagation()">
-        <h3 style="margin-top:0; color: white; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">Archive Source</h3>
-        <div class="setting-row">
-            <select id="sourceSelect" onchange="toggleSource(this.value)"></select>
+    <div id="infoModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="document.getElementById('infoModal').style.display='none'"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="modal-title">System Info</h3>
+            
+            <div class="info-card">
+                <h4>Site Maker</h4>
+                <p>Mr Coffee duh</p>
+            </div>
+            
+            <div class="info-card">
+                <h4>Games & Engine Source</h4>
+                <p>gn-math & Contributors</p>
+            </div>
+
+            <div class="info-card">
+                <h4>Search Technology</h4>
+                <p>Enhanced Fast Search™</p>
+            </div>
         </div>
     </div>
-</div>
 
-<div id="container"></div>
-
-<div id="zoneViewer">
-    <div id="loaderBar"></div>
-    <div id="closeBtn" onclick="closeViewer()"><i class="fas fa-times"></i></div>
-    <iframe id="zoneFrame"></iframe>
-</div>
-
-<div id="themeGridContainer" style="display: none;"></div>
-<div id="themeTransitionOverlay" style="display: none;"><div id="themeWaveContainer"><g id="themeWaveParallax"></g></div></div>
-
-<script>
-    const sources = [
-        { name: "GN Math", type: "json", json: "https://cdn.jsdelivr.net/gh/gn-math/assets@latest/zones.json", cover: "https://cdn.jsdelivr.net/gh/gn-math/covers@main/", html: "https://cdn.jsdelivr.net/gh/gn-math/html@main/" },
-        { name: "Sea Bean", type: "json", json: "https://cdn.jsdelivr.net/gh/sea-bean-unblocked/sde@main/zzz.json", cover: "https://cdn.jsdelivr.net/gh/sea-bean-unblocked/Singlemile@main/Icon/", html: "https://cdn.jsdelivr.net/gh/sea-bean-unblocked/Singlemile@main/games/" },
-        { 
-            name: "Master Archive", 
-            type: "combined", 
-            repos: ["sea-bean-unblocked/Folder-1", "sea-bean-unblocked/Folder-2", "sea-bean-unblocked/Folder-3"],
-            icon: "https://sea-math-official.neocities.org/Perfet.png" 
-        }
-    ];
-
-    let zones = [];
-    let currentSource = 0;
-
-    window.createSplash = function() {};
-
-    function cleanDataProcess(rawFiles) {
-        const seen = new Set();
-        const processed = rawFiles.map(file => {
-            let cleanName = file.name.replace(/\.html$/i, '').replace(/[-_]/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
-            if (seen.has(cleanName)) return null;
-            seen.add(cleanName);
-            return { ...file, name: cleanName };
-        }).filter(item => item !== null);
-        processed.sort((a, b) => a.name.localeCompare(b.name));
-        return processed;
-    }
-
-    async function init() {
-        const startupBox = document.getElementById("startupBox");
-        const sourceSelect = document.getElementById("sourceSelect");
-        startupBox.innerHTML = ""; sourceSelect.innerHTML = "";
+    <script>
+        const zoneViewer = document.getElementById('zoneViewer');
+        const zoneFrame = document.getElementById('zoneFrame');
+        const searchInput = document.getElementById('dumbSearchInput');
+        const zonesWrapper = document.getElementById('zonesWrapper');
+        const gameCountText = document.getElementById('gameCount');
         
-        sources.forEach((s, i) => {
-            const btn = document.createElement("div");
-            btn.className = "startup-btn";
-            btn.innerHTML = `<b>${s.name}</b><br><span style="font-size: 12px; opacity: 0.7;">Select Archive</span>`;
-            btn.onclick = () => chooseStartup(i);
-            startupBox.appendChild(btn);
-            const opt = document.createElement("option"); opt.value = i; opt.innerText = s.name;
-            sourceSelect.appendChild(opt);
-        });
+        let allZones = [];
+        let currentBlobUrl = null;
 
-        const savedSource = localStorage.getItem("sourceIndex");
-        if (savedSource !== null) {
-            currentSource = parseInt(savedSource);
-            sourceSelect.value = currentSource;
-            loadSource();
-        } else {
-            document.getElementById("startupOverlay").style.display = "flex";
+        const balatroGame = {
+            name: "Balatro",
+            sourceName: "Custom",
+            author: "Local",
+            resolvedCover: "/gameFiles/balatro/baltro.jpg",
+            resolvedUrl: "https://cdn.jsdelivr.net/gh/Sea-Math/game-files@main/balatro.svg"
+        };
+
+        const sources = [
+            {
+                name: "GN Math Zone",
+                type: "json",
+                json: "https://cdn.jsdelivr.net/gh/freebuisness/assets@main/zones.json",
+                cover: "https://cdn.jsdelivr.net/gh/freebuisness/covers@main",
+                html: "https://cdn.jsdelivr.net/gh/freebuisness/html@main"
+            },
+            {
+                name: "Sea Bean",
+                type: "json",
+                json: "https://cdn.jsdelivr.net/gh/sea-bean-unblocked/sde@main/zzz.json",
+                cover: "https://cdn.jsdelivr.net/gh/sea-bean-unblocked/Singlemile@main/Icon/",
+                html: "https://cdn.jsdelivr.net/gh/sea-bean-unblocked/Singlemile@main/games/"
+            },
+            {
+                name: "Master Archive",
+                type: "combined",
+                repos: ["sea-bean-unblocked/Folder-1", "sea-bean-unblocked/Folder-2", "sea-bean-unblocked/Folder-3"],
+                icon: "https://sea-math-official.neocities.org/Perfet.png"
+            }
+        ];
+
+        function openSiteInAboutBlank() {
+            let win = window.open('about:blank', '_blank');
+            win.document.body.style.margin = '0';
+            win.document.body.style.height = '100vh';
+            win.document.body.style.overflow = 'hidden';
+            let iframe = win.document.createElement('iframe');
+            iframe.style.border = 'none';
+            iframe.style.width = '100%';
+            iframe.style.height = '100%';
+            iframe.style.margin = '0';
+            iframe.src = window.location.href;
+            win.document.body.appendChild(iframe);
+            window.location.replace('https://classroom.google.com'); 
         }
-    }
 
-    async function loadSource() {
-        const statusText = document.getElementById("sysStatus");
-        const s = sources[currentSource];
-        statusText.innerText = "INDEXING LIBRARY...";
+        function openGameInAboutBlank() {
+            if (!zoneFrame.src || zoneFrame.src === 'about:blank') return;
+            let win = window.open('about:blank', '_blank');
+            win.document.body.style.margin = '0';
+            win.document.body.style.height = '100vh';
+            win.document.body.style.overflow = 'hidden';
+            let iframe = win.document.createElement('iframe');
+            iframe.style.border = 'none';
+            iframe.style.width = '100%';
+            iframe.style.height = '100%';
+            iframe.style.margin = '0';
+            iframe.src = zoneFrame.src;
+            win.document.body.appendChild(iframe);
+            closeZone();
+        }
 
-        try {
-            if (s.type === "json") {
-                const r = await fetch(s.json);
-                zones = await r.json();
-            } else if (s.type === "combined") {
-                const results = await Promise.all(s.repos.map(async (repo) => {
-                    const r = await fetch(`https://api.github.com/repos/${repo}/contents/`);
-                    const data = await r.json();
-                    return data.filter(f => f.name.endsWith('.html')).map(f => ({
-                        name: f.name, url: `https://cdn.jsdelivr.net/gh/${repo}@main/${f.name}`, isDirect: true, cover: s.icon
-                    }));
-                }));
-                zones = cleanDataProcess(results.flat());
+        function applyAdBlocker() {
+            const adSelectors = ['.ad', '.ads', '.adsbygoogle', '.banner-ads', '[id^="ad-"]', 'iframe[src*="doubleclick"]', '#sidebarad1', '#sidebarad2'];
+            try {
+                const innerDoc = zoneFrame.contentDocument || zoneFrame.contentWindow.document;
+                if (innerDoc) adSelectors.forEach(s => innerDoc.querySelectorAll(s).forEach(el => el.remove()));
+            } catch (e) {}
+        }
+        zoneFrame.onload = applyAdBlocker;
+
+        async function loadAllSources() {
+            const cachedData = localStorage.getItem('gamesDataCache');
+            if (cachedData) {
+                try {
+                    allZones = JSON.parse(cachedData);
+                    updateCountAndRender(allZones);
+                } catch(e) { console.warn("Cache parsing error"); }
             }
 
-            statusText.innerText = "SYSTEM ACTIVE";
-            setTimeout(() => statusText.innerText = "", 2000);
-            displayZones(zones);
-        } catch (err) { 
-            statusText.innerText = "ERROR FETCHING ARCHIVE";
-            console.error(err);
-        }
-    }
+            let newZones = [balatroGame]; 
 
-    function displayZones(list) {
-        const container = document.getElementById("container");
-        container.innerHTML = "";
-        document.getElementById("liveCount").innerText = list.length;
-        const s = sources[currentSource];
-        
-        list.forEach(z => {
-            const d = document.createElement("div");
-            d.className = "zone-item";
-            d.onclick = () => openZone(z);
-            const img = document.createElement("img");
-            if (s.type === "combined") { img.src = z.cover; } 
-            else {
-                let rc = z.cover || "";
-                img.src = rc.includes("{COVER_URL}") ? rc.replace("{COVER_URL}", s.cover) : s.cover + rc.replace(/^\//, "");
+            const fetchPromises = sources.map(async (source) => {
+                let sourceData = [];
+                try {
+                    if (source.type === 'json') {
+                        const res = await fetch(source.json + "?t=" + Date.now());
+                        const data = await res.json();
+                        
+                        sourceData = data.map(item => ({
+                            ...item,
+                            sourceName: source.name,
+                            resolvedCover: item.cover ? item.cover.replace("{COVER_URL}", source.cover).replace("{HTML_URL}", source.html) : (source.icon || ''),
+                            resolvedUrl: item.url ? item.url.replace("{HTML_URL}", source.html) : ''
+                        }));
+                    } else if (source.type === 'combined') {
+                        for (const repo of source.repos) {
+                            try {
+                                const res = await fetch(`https://api.github.com/repos/${repo}/contents/`);
+                                if (res.ok) {
+                                    const files = await res.json();
+                                    files.forEach(file => {
+                                        if (file.type === 'dir' || file.name.endsWith('.html')) {
+                                            sourceData.push({
+                                                name: file.name.replace('.html', ''),
+                                                id: file.sha,
+                                                author: repo,
+                                                sourceName: source.name,
+                                                resolvedCover: source.icon,
+                                                resolvedUrl: `https://cdn.jsdelivr.net/gh/${repo}@main/${file.name}${file.type === 'dir' ? '/index.html' : ''}`
+                                            });
+                                        }
+                                    });
+                                }
+                            } catch (e) {}
+                        }
+                    }
+                } catch (error) {
+                    console.error("Failed to load source:", source.name);
+                }
+                return sourceData;
+            });
+
+            const results = await Promise.all(fetchPromises);
+            results.forEach(data => newZones = newZones.concat(data));
+            
+            const uniqueZones = [];
+            const seen = new Set();
+            for (const item of newZones) {
+                const key = item.name + item.resolvedUrl;
+                if (!seen.has(key)) {
+                    seen.add(key);
+                    uniqueZones.push(item);
+                }
             }
-            img.onerror = () => img.src = "https://via.placeholder.com/220x175/001122/00d2ff?text=Game";
-            const b = document.createElement("b"); b.textContent = z.name;
-            d.append(img, b);
-            container.appendChild(d);
-        });
-    }
 
-    function filterZones() {
-        const q = document.getElementById("searchBar").value.toLowerCase();
-        displayZones(zones.filter(z => z.name && z.name.toLowerCase().includes(q)));
-    }
-
-    // --- YOUR PREFERRED LOADER LOGIC ---
-    function openZone(z) {
-        const s = sources[currentSource];
-        let finalURL = z.isDirect ? z.url : (z.url.includes("{HTML_URL}") ? z.url.replace("{HTML_URL}", s.html) : s.html + z.url.replace(/^\//, ""));
-        
-        // Prevent CDN Plain-Text Error
-        if (finalURL.includes("raw.githubusercontent.com")) {
-            finalURL = finalURL.replace("raw.githubusercontent.com", "cdn.jsdelivr.net/gh").replace("/main/", "@main/").replace("/master/", "@master/");
+            allZones = uniqueZones;
+            localStorage.setItem('gamesDataCache', JSON.stringify(allZones));
+            
+            if (searchInput.value.trim() === '') {
+                updateCountAndRender(allZones);
+            } else {
+                handlePeakSearch();
+            }
         }
 
-        document.getElementById("zoneViewer").style.display = "flex";
-        
-        // Reset and show loader bar
-        document.getElementById("loaderBar").style.opacity = "1";
-        document.getElementById("loaderBar").style.width = "40%";
-        
-        fetch(finalURL).then(r => r.text()).then(html => {
-            document.getElementById("loaderBar").style.width = "100%";
-            const doc = document.getElementById("zoneFrame").contentWindow.document;
-            doc.open(); 
-            doc.write(html); 
-            doc.close();
+        function updateCountAndRender(gamesToRender) {
+            gameCountText.textContent = `Showing ${gamesToRender.length} games`;
+            zonesWrapper.innerHTML = '';
+
+            if (gamesToRender.length === 0) {
+                zonesWrapper.innerHTML = '<p class="loading-text">No games found.</p>';
+                return;
+            }
+
+            const fragment = document.createDocumentFragment();
+            gamesToRender.forEach(file => {
+                const item = document.createElement("div");
+                item.className = "zone-item";
+                item.innerHTML = `
+                    <div class="source-tag">${file.sourceName}</div>
+                    <img src="${file.resolvedCover}" loading="lazy" onerror="this.src='https://via.placeholder.com/200x200/111827/ffffff?text=${encodeURIComponent(file.name)}'">
+                    <div class="zone-name">${file.name}</div>
+                `;
+                item.onclick = (e) => { e.preventDefault(); openZone(file); };
+                fragment.appendChild(item);
+            });
+            zonesWrapper.appendChild(fragment);
+        }
+
+        function handlePeakSearch() {
+            const query = searchInput.value.toLowerCase().trim();
             
-            // Fade out and reset after writing
-            setTimeout(() => {
-                document.getElementById("loaderBar").style.opacity = "0";
-                setTimeout(() => document.getElementById("loaderBar").style.width = "0%", 400);
-            }, 300);
+            if (query === '') {
+                updateCountAndRender(allZones);
+                return;
+            }
+
+            const searchTokens = query.split(/\s+/);
             
-        }).catch(() => {
-            // If fetch is blocked, try direct iframe src
-            document.getElementById("zoneFrame").src = finalURL;
-            document.getElementById("loaderBar").style.width = "100%";
-            
-            setTimeout(() => {
-                document.getElementById("loaderBar").style.opacity = "0";
-                setTimeout(() => document.getElementById("loaderBar").style.width = "0%", 400);
-            }, 300);
+            const results = allZones.filter(z => {
+                const targetStr = `${z.name} ${z.author || ''} ${z.sourceName || ''}`.toLowerCase();
+                return searchTokens.every(token => targetStr.includes(token));
+            });
+
+            updateCountAndRender(results);
+        }
+
+        searchInput.addEventListener('input', () => {
+            clearTimeout(window.searchTimeout);
+            window.searchTimeout = setTimeout(handlePeakSearch, 150);
         });
-    }
 
-    function chooseStartup(idx) {
-        currentSource = idx;
-        localStorage.setItem("sourceIndex", idx);
-        document.getElementById("startupOverlay").style.display = "none";
-        loadSource();
-    }
+        function openZone(file) {
+            const url = file.resolvedUrl;
+            const cacheBusterUrl = url + (url.includes('?') ? '&' : '?') + "t=" + Date.now();
+            
+            zoneFrame.src = "about:blank";
+            document.getElementById('zoneName').textContent = "Connecting to " + file.name + "...";
+            document.getElementById('zoneAuthor').textContent = "AUTHOR: " + (file.author || "UNKNOWN");
+            zoneViewer.style.display = "flex";
 
-    function toggleSettings(e) {
-        const s = document.getElementById("settingsOverlay");
-        if (e && e.target !== s) return;
-        s.style.display = s.style.display === "flex" ? "none" : "flex";
-    }
+            if (url.startsWith("/") || (url.startsWith("http") && !url.includes("cdn.jsdelivr.net") && !url.includes("api.github.com"))) {
+                zoneFrame.src = url; 
+                document.getElementById('zoneName').textContent = file.name; 
+                return;
+            }
 
-    function toggleSource(v) { 
-        currentSource = parseInt(v); 
-        localStorage.setItem("sourceIndex", v); 
-        document.getElementById("container").innerHTML = ""; 
-        loadSource(); 
-    }
-    
-    function closeViewer() { 
-        document.getElementById("zoneViewer").style.display = "none"; 
-        document.getElementById("zoneFrame").src = "about:blank"; 
-        // Reset loader silently
-        document.getElementById("loaderBar").style.width = "0%";
-    }
+            fetch(cacheBusterUrl)
+                .then(res => { if (!res.ok) throw new Error('Network Issue'); return res.text(); })
+                .then(html => {
+                    if (currentBlobUrl) URL.revokeObjectURL(currentBlobUrl);
+                    
+                    const safetyScript = `<script>
+                        window.onbeforeunload = function() { return "Staying in site!"; };
+                        
+                        window.open = function() { 
+                            return null; 
+                        };
+                        
+                        setInterval(function() {
+                            const ads = document.querySelectorAll('.ad, .ads, .adsbygoogle, .banner-ads, [id^="ad-"], iframe[src*="doubleclick"], iframe[src*="googleads"], #sidebarad1, #sidebarad2');
+                            ads.forEach(ad => ad.remove());
+                        }, 500); 
+                    <\/script>`;
+                    
+                    let finalHtml = html.toLowerCase().includes('<head>') 
+                        ? html.replace(/<head>/i, '<head>' + safetyScript) 
+                        : safetyScript + html;
+                        
+                    currentBlobUrl = URL.createObjectURL(new Blob([finalHtml], { type: 'text/html;charset=utf-8' }));
+                    zoneFrame.src = currentBlobUrl; 
+                    document.getElementById('zoneName').textContent = file.name;
+                })
+                .catch(err => { 
+                    zoneFrame.src = url; 
+                    document.getElementById('zoneName').textContent = file.name; 
+                });
+        }
 
-    window.onload = init;
-</script>
+        function closeZone() {
+            zoneViewer.style.display = "none"; zoneFrame.src = "about:blank";
+            if (currentBlobUrl) { URL.revokeObjectURL(currentBlobUrl); currentBlobUrl = null; }
+        }
 
+        function fullscreenZone() {
+            if (zoneFrame.requestFullscreen) zoneFrame.requestFullscreen();
+            else if (zoneFrame.webkitRequestFullscreen) zoneFrame.webkitRequestFullscreen();
+            else if (zoneFrame.mozRequestFullScreen) zoneFrame.mozRequestFullScreen();
+            else if (zoneFrame.msRequestFullscreen) zoneFrame.msRequestFullscreen();
+        }
+
+        window.onload = loadAllSources;
+    </script>
 </body>
 </html>
+
