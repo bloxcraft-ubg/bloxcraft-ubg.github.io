@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bloxcraft UBG - Games</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link id="favicon" rel="shortcut icon" type="image/png" href="/bloxcraft.png">
+  <link rel="stylesheet" href="/app-viewer/app-viewer-default.css">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-W0KXN0103E"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-W0KXN0103E');
+  </script>
+
+  <script>
+    (function(w,d,s,l,i){
+      w[l]=w[l]||[];
+      w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+      var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),
+          dl=l!='dataLayer'?'&l='+l:'';
+      j.async=true;
+      j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+      f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NQM8XR48');
+  </script>
+</head>
+
+<body>
+<div id="viewerBar">
+  <p id="viewerTitle">Loading...</p>
+  <div id="Btn-Group">
+    <a class="bloxy-blue-btn bloxy-btn" href="/games">Close</a>
+    <a class="bloxy-blue-btn bloxy-btn" id="closeViewer">Google</a>
+    <a class="bloxy-blue-btn bloxy-btn" id="openNewTab">Play In New Tab</a>
+  </div>
+</div>
+
+<iframe id="viewerFrame"></iframe>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const id = params.get("view");
+
+const JSON_URL = "https://cdn.jsdelivr.net/gh/tharun9772/game-assets@main/ccported-stupid-game-lib.json";
+
+const viewerFrame = document.getElementById("viewerFrame");
+const viewerTitle = document.getElementById("viewerTitle");
+const openNewTab = document.getElementById("openNewTab");
+
+function show404(){
+  viewerFrame.srcdoc = `
+    <style>
+      body{
+        background:black;
+        color:white;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        height:100vh;
+        font-family:sans-serif;
+      }
+    </style>
+    404 Not Found
+  `;
+  viewerTitle.textContent = "";
+}
+
+if(!id){
+  show404();
+} else {
+
+  fetch(JSON_URL)
+    .then(r => r.json())
+    .then(data => {
+
+      const game = data.find(g => String(g.Id) === id);
+      if(!game || !game.base) throw new Error();
+
+      const fullUrl = game.base + "/index.html";
+
+      viewerTitle.textContent = game.name && game.name.trim()
+        ? game.name
+        : "Game " + game.Id;
+
+      fetch(fullUrl)
+        .then(r => {
+          if(!r.ok) throw new Error();
+          return r.text();
+        })
+        .then(html => {
+          viewerFrame.srcdoc = html;
+        })
+        .catch(show404);
+
+      openNewTab.onclick = async () => {
+        try{
+          const html = await fetch(fullUrl).then(r => r.text());
+          const tab = window.open("about:blank", "_blank");
+
+          if(!tab){
+            alert("Popup blocked");
+            return;
+          }
+
+          tab.document.open();
+          tab.document.write(html);
+          tab.document.close();
+
+        }catch{
+          alert("Failed to open game");
+        }
+      };
+
+    })
+    .catch(show404);
+}
+
+document.getElementById("closeViewer").onclick = ()=>{
+  window.top.location.href = "https://google.com/";
+};
+</script>
+</body>
+</html>

@@ -8,7 +8,8 @@ let DATA = {
   ugs: [],
   seraph: [],
   ckv: [],
-  hydra: []
+  hydra: [],
+  ccported: []
 };
 
 let CURRENT = [];
@@ -112,7 +113,6 @@ async function loadSeraph(){
 
     DATA.seraph = d.map(g => {
       const remaining = g.url.replace(BASE, "");
-
       return {
         name: g.name,
         img: g.img,
@@ -165,6 +165,28 @@ async function loadHydra(){
   }
 }
 
+async function loadCCPorted(){
+  if(DATA.ccported.length) return;
+
+  try {
+    const r = await fetch("https://cdn.jsdelivr.net/gh/tharun9772/game-assets@main/ccported-stupid-game-lib.json");
+    const d = await r.json();
+
+    DATA.ccported = d.map(g => {
+      if(!g.base || !g.Id) return null;
+
+      return {
+        name: g.name && g.name.trim() ? g.name : "Game " + g.Id,
+        img: g.base + "/thumb.jpg",
+        url: "/app-viewer/ccported/?view=" + g.Id
+      };
+    }).filter(Boolean);
+
+  } catch(e){
+    console.error("CCPorted failed:", e);
+  }
+}
+
 document.querySelectorAll(".cat").forEach(btn=>{
   btn.onclick = async () => {
 
@@ -181,6 +203,7 @@ document.querySelectorAll(".cat").forEach(btn=>{
     if(cat === "seraph") await loadSeraph();
     if(cat === "ckv") await loadCKV();
     if(cat === "hydra") await loadHydra();
+    if(cat === "ccported") await loadCCPorted();
 
     if(cat === "all"){
       await Promise.all([
@@ -191,7 +214,8 @@ document.querySelectorAll(".cat").forEach(btn=>{
         loadUGS(),
         loadSeraph(),
         loadCKV(),
-        loadHydra()
+        loadHydra(),
+        loadCCPorted()
       ]);
 
       CURRENT = Object.values(DATA).flat();
