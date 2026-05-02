@@ -2,7 +2,7 @@
     const originalFavicon = document.querySelector("#favicon").href;
 
     const awayTitle = "Home";
-    const awayFavicon = "https://cdn.jsdelivr.net/gh/tharun9772/tharun9772.github.io@main/Google_Classroom_Logo.svg.png"; 
+    const awayFavicon = "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/Google_Classroom_Logo.svg.png"; 
 
     document.addEventListener("visibilitychange", () => {
       if (document.hidden) {
