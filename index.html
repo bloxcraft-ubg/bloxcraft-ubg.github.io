@@ -19,6 +19,7 @@
 <link rel="stylesheet" href="/navbarsettings.css">
 <link rel="stylesheet" href="/assets/main-loader.css">
 <link rel="stylesheet" href="/clock.css">
+<link rel="stylesheet" href="/the-annc-welcome.css">
 <link rel="icon" type="image/png" id="favicon" href="/bloxcraft_transparent.png">
 <script type="application/ld+json">
 {
@@ -48,7 +49,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NQM8XR48"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  
+
 <div id="loader">
   <div class="loader-content">
      <img src="/bloxcraft_transparent.png"
@@ -57,6 +58,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="spinner"></div>
     <div id="hint">Loading...</div>
   </div>
+</div>
+
+<div id="modal-overlay" class="modal-overlay">
+
+    <div id="welcome-card" class="modal-card">
+        <div class="icon-box" id="welcome-icon-container"></div>
+        <h2 id="welcome-title" class="modal-title"></h2>
+        <p id="welcome-description" class="modal-text"></p>
+        <div class="pagination" id="pagination-dots"></div>
+        <div class="modal-footer">
+            <button class="btn-secondary" onclick="exitFlow('welcome-card', closeWelcome)">Skip</button>
+            <button id="next-btn" class="btn-primary" onclick="handleNext()">Next</button>
+        </div>
+    </div>
+
+    <div id="announcement-card" class="modal-card">
+        <div class="icon-box" id="announcement-icon-container"></div>
+        <h2 id="announcement-title" class="modal-title"></h2>
+        <p id="announcement-text" class="modal-text"></p>
+        <div class="modal-footer">
+            <button id="announcement-btn" class="btn-primary" onclick="exitFlow('announcement-card', closeAnnouncement)"></button>
+        </div>
+    </div>
+
 </div>
   
 <div class="app">
@@ -90,7 +115,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="subtitle">We have hundreds and thousands of games you can play every day!</div>
       <div class="subtitle">We have VMs in the secret menu. Join the Discord to find the secret code!</div>
       <div class="subtitle">How version works: v.VERSION.YEAR.MONTH.DAY</div>
-      <div class="subtitle">v.4.26.4.23 <span id="checkversion">(Loading JSON API...)</span></div>
+      <div class="subtitle">v.4.26.5.3 <span id="checkversion">(Loading JSON API...)</span></div>
       
           <div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
   <button onclick="exportSiteSave()" style="padding:8px 14px;border-radius:6px;border:none;background:var(--accent);color:#fff;cursor:pointer">
@@ -150,5 +175,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script src="/assets/funcard.js"></script>
 <script src="/assets/main-loader.js"></script>
 <script src="/assets/userstyleclock.js"></script>
+<script src="/const-welcome-annc.js"></script>
 </body>
 </html>

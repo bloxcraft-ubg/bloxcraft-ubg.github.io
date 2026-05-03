@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bloxcraft UBG - Games</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link id="favicon" rel="shortcut icon" type="image/png" href="/bloxcraft.png">
+  <link rel="stylesheet" href="/app-viewer/app-viewer-default.css">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-W0KXN0103E"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-W0KXN0103E');
+  </script>
+
+  <script>
+  (function(w,d,s,l,i){
+    w[l]=w[l]||[];
+    w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+    var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),
+    dl=l!='dataLayer'?'&l='+l:'';
+    j.async=true;
+    j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+    f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-NQM8XR48');
+  </script>
+</head>
+
+<body>
+
+  <div id="viewerBar">
+    <p id="viewerTitle">Loading...</p>
+
+    <div id="Btn-Group">
+      <a class="bloxy-blue-btn bloxy-btn" href="/games">Close</a>
+      <a class="bloxy-blue-btn bloxy-btn" id="closeViewer" href="https://google.com/">Google</a>
+      <a class="bloxy-blue-btn bloxy-btn" id="openNewTab">New Tab</a>
+    </div>
+  </div>
+
+  
+  <iframe id="viewerFrame" sandbox="allow-scripts allow-forms allow-same-origin"></iframe>
+
+<script>
+const params = new URLSearchParams(location.search);
+const view = params.get("view");
+
+const viewerFrame = document.getElementById("viewerFrame");
+const viewerTitle = document.getElementById("viewerTitle");
+
+const BASE = "https://cdn.jsdelivr.net/gh/bloxcraft-st/google-class-files@main/";
+
+let gameData = null;
+let finalUrl = null;
+
+async function loadGame(){
+
+  if(!view){
+    viewerTitle.textContent = "No game selected";
+    return;
+  }
+
+  try{
+    const res = await fetch(BASE + "assets/games.json");
+    const data = await res.json();
+
+    gameData = data.find(g => g.url === view);
+
+    if(!gameData){
+      viewerTitle.textContent = "Game not found";
+      return;
+    }
+
+    finalUrl = BASE + gameData.url;
+
+    viewerTitle.textContent = gameData.name;
+
+    const html = await fetch(finalUrl).then(r => r.text());
+
+    injectIntoFrame(html);
+
+  } catch(err){
+    console.error(err);
+    viewerTitle.textContent = "Failed to load";
+  }
+}
+
+function injectIntoFrame(html){
+
+  const doc = `
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <base href="${BASE}">
+      <style>
+        html,body {
+          margin:0;
+          padding:0;
+          width:100%;
+          height:100%;
+          overflow:hidden;
+          background:black;
+        }
+      </style>
+    </head>
+    <body>
+      ${html}
+    </body>
+  </html>
+  `;
+
+  viewerFrame.srcdoc = doc;
+}
+
+
+document.getElementById("openNewTab").onclick = () => {
+  if(!finalUrl) return;
+
+  window.open(finalUrl, "_blank");
+};
+
+
+document.getElementById("closeViewer").onclick = () => {
+  location.href = "https://google.com/";
+};
+
+loadGame();
+</script>
+
+</body>
+</html>
