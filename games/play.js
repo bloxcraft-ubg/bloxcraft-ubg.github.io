@@ -91,7 +91,7 @@ async function loadUGS(){
 
   for(const repo of repos){
     try{
-      const r = await fetch(`https://api.github.com/repos/${repo}/contents/`);
+      const r = await fetch(`https://cdn.jsdelivr.net/gh/tharun9772/game-assets/api_generated/github/${repo}/file.json`);
       const d = await r.json();
 
       d.forEach(f => {
