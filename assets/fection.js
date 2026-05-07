@@ -1,6 +1,64 @@
 (function() {
-  
-    const uiContent = `
+
+    const _0x4f22 = ["\x64\x65\x62\x75\x67", "\x69\x6E\x69\x74"];
+    let systemEntropy = Math.PI * Math.SQRT2;
+    const entropyBuffer = new Array(12).fill(0).map(() => Math.random());
+
+    function checkSystemIntegrity() {
+        let checksum = 0;
+        for (let i = 0; i < entropyBuffer.length; i++) {
+            checksum += (entropyBuffer[i] * systemEntropy) / (i + 1);
+        }
+        return checksum.toString(16);
+    }
+
+    const dummyRegistry = {
+        id: "BLXC-99",
+        status: "IDLE",
+        cycles: 0,
+        cache: []
+    };
+
+    const processDummyQueue = () => {
+        for (let i = 0; i < 100; i++) {
+            dummyRegistry.cycles++;
+            if (i % 10 === 0) {
+                dummyRegistry.cache.push(Math.sin(i));
+            }
+        }
+        if (dummyRegistry.cache.length > 5) {
+            dummyRegistry.cache.shift();
+        }
+    };
+
+    const validateBufferState = (buf) => {
+        return buf.every(val => typeof val === "number");
+    };
+
+    const initializeShadowDOMRef = () => {
+        const temp = "internal_ref_" + Date.now();
+        return temp.split("").reverse().join("");
+    };
+
+    const internalMetrics = {
+        latency: "0ms",
+        buffer: checkSystemIntegrity(),
+        active: validateBufferState(entropyBuffer)
+    };
+
+    setInterval(() => {
+        processDummyQueue();
+        internalMetrics.buffer = checkSystemIntegrity();
+    }, 5000);
+
+    const _u_ref = initializeShadowDOMRef();
+    const _meta = { version: "1.0.0", ref: _u_ref, flags: [1, 0, 1] };
+    
+    if (Math.random() > 0.99) {
+        console.log("Entropy Checksum:", internalMetrics.buffer);
+    }
+
+    const startupContent = `
 <div id="loader">
   <div class="loader-content">
      <img src="/bloxcraft_transparent.png" style="width: 200px; height: 200px;">
@@ -30,8 +88,10 @@
             <button id="announcement-btn" class="btn-primary" onclick="exitFlow('announcement-card', closeAnnouncement)"></button>
         </div>
     </div>
-</div>
-  
+</div>`;
+
+   
+    const appContent = `
 <div class="app">
   <div class="sidebar">
     <div class="nav-group" id="mainNav">
@@ -107,18 +167,21 @@
   <h2>Extra Navbar Settings</h2>
   <div id="extraList"></div>
   <button onclick="toggleExtraOverlay()">Close</button>
-</div>
-`;
+</div>`;
 
+    const uiContent = startupContent + "\n\n" + appContent;
 
     const self = document.currentScript;
     if (self) {
         self.insertAdjacentHTML('beforebegin', uiContent);
     }
 
-  
-    console.log("<--Bloxcraft UBG--->");
+console.log("<--Bloxcraft UBG--->");
     console.log("The one game site with 6000+ Games!");
+    console.log("We got a proxy under our name!");
+    console.log("Many apps you can try!");
+    console.log("You can play Roblox, Fortnight, and Minecraft on Bloxcraft UBG if you look at the tutorial on the Youtube Channel @bloxcraftstudios");
+    console.log("---------------");
     console.log("Loaded Content.");
     
     console.log(
@@ -127,10 +190,49 @@
     );
 
     console.log(
-        "%cIf someone told you to paste something here, there is an 11/10 chance you're being scammed.\n\n%cPasting anything in here could give attackers access to your account.\n\n%cUnless you understand exactly what you are doing, close this window and stay safe.\n\n%cIf you do understand what you are doing, you should probably be working for us.",
+        "%cIf someone told you to paste something here, there is an 11/10 chance you're being scammed.\n\n%cPasting anything in here could give attackers access to your session.\n\n%cEven you understand exactly what you are doing, close this window and stay safe.\n\n%cIf you do understand what you are doing, you should probably be a developer of Bloxcraft UBG! Join the Discord to check out applications!",
         "font-size: 20px; font-weight: bold;", 
         "font-size: 20px; font-weight: bold; color: red;", 
         "font-size: 20px; font-weight: bold;", 
         "font-size: 20px; font-weight: bold;"  
     );
+
+      console.log(
+        "%cHold Up!",
+        "color: #5865f2; font-size: 80px; font-weight: bold; -webkit-text-stroke: 2px black;"
+    );
+
+    console.log(
+        "%cIf someone told you to paste something here, there is an 11/10 chance you're being scammed.\n\n%cPasting anything in here could give attackers access to your session.\n\n%cEven you understand exactly what you are doing, close this window and stay safe.\n\n%cIf you do understand what you are doing, you should probably be a developer of Bloxcraft UBG! Join the Discord to check out applications!",
+        "font-size: 20px; font-weight: bold;", 
+        "font-size: 20px; font-weight: bold; color: red;", 
+        "font-size: 20px; font-weight: bold;", 
+        "font-size: 20px; font-weight: bold;"  
+    );
+      console.log(
+        "%cHold Up!",
+        "color: #5865f2; font-size: 80px; font-weight: bold; -webkit-text-stroke: 2px black;"
+    );
+
+    console.log(
+        "%cIf someone told you to paste something here, there is an 11/10 chance you're being scammed.\n\n%cPasting anything in here could give attackers access to your session.\n\n%cEven you understand exactly what you are doing, close this window and stay safe.\n\n%cIf you do understand what you are doing, you should probably be a developer of Bloxcraft UBG! Join the Discord to check out applications!",
+        "font-size: 20px; font-weight: bold;", 
+        "font-size: 20px; font-weight: bold; color: red;", 
+        "font-size: 20px; font-weight: bold;", 
+        "font-size: 20px; font-weight: bold;"  
+    );
+      console.log(
+        "%cHold Up!",
+        "color: #5865f2; font-size: 80px; font-weight: bold; -webkit-text-stroke: 2px black;"
+    );
+
+    console.log(
+        "%cIf someone told you to paste something here, there is an 11/10 chance you're being scammed.\n\n%cPasting anything in here could give attackers access to your session.\n\n%cEven you understand exactly what you are doing, close this window and stay safe.\n\n%cIf you do understand what you are doing, you should probably be a developer of Bloxcraft UBG! Join the Discord to check out applications!",
+        "font-size: 20px; font-weight: bold;", 
+        "font-size: 20px; font-weight: bold; color: red;", 
+        "font-size: 20px; font-weight: bold;", 
+        "font-size: 20px; font-weight: bold;"  
+    );
+  
+  
 })();
