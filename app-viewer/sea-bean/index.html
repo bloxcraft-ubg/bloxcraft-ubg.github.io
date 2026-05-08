@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,21 +39,26 @@
     </div>
   </div>
 
-  <iframe id="viewerFrame"></iframe>
-
+  <iframe
+    id="viewerFrame"
+    allowfullscreen
+  ></iframe>
 
 <script>
 const params = new URLSearchParams(window.location.search);
-const viewId = params.get("view"); // ✅ FIXED
+
+const viewId = params.get("view");
 
 const viewerFrame = document.getElementById("viewerFrame");
 const viewerTitle = document.getElementById("viewerTitle");
 const closeViewer = document.getElementById("closeViewer");
 const openNewTab = document.getElementById("openNewTab");
 
-const jsonUrl = "https://cdn.jsdelivr.net/gh/sea-bean-unblocked/sde@main/zzz.json";
+const jsonUrl =
+  "https://cdn.jsdelivr.net/gh/sea-bean-unblocked/sde@main/zzz.json";
 
 function show404() {
+
   viewerFrame.srcdoc = `
     <style>
       body{
@@ -69,74 +73,135 @@ function show404() {
         margin:0;
       }
     </style>
+
     404 Blocked Or Not Found
   `;
+
   viewerTitle.textContent = "";
 }
 
-if (!viewId) {
-  show404();
-} else {
-  viewerTitle.textContent = "Loading...";
+async function loadGame() {
 
-  fetch(jsonUrl)
-    .then(res => res.json())
-    .then(data => {
+  if (!viewId) {
+    show404();
+    return;
+  }
 
-      const entry = data.find(e => String(e.id) === String(viewId));
+  try {
 
-      if (!entry) throw new Error("Game not found");
+    viewerTitle.textContent = "Loading...";
 
-      viewerTitle.textContent = entry.name || viewId;
+    const jsonRes = await fetch(jsonUrl, {
+      cache: "no-store"
+    });
 
-      // resolve HTML
-      let htmlUrl = entry.html || entry.url || "";
+    if (!jsonRes.ok) {
+      throw new Error("Failed to fetch JSON");
+    }
 
-      if (htmlUrl.includes("{HTML_URL}")) {
-        htmlUrl = htmlUrl.replace(
-          "{HTML_URL}",
-          "https://cdn.jsdelivr.net/gh/sea-bean-unblocked/Singlemile@main/games/"
-        );
-      }
+    const data = await jsonRes.json();
 
-      fetch(htmlUrl)
-        .then(res => {
-          if (!res.ok) throw new Error();
-          return res.text();
-        })
-        .then(html => {
-          viewerFrame.srcdoc = html;
-        })
-        .catch(show404);
+    const entry =
+      data.find(e => String(e.id) === String(viewId));
 
-      openNewTab.onclick = async (e) => {
-        e.preventDefault();
+    if (!entry) {
+      throw new Error("Game not found");
+    }
 
-        try {
-          const res = await fetch(htmlUrl);
-          if (!res.ok) throw new Error();
-          const html = await res.text();
+    viewerTitle.textContent =
+      entry.name || viewId;
 
-          const newTab = window.open("about:blank", "_blank");
-          if (!newTab) return alert("Popup blocked");
+    let htmlUrl =
+      entry.html ||
+      entry.url ||
+      "";
 
-          newTab.document.open();
-          newTab.document.write(html);
-          newTab.document.close();
-        } catch {
-          alert("Failed to open game");
+    if (htmlUrl.includes("{HTML_URL}")) {
+
+      htmlUrl = htmlUrl.replace(
+        "{HTML_URL}",
+        "https://cdn.jsdelivr.net/gh/sea-bean-unblocked/Singlemile@main/games/"
+      );
+    }
+
+
+    htmlUrl = htmlUrl.replace(/([^:]\/)\/+/g, "$1");
+
+    console.log("Loading game URL:", htmlUrl);
+
+    const gameRes = await fetch(htmlUrl, {
+      cache: "no-store"
+    });
+
+    if (!gameRes.ok) {
+
+      console.error(
+        "Game fetch failed:",
+        gameRes.status,
+        htmlUrl
+      );
+
+      throw new Error("Failed to fetch HTML");
+    }
+
+    const html = await gameRes.text();
+
+    viewerFrame.srcdoc = html;
+
+    openNewTab.onclick = async (e) => {
+
+      e.preventDefault();
+
+      try {
+
+        const res = await fetch(htmlUrl, {
+          cache: "no-store"
+        });
+
+        if (!res.ok) {
+          throw new Error();
         }
-      };
 
-    })
-    .catch(show404);
+        const html = await res.text();
+
+        const newTab =
+          window.open("about:blank", "_blank");
+
+        if (!newTab) {
+          alert("Popup blocked");
+          return;
+        }
+
+        newTab.document.open();
+        newTab.document.write(html);
+        newTab.document.close();
+
+      } catch (err) {
+
+        console.error(err);
+
+        alert("Failed to open game");
+
+      }
+    };
+
+  } catch (err) {
+
+    console.error(err);
+
+    show404();
+
+  }
 }
+
+loadGame();
 
 closeViewer.addEventListener("click", () => {
   window.location.href = "/games";
 });
 </script>
-  
-  <script src="/main-injection.js"></script>
+
+<script src="/main-injection.js"></script>
+
 </body>
 </html>
