@@ -6,7 +6,7 @@ setTimeout(() => {
   if (typeof pickNoRepeat === "function") {
     hintEl.textContent = pickNoRepeat();
   } else {
-    hintEl.textContent = "Welcome to Bloxcraft UBG, the unblocked game site with 1000+ games and has a proxy!";
+    hintEl.textContent = "Welcome to Bloxcraft UBG, the unblocked game site with 8000+ games and has a working proxy!";
   }
 }, 50);
 

@@ -3,7 +3,9 @@
 #### This Has Games And Other Fun Things You Can Do!
 https://bloxcraft-ubg.pages.dev
 Many Games You Can Play!
-**6000+ Games Just For You To Play**
+**8000+ Games Just For You To Play**
+**10+ Game Libaries**
+**Scarmjet and UV Static 2.0 Proxy**
 #### 100+ Links
 **If You Want More Links, Checkout This Google Doc! https://docs.google.com/document/d/1UC3Eo6UoPCVlq1SiOFEj0HahQGPqqbadXSho5NKHbQU/edit?tab=t.c1jhsom4wbqs **
 The Default Background Colour For Bloxcraft UBG Is `#5555FF` 
