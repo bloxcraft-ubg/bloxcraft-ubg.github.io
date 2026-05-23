@@ -135,7 +135,7 @@ async function loadCKV() {
 
     DATA.ckv = safeArray(d).map(g => ({
       name: g.name || "Unknown",
-      img: g.img ? "https://cdn.jsdelivr.net/gh/carbonicality/ChickenKingsVault@main/images/" + g.img : "",
+      img: g.img ? "https://cdn.jsdelivr.net/gh/carbonicality/ChickenKingsVault@main/gameimages/" + g.img : "",
       url: "/app-viewer/chicken-kings-vault/?view=" + g.html
     }));
 

@@ -40,53 +40,7 @@
 
 <iframe id="viewerFrame"></iframe>
 
-<script>
-const params = new URLSearchParams(window.location.search);
-const view = params.get("view");
-
-const BASE = "https://cdn.jsdelivr.net/gh/carbonicality/ChickenKingsVault@main/gamefiles/";
-const JSON_URL = "https://cdn.jsdelivr.net/gh/carbonicality/ChickenKingsVault@main/games.json";
-
-const viewerFrame = document.getElementById("viewerFrame");
-const viewerTitle = document.getElementById("viewerTitle");
-const openNewTab = document.getElementById("openNewTab");
-
-function show404(){
-  viewerFrame.srcdoc = "<h1 style='color:white;background:black;height:100vh;display:flex;align-items:center;justify-content:center;'>404</h1>";
-}
-
-if(!view){
-  show404();
-} else {
-
-  fetch(JSON_URL)
-    .then(r=>r.json())
-    .then(data=>{
-      const game = data.find(g => g.html === view);
-      if(!game) throw new Error();
-
-      const fullUrl = BASE + game.html;
-      viewerTitle.textContent = game.name;
-
-      fetch(fullUrl)
-        .then(r=>r.text())
-        .then(html=>{
-          viewerFrame.srcdoc = html;
-        });
-
-      openNewTab.onclick = async () => {
-        const html = await fetch(fullUrl).then(r=>r.text());
-        const tab = window.open("about:blank");
-        tab.document.write(html);
-      };
-
-    })
-    .catch(show404);
-}
-
-document.getElementById("closeViewer").onclick = ()=>{
-  window.top.location.href = "https://google.com/";
-};
-</script>
+<script src="/app-viewer/js/chicken-kings-vault.js"></script>
+<script src="/main-injection.js"></script>
 </body>
 </html>
