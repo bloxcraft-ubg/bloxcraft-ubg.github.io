@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,21 +31,18 @@
 </head>
 
 <body>
-
   <div id="viewerBar">
-    <p id="viewerTitle">Loading...</p>
-
+    <p id="viewerTitle">Opening...</p>
     <div id="Btn-Group">
-      <a class="bloxy-blue-btn bloxy-btn" href="/games">Close</a>
+      <a class="bloxy-blue-btn bloxy-btn" href="/apps">Close</a>
       <a class="bloxy-blue-btn bloxy-btn" id="closeViewer" href="https://google.com/">Google</a>
       <a class="bloxy-blue-btn bloxy-btn" id="openNewTab">Play In New Tab</a>
     </div>
   </div>
 
-  
-  <iframe id="viewerFrame" sandbox="allow-scripts allow-forms allow-same-origin"></iframe>
+  <iframe id="viewerFrame"></iframe>
 
-<script src="/app-viewer/js/ugs-files.js"></script>
-<script src="/main-injection.js"></script>
+  <script src="/app-viewer/js/main.js"></script>
+  <script src="/main-injection.js"></script>
 </body>
 </html>
