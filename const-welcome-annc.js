@@ -2,7 +2,6 @@ let welcomeSlides = [];
 let currentSlideIndex = 0;
 const WELCOME_KEY = 'bloxcraft_welcome_seen'; 
 
-
 let overlay;
 
 window.addEventListener('DOMContentLoaded', async () => {
