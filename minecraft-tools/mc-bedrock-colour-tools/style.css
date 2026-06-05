@@ -3,10 +3,27 @@
   font-family: Minecraft;
   src: url(https://raw.githubusercontent.com/Zgoly/Minecraft_Font/main/9303.ttf);
 }
+
+:root {
+  --accent: #7c5cff;
+  --accent2: #441af0;
+  --accent3: #2fdcff;
+  --text: #cfd6ff;
+  --text-muted: #5d6793;
+  --bg-dark: #05060d;
+  --glow-purple: 0 0 15px rgba(124, 92, 255, 0.5);
+  --glow-cyan: 0 0 15px rgba(0, 102, 255, 0.5);
+  --text-glow-cyan: 0 0 10px rgba(47, 220, 255, 0.6);
+  --text-glow-purple: 0 0 10px rgba(124, 92, 255, 0.6);
+}
+
 body {
   max-width: 100%;
   overflow-x: hidden;
-  background: #1A223B;
+  background: radial-gradient(circle at top, #0b0f2a, var(--bg-dark));
+  font-family: "Open Sans", system-ui, sans-serif;
+  color: var(--text);
+  line-height: 1.5;
 }
 
 .center {
@@ -24,9 +41,11 @@ body {
 #p1 {
   font-family: "Open Sans";
   font-size: 50px;
+  font-weight: 800;
   display: block;
   margin: 0 auto;
   color: #fff;
+  text-shadow: var(--text-glow-purple);
 }
 
 #p2 {
@@ -35,7 +54,7 @@ body {
   text-align: center;
   margin: 0 auto;
   padding: 20px;
-  color: #fff;
+  color: var(--text);
   display: flex;
 }
 
@@ -43,14 +62,7 @@ body {
   margin: 0 auto;
   font-family: "Open Sans";
   font-size: 20px;
-  color: rgba(255, 255, 255, 0.4);
-}
-
-#p3 {
-  margin: 0 auto;
-  font-family: "Open Sans";
-  font-size: 20px;
-  color: rgba(255, 255, 255, 0.4);
+  color: var(--text-muted);
 }
 
 #i1 {
@@ -68,31 +80,32 @@ body {
   max-width: 100px;
   max-height: 100px;
   border-radius: 25px;
-  box-shadow: 0px 10px 30px 10px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(124, 92, 255, 0.2);
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.6);
+  transition: all 0.2s ease;
 }
 
+
 .tools {
-  background-color: #232E4B;
+  background-color: linear-gradient(150deg, rgba(13, 16, 37, 0.95) 0%, rgba(5, 6, 13, 0.98) 100%);
+  border: 1px solid rgba(124, 92, 255, 0.15);
   margin: 25px 15px;
   border-radius: 25px;
-  border: none;
-  box-shadow: 0px 10px 30px 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.5);
   display: flex;
-  -webkit-transition-duration: 0.2s;
-  /* Safari */
-  transition-duration: 0.2s;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .tools div {
   margin: 10px;
   text-align: center;
 }
+
 .tools button {
-  -webkit-transition-duration: 0.2s;
-  /* Safari */
-  transition-duration: 0.2s;
-  border: 3px #fff;
-  border-style: solid;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   font-size: 15px;
+  font-weight: 600;
   border-radius: 10px;
   min-width: 30px;
   height: 30px;
@@ -101,17 +114,19 @@ body {
 
 .b1 {
   color: #fff;
-  background: #232E4B;
+  background: var(--accent);
+  box-shadow: 0 4px 12px rgba(124, 92, 255, 0.2);
 }
 
 .tools:hover {
-  transform: scale(1.05);
-  box-shadow: 0px 0px 30px 10px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px) scale(1.02);
+  border-color: rgba(124, 92, 255, 0.4);
+  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.6), var(--glow-purple);
 }
 
 #buttons:hover {
-  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.4);
-  transform: scale(1.2);
+  box-shadow: var(--glow-purple);
+  transform: scale(1.1);
 }
 
 #buttons:active {
@@ -131,26 +146,39 @@ body {
 .editor {
   border: none;
   display: flex;
+  gap: 4px;
 }
+
 
 textarea {
   color: #ffffff;
+  font-family: inherit;
   font-size: 24px;
   border-radius: 25px 0px 0px 25px;
-  box-shadow: 0px 10px 30px 10px rgba(0, 0, 0, 0.4);
-  border: none;
-  padding: 10px;
+  box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(124, 92, 255, 0.2);
+  border-right: none;
+  padding: 15px;
   width: 50%;
   height: 256px;
-  background: #232E4B;
+  background: rgba(13, 16, 37, 0.95);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  resize: none;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.5), var(--glow-purple);
 }
 
 .output {
   font-size: 24px;
   border-radius: 0px 25px 25px 0px;
-  box-shadow: 0px 10px 30px 10px rgba(0, 0, 0, 0.4);
-  border: none;
-  padding: 10px;
+  box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(124, 92, 255, 0.2);
+  border-left: none;
+  padding: 15px;
   width: 50%;
   height: 256px;
   text-align: center;
@@ -158,66 +186,51 @@ textarea {
   background: url(https://i.ibb.co/Fw9JPzY/sign-overlay.png);
   background-color: #d2c181;
   background-size: 200%;
-  transition-duration: 0.2s;
+  transition: all 0.2s ease;
 }
 
+
 .bgs {
-  background-color: #232E4B;
-  padding: 10px;
+  background-color: rgba(13, 16, 37, 0.8);
+  border: 1px solid rgba(124, 92, 255, 0.15);
+  padding: 12px;
   margin: 25px;
   display: flex;
   justify-content: space-between;
-  box-shadow: 0px 10px 30px 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.5);
   border-radius: 25px;
-  -webkit-transition-duration: 0.2s;
-  /* Safari */
-  transition-duration: 0.2s;
+  transition: all 0.2s ease;
 }
+
 .bgs div {
   background: url(https://i.ibb.co/Fw9JPzY/sign-overlay.png);
   background-size: 200%;
-  border-radius: 20px;
-  margin: 10px;
+  border-radius: 16px;
+  margin: 6px;
   flex-grow: 1;
   width: 100px;
   height: 65px;
   background-color: #000;
-  background-size: 200%;
-  -webkit-transition-duration: 0.2s;
-  /* Safari */
-  transition-duration: 0.2s;
-  opacity: 0.7;
+  transition: all 0.2s ease;
+  opacity: 0.75;
   box-shadow: inset 0px 0px 0px 0px rgba(255, 255, 255, 0.4);
-}
-.bgs .item1 {
-  background-color: #d2c181;
-}
-.bgs .item2 {
-  background-color: #ba9b60;
-}
-.bgs .item3 {
-  background-color: #b98864;
-}
-.bgs .item4 {
-  background-color: #B56137;
-}
-.bgs .item5 {
-  background-color: #836137;
-}
-.bgs .item6 {
-  background-color: #4e2e11;
-}
-.bgs .item7 {
-  background-color: #167c7a;
-}
-.bgs .item8 {
-  background-color: #77344f;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.bgs .item1 { background-color: #d2c181; }
+.bgs .item2 { background-color: #ba9b60; }
+.bgs .item3 { background-color: #b98864; }
+.bgs .item4 { background-color: #B56137; }
+.bgs .item5 { background-color: #836137; }
+.bgs .item6 { background-color: #4e2e11; }
+.bgs .item7 { background-color: #167c7a; }
+.bgs .item8 { background-color: #77344f; }
+
 #items:hover {
-  box-shadow: 0px 10px 30px 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.5);
   opacity: 1;
-  transform: scale(1.2);
+  transform: translateY(-4px) scale(1.1);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 #items:active {
@@ -231,26 +244,35 @@ textarea {
 }
 
 .bgs:hover {
-  transform: scale(1.05);
+  transform: translateY(-2px);
+  border-color: rgba(124, 92, 255, 0.3);
 }
 
-#copy {
-  padding: 10px 20px;
-  font-size: 24px;
-  background-color: #232E4B;
+
+#copy, #clear {
+  padding: 10px 24px;
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   color: #fff;
   border: none;
   border-radius: 25px;
-  box-shadow: 0px 10px 30px 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.4);
   display: inline-block;
-  -webkit-transition-duration: 0.2s;
-  /* Safari */
-  transition-duration: 0.2s;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+#copy {
+  background-color: var(--accent);
+  box-shadow: 0 4px 15px rgba(124, 92, 255, 0.2);
 }
 
 #copy:hover {
-  transform: scale(1.2);
-  box-shadow: 0px 0px 30px 10px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px) scale(1.05);
+  background-color: #8b6eff;
+  box-shadow: var(--glow-purple);
 }
 
 #copy:active {
@@ -260,22 +282,15 @@ textarea {
 }
 
 #clear {
-  padding: 10px 20px;
-  font-size: 24px;
-  background-color: #232E4B;
-  color: #fff;
-  border: none;
-  border-radius: 25px;
-  box-shadow: 0px 10px 30px 10px rgba(0, 0, 0, 0.4);
-  display: inline-block;
-  -webkit-transition-duration: 0.2s;
-  /* Safari */
-  transition-duration: 0.2s;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 #clear:hover {
-  transform: scale(1.2);
-  box-shadow: 0px 0px 30px 10px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px) scale(1.05);
+  background-color: rgba(255, 57, 43, 0.2);
+  border-color: rgba(255, 57, 43, 0.4);
+  box-shadow: 0px 0px 25px rgba(255, 57, 43, 0.4);
 }
 
 #clear:active {
@@ -284,17 +299,18 @@ textarea {
   box-shadow: 0px 0px 20px 10px rgba(255, 57, 43, 0.4);
 }
 
+
 .info {
   padding: 10px 30px;
-  border: none;
+  border: 1px solid rgba(124, 92, 255, 0.15);
   max-width: 450px;
   max-height: 150px;
   margin: 25px auto;
   box-sizing: border-box;
   display: flex;
-  background-color: #232E4B;
+  background-color: rgba(13, 16, 37, 0.9);
   justify-content: space-between;
-  box-shadow: 0px 10px 30px 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.5);
   border-radius: 25px;
 }
 
@@ -302,52 +318,53 @@ textarea {
   font-size: 26px;
   margin: 0 auto;
   font-family: "Open Sans";
-  color: rgba(255, 255, 255, 0.4);
+  color: var(--text-muted);
+  cursor: help;
+  transition: color 0.2s ease;
+}
+
+.tooltip:hover {
+  color: #fff;
+  text-shadow: var(--text-glow-purple);
 }
 
 .tooltiptext {
   font-family: "Open Sans";
-  font-size: 16px;
-  background-color: rgba(0, 0, 0, 0.4);
-  color: #fff;
-  border-radius: 25px;
-  padding: 15px;
+  font-size: 14px;
+  background-gradient: linear-gradient(150deg, rgba(13, 16, 37, 0.98) 0%, rgba(5, 6, 13, 0.99) 100%);
+  border: 1px solid rgba(124, 92, 255, 0.3);
+  color: var(--text);
+  border-radius: 16px;
+  padding: 16px;
   position: absolute;
   width: 450px;
-  z-index: 1;
+  z-index: 10;
   top: 675px;
   margin: 30px;
   margin-left: -5px;
-  backdrop-filter: blur(3px);
-  box-shadow: 0px 10px 30px 10px rgba(0, 0, 0, 0.4);
-  -webkit-transition-duration: 0.2s;
-  /* Safari */
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.7), var(--glow-purple);
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.2s, margin-left 0.2s, visibility 0s 0.2s 0s;
+  transition: opacity 0.2s, margin-left 0.2s, visibility 0s 0.2s;
 }
 
-.tooltip:hover + .tooltiptext {
+.tooltip:hover + .tooltiptext, .tooltiptext:hover {
   opacity: 1;
   margin-left: 10px;
   visibility: visible;
+  transition-delay: 0s;
 }
 
-.tooltiptext:hover {
-  opacity: 1;
-  margin-left: 10px;
-  visibility: visible;
-}
 
 .image1 {
-  -webkit-transition-duration: 0.2s;
-  /* Safari */
-  transition-duration: 0.2s;
-  transition: box-shadow 0.2s, transform 2s;
+  transition: all 0.2s ease;
 }
 
 #i2:hover {
-  box-shadow: 0px 0px 10px 10px rgba(57, 179, 176, 0.4);
+  box-shadow: var(--glow-cyan);
+  border-color: var(--accent3);
 }
 
 .image1:active {
@@ -368,13 +385,10 @@ textarea {
 }
 
 @keyframes SquidMovement {
-  0% {
-    left: 100%;
-  }
-  100% {
-    left: -30%;
-  }
+  0% { left: 100%; }
+  100% { left: -30%; }
 }
+
 #link1 {
   text-decoration: none;
   font-family: "Open Sans";
@@ -382,182 +396,50 @@ textarea {
   text-align: center;
   display: inline-block;
   justify-content: center;
-  color: rgba(255, 255, 255, 0.4);
-  -webkit-transition-duration: 0.2s;
-  /* Safari */
-  transition-duration: 0.2s;
+  color: var(--text-muted);
+  transition: all 0.2s ease;
 }
 
 #link1:hover {
   color: #ff3232;
   font-size: 22px;
-  line-height: 22px;
+  text-shadow: 0 0 10px rgba(255, 50, 50, 0.6);
 }
 
-#link1:after {
-  content: "By Zgoly";
-}
+#link1:after { content: "By Zgoly"; }
+#link1:hover:after { content: "YouTube"; }
 
-#link1:hover:after {
-  content: "YouTube";
-}
 
-.bg-1 {
-  color: #fff;
-  background-color: #000;
-}
+.bg-1 { color: #fff; background-color: #000; }
+.bg-2 { color: #fff; background-color: #00A; }
+.bg-3 { color: #fff; background-color: #0A0; }
+.bg-4 { color: #fff; background-color: #0AA; }
+.bg-5 { color: #fff; background-color: #A00; }
+.bg-6 { color: #fff; background-color: #A0A; }
+.bg-7 { color: #000; background-color: #FA0; }
+.bg-8 { color: #000; background-color: #AAA; }
+.bg-9 { color: #fff; background-color: #555; }
+.bg-10 { color: #fff; background-color: #55F; }
+.bg-11 { color: #000; background-color: #5F5; }
+.bg-12 { color: #000; background-color: #5FF; }
+.bg-13 { color: #fff; background-color: #F55; }
+.bg-14 { color: #000; background-color: #F5F; }
+.bg-15 { color: #000; background-color: #FF5; }
+.bg-16 { color: #000; background-color: #FFF; }
 
-.bg-2 {
-  color: #fff;
-  background-color: #00A;
-}
-
-.bg-3 {
-  color: #fff;
-  background-color: #0A0;
-}
-
-.bg-4 {
-  color: #fff;
-  background-color: #0AA;
-}
-
-.bg-5 {
-  color: #fff;
-  background-color: #A00;
-}
-
-.bg-6 {
-  color: #fff;
-  background-color: #A0A;
-}
-
-.bg-7 {
-  color: #000;
-  background-color: #FA0;
-}
-
-.bg-8 {
-  color: #000;
-  background-color: #AAA;
-}
-
-.bg-9 {
-  color: #fff;
-  background-color: #555;
-}
-
-.bg-10 {
-  color: #fff;
-  background-color: #55F;
-}
-
-.bg-11 {
-  color: #000;
-  background-color: #5F5;
-}
-
-.bg-12 {
-  color: #000;
-  background-color: #5FF;
-}
-
-.bg-13 {
-  color: #fff;
-  background-color: #F55;
-}
-
-.bg-14 {
-  color: #000;
-  background-color: #F5F;
-}
-
-.bg-15 {
-  color: #000;
-  background-color: #FF5;
-}
-
-.bg-16 {
-  color: #000;
-  background-color: #FFF;
-}
-
-.c-1 {
-  font-family: Minecraft;
-  color: #000;
-}
-
-.c-2 {
-  font-family: Minecraft;
-  color: #00A;
-}
-
-.c-3 {
-  font-family: Minecraft;
-  color: #0A0;
-}
-
-.c-4 {
-  font-family: Minecraft;
-  color: #0AA;
-}
-
-.c-5 {
-  font-family: Minecraft;
-  color: #A00;
-}
-
-.c-6 {
-  font-family: Minecraft;
-  color: #A0A;
-}
-
-.c-7 {
-  font-family: Minecraft;
-  color: #FA0;
-}
-
-.c-8 {
-  font-family: Minecraft;
-  color: #AAA;
-}
-
-.c-9 {
-  font-family: Minecraft;
-  color: #555;
-}
-
-.c-10 {
-  font-family: Minecraft;
-  color: #55F;
-}
-
-.c-11 {
-  font-family: Minecraft;
-  color: #5F5;
-}
-
-.c-12 {
-  font-family: Minecraft;
-  color: #5FF;
-}
-
-.c-13 {
-  font-family: Minecraft;
-  color: #F55;
-}
-
-.c-14 {
-  font-family: Minecraft;
-  color: #F5F;
-}
-
-.c-15 {
-  font-family: Minecraft;
-  color: #FF5;
-}
-
-.c-16 {
-  font-family: Minecraft;
-  color: #FFF;
-}
+.c-1 { font-family: Minecraft; color: #000; }
+.c-2 { font-family: Minecraft; color: #00A; }
+.c-3 { font-family: Minecraft; color: #0A0; }
+.c-4 { font-family: Minecraft; color: #0AA; }
+.c-5 { font-family: Minecraft; color: #A00; }
+.c-6 { font-family: Minecraft; color: #A0A; }
+.c-7 { font-family: Minecraft; color: #FA0; }
+.c-8 { font-family: Minecraft; color: #AAA; }
+.c-9 { font-family: Minecraft; color: #555; }
+.c-10 { font-family: Minecraft; color: #55F; }
+.c-11 { font-family: Minecraft; color: #5F5; }
+.c-12 { font-family: Minecraft; color: #5FF; }
+.c-13 { font-family: Minecraft; color: #F55; }
+.c-14 { font-family: Minecraft; color: #F5F; }
+.c-15 { font-family: Minecraft; color: #FF5; }
+.c-16 { font-family: Minecraft; color: #FFF; }

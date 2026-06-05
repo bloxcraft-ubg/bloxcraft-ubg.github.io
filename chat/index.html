@@ -5,178 +5,193 @@
   <title>Bloxcraft UBG - Chat</title>
   <link rel="shortcut icon" type="image/png" href="/bloxcraft.png">
   <style>
-   body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      color: #fff; 
-      padding: 20px;
-      background-repeat: no-repeat; 
-      background: radial-gradient(circle at top,#0b0f2a,#05060d);
-      background-position: center center; 
-      background-size: cover;  background-size: cover; 
-      background-attachment: fixed; 
+:root {
+  --bg-top: #0b0f2a;
+  --bg-bottom: #05060d;
+  --text-main: #ffffff;
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --glow-shadow: 0 12px 48px rgba(0, 0, 0, 0.3);
 }
 
-      #selector, #proxySelector  {
-    margin-bottom: 20px; 
-     }
-    
-      #chatContainer   {
-     width: 100%; 
-     height: 80vh; 
-     background-color: #5555FF ;
-     border: 1px 
-     solid #ccc; 
-    }
-    
-    .a {
-      position: relative;
-      padding: 12px 24px;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      border-radius: 12px;
-      color: #fff;
-      font-size: 18px;
-      font-weight: 700;
-      text-transform: uppercase;
-      text-decoration: none;
-      letter-spacing: 1px;
-      cursor: pointer;
-      overflow: hidden;
-      transition: all 0.3s ease;
-      display: inline-block;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    }
-
-    .a::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-      transition: left 0.5s ease;
-      z-index: 1;
-    }
-
-    .a:hover::before {
-      left: 100%;
-    }
-
-    .a:hover {
-      background: rgba(255, 255, 255, 0.2);
-      border-color: rgba(255, 255, 255, 0.5);
-      transform: translateY(-3px) scale(1.05);
-      box-shadow: 0 0 40px rgba(139, 92, 246, 0.6),
-                  0 12px 48px rgba(0, 0, 0, 0.3);
-    }
-
-    .a:active {
-      transform: translateY(-1px) scale(1.02);
-    }
-
- 
-    .bloxy-orange-btn {
-      background: linear-gradient(135deg, rgba(255, 102, 0, 0.3), rgba(0, 0, 0, 0.3));
-      border-color: rgba(255, 102, 0, 0.5);
-    }
-
-    .bloxy-orange-btn:hover {
-      background: linear-gradient(135deg, rgba(255, 102, 0, 0.5), rgba(0, 0, 0, 0.5));
-      box-shadow: 0 0 40px rgba(255, 102, 0, 0.6),
-                  0 12px 48px rgba(0, 0, 0, 0.3);
-    }
-
-  
-    .bloxy-blue-btn {
-      background: rgba(0, 0, 139, 0.3);
-      border-color: rgba(0, 0, 139, 0.5);
-    }
-
-    .bloxy-blue-btn:hover {
-      background: rgba(0, 0, 139, 0.5);
-      box-shadow: 0 0 40px rgba(0, 0, 255, 0.6),
-                  0 12px 48px rgba(0, 0, 0, 0.3);
-    }
-
- 
-    .bloxy-rainbow-btn {
-      background: linear-gradient(135deg, rgba(255, 95, 109, 0.3), rgba(255, 195, 113, 0.3), rgba(71, 207, 115, 0.3), rgba(56, 249, 215, 0.3));
-      border-color: rgba(255, 95, 109, 0.5);
-      animation: rainbow-shift 3s infinite;
-    }
-
-    @keyframes rainbow-shift {
-      0%, 100% { border-color: rgba(255, 95, 109, 0.5); }
-      25% { border-color: rgba(255, 195, 113, 0.5); }
-      50% { border-color: rgba(71, 207, 115, 0.5); }
-      75% { border-color: rgba(56, 249, 215, 0.5); }
-    }
-
-    .bloxy-rainbow-btn:hover {
-      background: linear-gradient(135deg, rgba(255, 95, 109, 0.5), rgba(255, 195, 113, 0.5), rgba(71, 207, 115, 0.5), rgba(56, 249, 215, 0.5));
-      box-shadow: 0 0 50px rgba(255, 95, 109, 0.8),
-                  0 0 80px rgba(71, 207, 115, 0.4),
-                  0 12px 48px rgba(0, 0, 0, 0.3);
-    }
+body {
+  margin: 0;
+  padding: 80px 20px 20px 20px;
+  font-family: system-ui, -apple-system, Arial, sans-serif;
+  color: var(--text-main);
+  background: radial-gradient(circle at top, var(--bg-top), var(--bg-bottom));
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
 
 .navbar {
-  display: flex; 
-  justify-content: center; 
+  display: flex;
+  justify-content: center;
   align-items: center;
-  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   padding: 10px 20px;
-  width: 100%; 
+  width: 100%;
   box-sizing: border-box;
-  
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-  right: 0; 
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .navbar a {
-  color: #fff;
+  color: var(--text-main);
   text-decoration: none;
   font-size: 17px;
   padding: 10px 16px;
-  transition: background 0.3s;
+  border-radius: 8px;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .navbar a:hover {
-  background-color: #444;
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
-    .bloxy-grn-btn {
-      background: rgba(34, 197, 94, 0.2);
-      border-color: rgba(34, 197, 94, 0.5);
-    }
+#selector, #proxySelector {
+  margin-bottom: 20px;
+}
 
-    .bloxy-grn-btn:hover {
-      background: rgba(34, 197, 94, 0.3);
-      box-shadow: 0 0 40px rgba(34, 197, 94, 0.6),
-                  0 12px 48px rgba(0, 0, 0, 0.3);
-    }
+#chatContainer {
+  width: 100%;
+  height: 80vh;
+  background: rgba(13, 16, 37, 0.6);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(124, 92, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
 
-    .play-btn {
+.a {
+  position: relative;
+  padding: 12px 24px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 2px solid var(--glass-border);
+  border-radius: 12px;
+  color: var(--text-main);
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 1px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  margin: 8px;
+}
+
+.a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+  z-index: 1;
+}
+
+.a:hover::before {
+  left: 100%;
+}
+
+.a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 0 40px rgba(139, 92, 246, 0.6), var(--glow-shadow);
+}
+
+.a:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
+.bloxy-orange-btn {
+  background: linear-gradient(135deg, rgba(255, 102, 0, 0.3), rgba(0, 0, 0, 0.3));
+  border-color: rgba(255, 102, 0, 0.5);
+}
+
+.bloxy-orange-btn:hover {
+  background: linear-gradient(135deg, rgba(255, 102, 0, 0.5), rgba(0, 0, 0, 0.5));
+  box-shadow: 0 0 40px rgba(255, 102, 0, 0.6), var(--glow-shadow);
+}
+
+.bloxy-blue-btn {
+  background: rgba(0, 0, 139, 0.3);
+  border-color: rgba(0, 0, 139, 0.5);
+}
+
+.bloxy-blue-btn:hover {
+  background: rgba(0, 0, 139, 0.5);
+  box-shadow: 0 0 40px rgba(0, 102, 255, 0.6), var(--glow-shadow);
+}
+
+.bloxy-grn-btn {
+  background: rgba(34, 197, 94, 0.2);
+  border-color: rgba(34, 197, 94, 0.5);
+}
+
+.bloxy-grn-btn:hover {
+  background: rgba(34, 197, 94, 0.3);
+  box-shadow: 0 0 40px rgba(34, 197, 94, 0.6), var(--glow-shadow);
+}
+
+.bloxy-rainbow-btn {
+  background: linear-gradient(135deg, rgba(255, 95, 109, 0.3), rgba(255, 195, 113, 0.3), rgba(71, 207, 115, 0.3), rgba(56, 249, 215, 0.3));
+  border-color: rgba(255, 95, 109, 0.5);
+  animation: rainbow-shift 3s infinite linear;
+}
+
+.bloxy-rainbow-btn:hover {
+  background: linear-gradient(135deg, rgba(255, 95, 109, 0.5), rgba(255, 195, 113, 0.5), rgba(71, 207, 115, 0.5), rgba(56, 249, 215, 0.5));
+  box-shadow: 0 0 50px rgba(255, 95, 109, 0.8), 
+              0 0 80px rgba(71, 207, 115, 0.4), 
+              var(--glow-shadow);
+}
+
+@keyframes rainbow-shift {
+  0%, 100% { border-color: rgba(255, 95, 109, 0.5); }
+  25% { border-color: rgba(255, 195, 113, 0.5); }
+  50% { border-color: rgba(71, 207, 115, 0.5); }
+  75% { border-color: rgba(56, 249, 215, 0.5); }
+}
+
+.play-btn {
+  display: inline-block; 
+  margin: 8px; 
   background: #7668ff;
   color: #fff;
   border: none;
-  border-radius: 999px;
-  padding: 0.65rem 1.8rem;
+  border-radius: 99px;
+  padding: 10px 28px;
   font-size: 1.1rem;
-  font-family: 'Montserrat', Arial, sans-serif;
+  font-family: 'Montserrat', system-ui, Arial, sans-serif;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 3px 12px 0 #4f8cff55;
-  transition: background 0.2s, transform 0.15s;
+  box-shadow: 0 3px 12px 0 rgba(79, 140, 255, 0.33);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .play-btn:hover {
   background: #2563eb;
-  transform: scale(1.07);
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px 0 rgba(37, 99, 235, 0.4);
 }
   </style>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-W0KXN0103E"></script>
