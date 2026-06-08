@@ -26,19 +26,20 @@ export async function getUV(input) {
     throw err;
   }
 
-  let url = search(input, "https://html.duckduckgo.com/html?t=h_&q=%s");
+let url = search(input, "https://html.duckduckgo.com/html?t=h_&q=%s");
 
-  let wispUrl = "wss://wisp.rhw.one/";
-  if ((await connection.getTransport()) !== "/active/prxy/epoxy/index.mjs") {
-    await connection.setTransport("/active/prxy/epoxy/index.mjs", [
-      { wisp: wispUrl },
-    ]);
-  }
-  if ((await connection.getTransport()) !== "/activeprxy/libcurl/libcurl.mjs") {
-    await connection.setTransport("/active/prxy/libcurl/libcurl.mjs", [
-      { wisp: wispUrl },
-    ]);
-  }
+let wispUrl = localStorage.getItem("proxy-ws") || "wss://wisp.classroom.lat/";
+
+if ((await connection.getTransport()) !== "/active/prxy/epoxy/index.mjs") {
+  await connection.setTransport("/active/prxy/epoxy/index.mjs", [
+    { wisp: wispUrl },
+  ]);
+}
+if ((await connection.getTransport()) !== "/activeprxy/libcurl/libcurl.mjs") {
+  await connection.setTransport("/active/prxy/libcurl/libcurl.mjs", [
+    { wisp: wispUrl },
+  ]);
+}
 
   let viewUrl = __uv$config.prefix + __uv$config.encodeUrl(url);
 

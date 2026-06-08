@@ -7,7 +7,7 @@ const PAGE_SIZE = 60;
 let DATA = {
   blox: [], gn: [], elite: [], sea: [], ugs: [], seraph: [],
   ckv: [], hydra: [], ccported: [], googleclass: [], truffled: [],
-  nowgg: [], alexrworlds: []
+  nowgg: [], alexrworlds: [], lupine: [], "3kh0": [], "3kh0lite": []
 };
 
 let CURRENT = [];
@@ -26,6 +26,7 @@ function normalize(g) {
   return {
     name: g.name,
     img: g.img || "/1f3ae.png",
+    altImg: g.altImg || null,
     url: g.url
   };
 }
@@ -101,20 +102,16 @@ async function loadUGS() {
           });
         }
       });
-
     } catch (e) {}
   }
-
   DATA.ugs = games;
 }
 
 async function loadSeraph() {
   if (DATA.seraph.length) return;
-
   try {
     const r = await fetch("https://cdn.jsdelivr.net/gh/DominumNetwork/dominum@main/src/assets/libraries/seraph/games.json");
     const d = await r.json();
-
     const BASE = "https://cdn.jsdelivr.net/gh/a456pur/seraph@main/games/";
 
     DATA.seraph = safeArray(d).map(g => ({
@@ -122,13 +119,11 @@ async function loadSeraph() {
       img: g.img || "",
       url: "/app-viewer/seraph/?view=" + (g.url ? g.url.replace(BASE, "") : "")
     }));
-
   } catch (e) {}
 }
 
 async function loadCKV() {
   if (DATA.ckv.length) return;
-
   try {
     const r = await fetch("https://cdn.jsdelivr.net/gh/carbonicality/ChickenKingsVault@main/games.json");
     const d = await r.json();
@@ -138,13 +133,11 @@ async function loadCKV() {
       img: g.img ? "https://cdn.jsdelivr.net/gh/carbonicality/ChickenKingsVault@main/gameimages/" + g.img : "",
       url: "/app-viewer/chicken-kings-vault/?view=" + g.html
     }));
-
   } catch (e) {}
 }
 
 async function loadHydra() {
   if (DATA.hydra.length) return;
-
   try {
     const r = await fetch("https://cdn.jsdelivr.net/gh/Hydra-Network/hydra-assets@main/gmes.json");
     const d = await r.json();
@@ -154,13 +147,11 @@ async function loadHydra() {
       img: g.thumb ? "https://cdn.jsdelivr.net/gh/Hydra-Network/hydra-assets@main/" + g.thumb : "",
       url: "/app-viewer/hydra-network/?view=" + g.file_name
     }));
-
   } catch (e) {}
 }
 
 async function loadCCPorted() {
   if (DATA.ccported.length) return;
-
   try {
     const r = await fetch("https://cdn.jsdelivr.net/gh/tharun9772/game-assets@main/ccported-stupid-game-lib.json");
     const d = await r.json();
@@ -170,13 +161,11 @@ async function loadCCPorted() {
       img: g.base + "/thumb.jpg",
       url: "/app-viewer/ccported/?view=" + g.Id
     }) : null).filter(Boolean);
-
   } catch (e) {}
 }
 
 async function loadGoogleClass() {
   if (DATA.googleclass.length) return;
-
   try {
     const r = await fetch("https://cdn.jsdelivr.net/gh/bloxcraft-st/google-class-files@main/assets/games.json");
     const d = await r.json();
@@ -186,17 +175,14 @@ async function loadGoogleClass() {
       img: g.img || "",
       url: "/app-viewer/google-class/?view=" + encodeURIComponent(g.url)
     }));
-
   } catch (e) {}
 }
 
 async function loadTruffled() {
   if (DATA.truffled.length) return;
-
   try {
     const r = await fetch("https://cdn.jsdelivr.net/gh/aukak/truffled@main/public/js/json/g.json");
     const d = await r.json();
-
     const games = safeArray(d.games);
 
     DATA.truffled = games.map(g => {
@@ -214,27 +200,19 @@ async function loadTruffled() {
           : null
       });
     }).filter(Boolean);
-
   } catch (e) {}
 }
 
 async function loadNowGG() {
   if (DATA.nowgg.length) return;
-
   try {
     const r = await fetch("https://cdn.jsdelivr.net/gh/tharun9772/game-assets@main/nowgg.fun/games.json");
     const d = await r.json();
 
-    const rawData = safeArray(d);
-
-    DATA.nowgg = rawData.map(g => {
+    DATA.nowgg = safeArray(d).map(g => {
       if (!g.name || !g.url) return null;
-
       let rawUrl = g.url.trim();
-
-      let cleanUrl = rawUrl.startsWith("http")
-        ? rawUrl
-        : "https://" + rawUrl;
+      let cleanUrl = rawUrl.startsWith("http") ? rawUrl : "https://" + rawUrl;
 
       return {
         name: g.name,
@@ -242,15 +220,11 @@ async function loadNowGG() {
         url: "/sail/embed/#" + cleanUrl
       };
     }).filter(Boolean);
-
-  } catch (e) {
-    console.error("NowGG load error:", e);
-  }
+  } catch (e) {}
 }
 
 async function loadAlexrworlds() {
   if (DATA.alexrworlds.length) return;
-
   try {
     const r = await fetch("https://cdn.jsdelivr.net/gh/dskjfoisjfsjio/alexrsworld@latest/singlefilegames.json");
     const d = await r.json();
@@ -260,99 +234,103 @@ async function loadAlexrworlds() {
       img: g.img || "/1f3ae.png",
       url: "/app-viewer/alexr-world-s/?view=" + encodeURIComponent(g.title)
     }));
+  } catch (e) {}
+}
 
-  } catch (e) {
-    console.error("Alexrsworld load error:", e);
+async function loadLupine() {
+  if (DATA.lupine.length) return;
+  try {
+    const r = await fetch("https://cdn.jsdelivr.net/gh/tharun9772/LupineVault@main/assets/games.json");
+    if (!r.ok) throw new Error(r.status);
+    const d = await r.json();
+
+    DATA.lupine = safeArray(d).map(g => {
+      if (!g.name) return null;
+      const encodedName = encodeURIComponent(g.name);
+      return normalize({
+        name: g.name,
+        img: `https://cdn.jsdelivr.net/gh/tharun9772/LupineVault@main/assets/images/games/tile/${encodedName}.png`,
+        altImg: `https://cdn.jsdelivr.net/gh/tharun9772/LupineVault@main/assets/images/games/large/${encodedName}.png`,
+        url: `/app-viewer/LupineVault/?view=${encodedName}`
+      });
+    }).filter(Boolean);
+  } catch (e) { 
+    console.error(e); 
   }
 }
 
-document.querySelectorAll(".cat").forEach(btn => {
-  btn.onclick = async () => {
+async function load3kh0() {
+  if (DATA["3kh0"].length) return;
+  try {
+    const r = await fetch("https://cdn.jsdelivr.net/gh/tharun9772/game-assets@main/3kh0/3kh0-assets.json");
+    const d = await r.json();
+    DATA["3kh0"] = safeArray(d).map(name => ({
+      name: name,
+      img: "https://raw.githack.com/tharun9772/3kh0-assets/main/" + name + "/splash.png",
+      url: "/app-viewer/3kh0/?view=" + encodeURIComponent(name)
+    }));
+  } catch (e) {}
+}
 
-    document.querySelectorAll(".cat").forEach(c =>
-      c.classList.remove("active")
-    );
+async function load3kh0Lite() {
+  if (DATA["3kh0lite"].length) return;
+  try {
+    const r = await fetch("https://cdn.jsdelivr.net/gh/tharun9772/game-assets@main/3kh0/3kh0-lite.json");
+    const d = await r.json();
+    DATA["3kh0lite"] = safeArray(d).map(g => ({
+      name: g.title || "Unknown",
+      img: "https://raw.githack.com/3kh0/3kh0-lite/main/" + g.imgSrc,
+      url: "/app-viewer/3kh0/lite/?view=" + encodeURIComponent(g.link)
+    }));
+  } catch (e) {}
+}
 
-    btn.classList.add("active");
+document.querySelectorAll(".cat").forEach(el => {
+  el.onclick = async () => {
+    document.querySelectorAll(".cat").forEach(c => c.classList.remove("active"));
+    el.classList.add("active");
 
-    const cat = btn.dataset.cat;
+    const cat = el.dataset.cat;
 
     if (cat === "all") {
-
       await Promise.all([
-        loadBlox(),
-        loadGN(),
-        loadElite(),
-        loadSea(),
-        loadUGS(),
-        loadSeraph(),
-        loadCKV(),
-        loadHydra(),
-        loadCCPorted(),
-        loadGoogleClass(),
-        loadTruffled(),
-        loadNowGG(),
-        loadAlexrworlds()
+        loadBlox(), loadGN(), loadElite(), loadSea(), loadUGS(),
+        loadSeraph(), loadCKV(), loadHydra(), loadCCPorted(),
+        loadGoogleClass(), loadTruffled(), loadNowGG(), loadAlexrworlds(),
+        loadLupine(), load3kh0(), load3kh0Lite()
       ]);
 
-      CURRENT = Object.values(DATA)
-        .flat()
-        .map(normalize)
-        .filter(Boolean);
-
+      CURRENT = Object.values(DATA).flat().map(normalize).filter(Boolean);
     } else {
-
       const loaderMap = {
-        blox: loadBlox,
-        gn: loadGN,
-        elite: loadElite,
-        sea: loadSea,
-        ugs: loadUGS,
-        seraph: loadSeraph,
-        ckv: loadCKV,
-        hydra: loadHydra,
-        ccported: loadCCPorted,
-        googleclass: loadGoogleClass,
-        truffled: loadTruffled,
-        nowgg: loadNowGG,
-        alexrworlds: loadAlexrworlds
+        blox: loadBlox, gn: loadGN, elite: loadElite, sea: loadSea, ugs: loadUGS,
+        seraph: loadSeraph, ckv: loadCKV, hydra: loadHydra, ccported: loadCCPorted,
+        googleclass: loadGoogleClass, truffled: loadTruffled, nowgg: loadNowGG,
+        alexrworlds: loadAlexrworlds, lupine: loadLupine,
+        "3kh0": load3kh0, "3kh0lite": load3kh0Lite
       };
 
-      if (loaderMap[cat]) {
-        await loaderMap[cat]();
-      }
-
+      if (loaderMap[cat]) await loaderMap[cat]();
       CURRENT = DATA[cat] || [];
     }
 
     FILTERED = CURRENT;
-
     search.value = "";
-
     RESET_RENDER();
-
     updateCount();
-
     render(true);
   };
 });
 
 search.oninput = () => {
   const v = search.value.toLowerCase().trim();
-
-  FILTERED = CURRENT.filter(g =>
-    g?.name?.toLowerCase().includes(v)
-  );
-
+  FILTERED = CURRENT.filter(g => g?.name?.toLowerCase().includes(v));
   RESET_RENDER();
-
   updateCount();
-
   render(true);
 };
 
 function render(reset = false) {
-
   const fallback = "/1f3ae.png";
 
   if (reset) {
@@ -360,26 +338,26 @@ function render(reset = false) {
     RENDERED = 0;
   }
 
-  const valid = FILTERED.filter(g =>
-    g && g.name && g.url
-  );
-
-  const slice = valid.slice(
-    RENDERED,
-    RENDERED + PAGE_SIZE
-  );
-
+  const valid = FILTERED.filter(g => g && g.name && g.url);
+  const slice = valid.slice(RENDERED, RENDERED + PAGE_SIZE);
   const frag = document.createDocumentFragment();
 
   for (const g of slice) {
-
     const card = document.createElement("div");
     card.className = "game-card";
 
     const img = document.createElement("img");
     img.loading = "lazy";
     img.src = g.img || fallback;
-    img.onerror = () => img.src = fallback;
+    
+    img.onerror = () => {
+      if (g.altImg && !img.dataset.retried) {
+        img.dataset.retried = "true";
+        img.src = g.altImg;
+      } else {
+        img.src = fallback;
+      }
+    };
 
     const title = document.createElement("h3");
     title.textContent = g.name;
@@ -390,12 +368,10 @@ function render(reset = false) {
     link.textContent = "Play";
 
     card.append(img, title, link);
-
     frag.appendChild(card);
   }
 
   grid.appendChild(frag);
-
   RENDERED += slice.length;
 
   if (RENDERED < valid.length) {
@@ -404,39 +380,23 @@ function render(reset = false) {
 }
 
 function setupObserver() {
-
-  if (OBSERVER_SENTINEL) {
-    OBSERVER_SENTINEL.remove();
-  }
-
+  if (OBSERVER_SENTINEL) OBSERVER_SENTINEL.remove();
   OBSERVER_SENTINEL = document.createElement("div");
-
   grid.appendChild(OBSERVER_SENTINEL);
 
-  if (OBSERVER) {
-    OBSERVER.disconnect();
-  }
-
+  if (OBSERVER) OBSERVER.disconnect();
   OBSERVER = new IntersectionObserver(entries => {
-
     if (entries[0].isIntersecting) {
       RESET_OBSERVER_ONLY();
       render(false);
     }
-
-  }, {
-    rootMargin: "300px"
-  });
+  }, { rootMargin: "300px" });
 
   OBSERVER.observe(OBSERVER_SENTINEL);
 }
 
 function RESET_OBSERVER_ONLY() {
-
-  if (OBSERVER) {
-    OBSERVER.disconnect();
-  }
-
+  if (OBSERVER) OBSERVER.disconnect();
   if (OBSERVER_SENTINEL) {
     OBSERVER_SENTINEL.remove();
     OBSERVER_SENTINEL = null;
@@ -454,12 +414,8 @@ function updateCount() {
 
 (async () => {
   await loadBlox();
-
   CURRENT = DATA.blox;
-
   FILTERED = CURRENT;
-
   updateCount();
-
   render(true);
 })();
