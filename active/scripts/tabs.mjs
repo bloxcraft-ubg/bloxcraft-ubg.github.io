@@ -9,59 +9,43 @@ const {
 var tabs = [];
 var selectedTab = null;
 
-// Side bar
-const sideBar = document.querySelector("header");
-
-// Controls
 const pageBack = document.getElementById("page-back");
 const pageForward = document.getElementById("page-forward");
 const pageRefresh = document.getElementById("page-refresh");
-
-// URL Bar
 const urlForm = document.getElementById("url-form");
 const urlInput = document.getElementById("url-input");
-
-// New Tab Button
 const newTabButton = document.getElementById("new-tab");
-
-// Tab List
 const tabList = document.getElementById("tab-list");
-
-// Tab View
 const tabView = document.getElementById("tab-view");
 
-// Event Listeners
-window.onmousemove = (e) => {
-  if (e.clientX < 50) {
-    sideBar.classList.add("hovered");
-  } else {
-    sideBar.classList.remove("hovered");
-  }
-};
 pageBack.onclick = () => {
-  selectedTab.view.contentWindow.history.back();
+  if (selectedTab && selectedTab.view.contentWindow) {
+    selectedTab.view.contentWindow.history.back();
+  }
 };
 
 pageForward.onclick = () => {
-  selectedTab.view.contentWindow.history.forward();
+  if (selectedTab && selectedTab.view.contentWindow) {
+    selectedTab.view.contentWindow.history.forward();
+  }
 };
 
 pageRefresh.onclick = () => {
-  selectedTab.view.contentWindow.location.reload();
+  if (selectedTab && selectedTab.view.contentWindow) {
+    selectedTab.view.contentWindow.location.reload();
+  }
 };
 
 newTabButton.onclick = () => {
   addTab("math-hub.pages.dev/newtab");
 };
 
-// Options (opt menu)
 const devtoolsOption = document.getElementById("devtools-option");
 const abcOption = document.getElementById("abc-option");
 const gitOption = document.getElementById("git-option");
 
 devtoolsOption.onclick = () => {
   try {
-    // Assuming `selectedTab.view.contentWindow` is your target window
     selectedTab.view.contentWindow.eval(eruda);
     rAlert("Injected successfully.<br>Click the icon on the bottom right.");
   } catch (error) {
@@ -80,7 +64,9 @@ gitOption.onclick = () => {
 
 urlForm.onsubmit = async (e) => {
   e.preventDefault();
-  selectedTab.view.src = await getUV(urlInput.value);
+  if (selectedTab) {
+    selectedTab.view.src = await getUV(urlInput.value);
+  }
 };
 
 let eruda = `fetch("https://cdn.jsdelivr.net/npm/eruda")
@@ -106,7 +92,6 @@ function abCloak(cloakUrl) {
   win.document.body.appendChild(iframe);
 }
 
-// Objects
 const tabItem = (tab) => {
   return button(
     {
@@ -180,7 +165,6 @@ const tabFrame = (tab) => {
       tabList.children[tabs.indexOf(tab)].children[0].src =
         getFavicon(targetUrl);
 
-      // Update URL bar
       if (tab == selectedTab) {
         urlInput.value = targetUrl;
       }
@@ -198,6 +182,7 @@ const tabFrame = (tab) => {
 };
 
 function focusTab(tab) {
+  if (!tab) return;
   if (selectedTab) {
     selectedTab.view.style.display = "none";
     tabList.children[tabs.indexOf(selectedTab)].classList.remove("selectedTab");
@@ -205,7 +190,6 @@ function focusTab(tab) {
   selectedTab = tab;
   tab.view.style.display = "block";
 
-  // Update URL bar
   urlInput.value = tab.url;
 
   tabList.children[tabs.indexOf(tab)].classList.add("selectedTab");
@@ -253,11 +237,9 @@ addTab("math-hub.pages.dev/newtab");
 const urlParams = new URLSearchParams(window.location.search);
 
 if (urlParams.has("inject")) {
-  let tab = {};
   const injection = urlParams.get("inject");
 
   setTimeout(() => {
-    addTab(injection)
-    focusTab()
+    addTab(injection);
   }, 100);
 }
