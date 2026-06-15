@@ -34,7 +34,7 @@ function normalize(g) {
 async function loadBlox() {
   if (DATA.blox.length) return;
   try {
-    const r = await fetch("/games/games.json");
+    const r = await fetch("/games/gms.json");
     DATA.blox = safeArray(await r.json()).map(normalize).filter(Boolean);
   } catch (e) {}
 }
