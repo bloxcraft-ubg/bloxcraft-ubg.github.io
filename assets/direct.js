@@ -17,6 +17,7 @@ const UI_FONT_SIZE_BASE = '16px';
 const UI_LINE_HEIGHT_NORMAL = 1.5;
 const API_PROTOCOL_HTTP = 'http';
 const API_PROTOCOL_HTTPS = 'https';
+const API_PROTOCOL_WSS = 'wss';
 const API_HEADER_CONTENT_TYPE = 'Content-Type';
 const API_HEADER_AUTHORIZATION = 'Authorization';
 const API_CONTENT_TYPE_JSON = 'application/json';
@@ -393,6 +394,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="cat" data-cat="lupine">LupineVault</div>
   <div class="cat" data-cat="3kh0">3kh0</div>
   <div class="cat" data-cat="3kh0lite">3kh0 Lite</div>
+  <div class="cat" data-cat="tglsc">TGLSC</div>
+  <div class="cat" data-cat="selenite">Selenite</div>
+  <div class="cat" data-cat="velera">Velera</div>
   <div class="cat" data-cat="all">All</div>
 </div>
 
