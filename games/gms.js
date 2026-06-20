@@ -84,12 +84,12 @@ async function loadGN() {
 
 async function loadElite() {
   try {
-    const r = await fetch("https://cdn.jsdelivr.net/gh/elite-gamez/elite-gamez.github.io@main/games.json");
+    const r = await fetch("https://cdn.jsdelivr.net/gh/tharuniscool/elite-gamez.github.io@main/games.json");
     if (!r.ok) return;
     const d = await r.json();
     DATA.elite = safeArray(d).map(g => ({
       name: g.title || "Unknown",
-      img: "https://cdn.jsdelivr.net/gh/elite-gamez/elite-gamez.github.io@main/" + g.image,
+      img: "https://cdn.jsdelivr.net/gh/tharuniscool/elite-gamez.github.io@main/" + g.image,
       url: "/app-viewer/elite-gamez?url=" + encodeURIComponent(g.url)
     }));
   } catch (e) {}

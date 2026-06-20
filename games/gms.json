@@ -463,5 +463,15 @@
     "name": "Click Tester",
     "img": "/assets_handcurser.png",
     "url": "/app-viewer/?view=/refined-beta/clicker-tester-game"
+  },
+  {
+    "name": "Duck Duck Clicker",
+    "img": "/gameFiles/duck-duck-clicker/bloxcraft-ubg-is-ubg.png",
+    "url": "/app-viewer/?view=/gameFiles/duck-duck-clicker/"
+  },
+    {
+    "name": "Baldi's Basics : Birthday bash/dash (Baldis Basic's)",
+    "img": "/gameFiles/baldi-basic-bday/bday.jpeg",
+    "url": "/app-viewer/?view=/gameFiles/baldi-basic-bday/"
   }
 ]
