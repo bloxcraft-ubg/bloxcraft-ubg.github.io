@@ -1,0 +1,17 @@
+<h1>Loading... Please wait!</h1>
+<h2>Port by: Bloxcraft Studios</h2>
+<p>Loading Paper.io 3D</p>
+<noscript>If you see this you need to enable javascript</noscript>
+<script>
+  fetch("https://cdn.jsdelivr.net/gh/ubg42/Paperio3D@main/index.html")
+    .then(response => response.text())
+    .then(html => {
+      document.open();
+      document.write(html);
+      document.close();
+    })
+    .catch(err => {
+      document.body.innerHTML = "<h1>Failed To Fetch Content</h1>";
+      console.error(err);
+    });
+</script>

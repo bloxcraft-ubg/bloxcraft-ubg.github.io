@@ -473,5 +473,20 @@
     "name": "Baldi's Basics : Birthday bash/dash (Baldis Basic's)",
     "img": "/gameFiles/baldi-basic-bday/bday.jpeg",
     "url": "/app-viewer/?view=/gameFiles/baldi-basic-bday/"
+  },
+      {
+    "name": "Candy Clicker",
+    "img": "/gameFiles/candy-clicker/candy-clicker-icon.png",
+    "url": "/app-viewer/?view=/gameFiles/candy-clicker/"
+  },
+        {
+    "name": "Jelly Truck",
+    "img": "/gameFiles/jelly-truck/icon.webp",
+    "url": "/app-viewer/?view=/gameFiles/jelly-truck/"
+  },
+        {
+    "name": "Paper.io 3D (Paper io)",
+    "img": "/gameFiles/paper-io-3d/icon.jpeg",
+    "url": "/app-viewer/?view=/gameFiles/paper-io-3d/"
   }
 ]

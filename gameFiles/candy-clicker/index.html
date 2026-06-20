@@ -1,0 +1,20 @@
+<title>Candy Clicker</title>
+<h1>Loading...</h1>
+<h2>Port by: Bloxcraft Studios</h2>
+<h3>Hosted on: Bloxcraft UBG</h3>
+<p>Play Candy Clicker right in your browser</p>
+<noscript><h1>If you are seeing this, you need to enable javascript for the game to load.</h1></noscript>
+
+<script>
+  fetch("https://gl.githack.com/tharun9772/bloxcraft-ubg-games/-/raw/main/Candy.Clicker.Main.Recommended.html")
+    .then(response => response.text())
+    .then(html => {
+      document.open();
+      document.write(html);
+      document.close();
+    })
+    .catch(err => {
+      document.body.innerHTML = "<h1>Failed To Fetch Content</h1>";
+      console.error(err);
+    });
+</script>
