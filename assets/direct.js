@@ -17,7 +17,6 @@ const UI_FONT_SIZE_BASE = '16px';
 const UI_LINE_HEIGHT_NORMAL = 1.5;
 const API_PROTOCOL_HTTP = 'http';
 const API_PROTOCOL_HTTPS = 'https';
-const API_PROTOCOL_WSS = 'wss';
 const API_HEADER_CONTENT_TYPE = 'Content-Type';
 const API_HEADER_AUTHORIZATION = 'Authorization';
 const API_CONTENT_TYPE_JSON = 'application/json';
@@ -367,40 +366,70 @@ const CONSTANT_MAX_INT = 2147483647;
     const startupContent = `
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NQM8XR48"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<script src="/games/gms.js"></script>`;
+`;
 
    
     const appContent = `
-<div class="topbar">
-  <div class="logo">Bloxcraft UBG</div>
-  <input id="search" class="search" placeholder="Search...">
-  <div id="count" class="count">0</div>
-</div>
+  <div class="topbar">
+    <div class="logo">Bloxcraft UBG</div>
+    <input id="search" class="search" placeholder="Search...">
+    <div id="count" class="count">0</div>
+  </div>
 
-<div class="categories">
-  <div class="cat active" data-cat="blox">Bloxcraft UBG</div>
-  <div class="cat" data-cat="gn">GN-Math</div>
-  <div class="cat" data-cat="elite">Elite Gamez</div>
-  <div class="cat" data-cat="sea">Sea Bean</div>
-  <div class="cat" data-cat="ugs">Ultimate Game Stash</div>
-  <div class="cat" data-cat="seraph">Seraph</div>
-  <div class="cat" data-cat="ckv">Chicken Kings Vault</div>
-  <div class="cat" data-cat="hydra">Hydra</div>
-  <div class="cat" data-cat="ccported">CCPorted</div>
-  <div class="cat" data-cat="googleclass">Google Class</div>
-  <div class="cat" data-cat="truffled">Truffled</div>
-  <div class="cat" data-cat="nowgg">Now.GG</div>
-  <div class="cat" data-cat="alexrworlds">Alexr's World</div>
-  <div class="cat" data-cat="lupine">LupineVault</div>
-  <div class="cat" data-cat="3kh0">3kh0</div>
-  <div class="cat" data-cat="3kh0lite">3kh0 Lite</div>
-  <div class="cat" data-cat="tglsc">TGLSC</div>
-  <div class="cat" data-cat="selenite">Selenite</div>
-  <div class="cat" data-cat="velera">Velera</div>
-  <div class="cat" data-cat="all">All</div>
-</div>
+  <div class="categories">
+    <div class="cat active" data-cat="blox">Bloxcraft UBG</div>
+    <div class="cat" data-cat="gn">GN-Math</div>
+    <div class="cat" data-cat="elite">Elite Gamez</div>
+    <div class="cat" data-cat="sea">Sea Bean</div>
+    <div class="cat" data-cat="ugs">Ultimate Game Stash</div>
+    <div class="cat" data-cat="seraph">Seraph</div>
+    <div class="cat" data-cat="ckv">Chicken Kings Vault</div>
+    <div class="cat" data-cat="hydra">Hydra</div>
+    <div class="cat" data-cat="ccported">CCPorted</div>
+    <div class="cat" data-cat="googleclass">Google Class</div>
+    <div class="cat" data-cat="truffled">Truffled</div>
+    <div class="cat" data-cat="nowgg">Now.GG</div>
+    <div class="cat" data-cat="alexrworlds">Alexr's World</div>
+    <div class="cat" data-cat="lupine">LupineVault</div>
+    <div class="cat" data-cat="3kh0">3kh0</div>
+    <div class="cat" data-cat="3kh0lite">3kh0 Lite</div>
+    <div class="cat" data-cat="tglsc">TGLSC</div>
+    <div class="cat" data-cat="selenite">Selenite</div>
+    <div class="cat" data-cat="velera">Velera</div>
+    <div class="cat" data-cat="all">All</div>
+  </div>
 
-<div id="grid" class="grid"></div>
+  <div class="sections">
+    <section class="section" id="featuredSection">
+      <button class="section-header" type="button" data-target="featuredGridWrap" aria-expanded="true">
+        <span class="section-title-text">Popular Games</span>
+        <span class="section-arrow">›</span>
+      </button>
+      <div class="section-body" id="featuredGridWrap">
+        <div id="featuredGrid" class="grid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="recommendedSection">
+      <button class="section-header" type="button" data-target="recommendedGridWrap" aria-expanded="true">
+        <span class="section-title-text">Recommended Games</span>
+        <span class="section-arrow">›</span>
+      </button>
+      <div class="section-body" id="recommendedGridWrap">
+        <div id="recommendedGrid" class="grid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="allSection">
+      <button class="section-header" type="button" data-target="gridWrap" aria-expanded="true">
+        <span class="section-title-text">All Games</span>
+        <span class="section-arrow">›</span>
+      </button>
+      <div class="section-body" id="gridWrap">
+        <div id="grid" class="grid"></div>
+      </div>
+    </section>
+  </div>
 `;
 
     const uiContent = startupContent + "\n\n" + appContent;

@@ -1,8 +1,8 @@
 const params = new URLSearchParams(window.location.search);
 const view = params.get("view");
 
-const BASE = "https://cdn.jsdelivr.net/gh/Hydra-Network/hydra-assets@main/gmes/";
-const JSON_URL = "https://cdn.jsdelivr.net/gh/Hydra-Network/hydra-assets@main/gmes.json";
+const BASE = "https://cdn.jsdelivr.net/gh/tharuniscool/hydra-assets@main/gmes/";
+const JSON_URL = "https://cdn.jsdelivr.net/gh/tharuniscool/hydra-assets@main/gmes.json";
 
 const viewerFrame = document.getElementById("viewerFrame");
 const viewerTitle = document.getElementById("viewerTitle");
