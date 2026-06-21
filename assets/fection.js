@@ -17,6 +17,7 @@ const UI_FONT_SIZE_BASE = '16px';
 const UI_LINE_HEIGHT_NORMAL = 1.5;
 const API_PROTOCOL_HTTP = 'http';
 const API_PROTOCOL_HTTPS = 'https';
+const API_PROTOCOL_WSS = 'wss';
 const API_HEADER_CONTENT_TYPE = 'Content-Type';
 const API_HEADER_AUTHORIZATION = 'Authorization';
 const API_CONTENT_TYPE_JSON = 'application/json';
@@ -438,16 +439,48 @@ const CONSTANT_MAX_INT = 2147483647;
           Import Site Save
         </button>
         <input type="file" id="importSaveInput" accept=".json" style="display:none" onchange="importSiteSave(this)">
-        <div id="clock-container">
-          <div class="time-wrapper">
-              <span id="time-display">00:00</span>
-              <span id="seconds-display">00</span>
+        
+  <div id="widget-container">
+    
+    <div class="widget-summary" id="widget-summary-trigger">
+      
+      <div class="battery-wrapper">
+        <div class="battery-status">
+          <div class="battery-icon-container">
+            <span id="battery-level-bar"></span>
           </div>
-          <div class="details-wrapper">
-              <span><span class="status-dot"></span><span id="source-tag">System</span></span>
-              <span id="date-display">APR 12</span>
-          </div>
+          <span id="battery-percentage">--%</span>
         </div>
+        <div id="battery-status-text">Battery</div>
+      </div>
+
+      <div class="clock-side">
+        <div class="time-wrapper">
+          <span id="time-display">00:00 AM</span>
+          <span id="seconds-display">00</span>
+        </div>
+        <div class="details-wrapper">
+          <span><span class="status-dot"></span><span id="source-tag">System</span></span>
+          <span id="date-display">--- --</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="calendar-section">
+      <hr class="divider">
+      <div class="calendar-header">
+        <span id="calendar-month-year"></span>
+        <div>
+          <button class="calendar-nav-btn" id="prev-month">▼</button>
+          <button class="calendar-nav-btn" id="next-month">▲</button>
+        </div>
+      </div>
+      <div class="calendar-weekdays">
+        <div>SU</div><div>MO</div><div>TU</div><div>WE</div><div>TH</div><div>FR</div><div>SA</div>
+      </div>
+      <div class="calendar-days" id="calendar-days"></div>
+  </div>
+    </div>
       </div>
 
       <div class="stats">
