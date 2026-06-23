@@ -2,10 +2,10 @@
     'use strict';
 
     const originalTitle = document.title;
-    const originalFavicon = document.querySelector("link[rel*='icon']")?.href || "/favicon.ico";
-
-    const awayTitle = "Home - Classroom";
-    const awayFavicon = "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/ic_product_classroom_32.png"; 
+    const originalFavicon = document.querySelector("link[rel*='icon']")?.href || "/favicon.ico"; 
+    const originalType = document.querySelector("link[rel*='icon']")?.getAttribute("type") || "image/png";
+    const blank = " ";
+    const png = "image/png";
 
     document.addEventListener("visibilitychange", () => {
         let icon = document.querySelector("link[rel*='icon']");
@@ -14,12 +14,44 @@
             icon.rel = 'shortcut icon';
             document.head.appendChild(icon);
         }
+
         if (document.hidden) {
+            let config = { preset: "classroom" };
+            try {
+                const saved = localStorage.getItem("IdleFaviconTitleBloxyCraftieUnblocked");
+                if (saved) config = JSON.parse(saved);
+            } catch (err) {
+                config = { preset: "classroom" };
+            }
+
+
+            if (config.preset === "none") return;
+
+            let awayTitle = "Home - Classroom";
+            let awayFavicon = "/idle-favicons/clasroom.ico"; 
+            let awayType = blank;
+
+            if (config.preset === "drive") {
+                awayTitle = "Home - Google Drive";
+                awayFavicon = "/idle-favicons/drive.png";
+                awayType = png;
+            } else if (config.preset === "docs") {
+                awayTitle = "Google Docs";
+                awayFavicon = "/idle-favicons/docs.ico";
+                awayType = blank;
+            } else if (config.preset === "custom") {
+                awayTitle = config.customTitle || originalTitle;
+                awayFavicon = config.customFavicon || originalFavicon;
+                awayType = awayFavicon.toLowerCase().endsWith(".png") ? png : blank;
+            }
+
             document.title = awayTitle;
             icon.setAttribute("href", awayFavicon);
+            icon.setAttribute("type", awayType);
         } else {
             document.title = originalTitle;
             icon.setAttribute("href", originalFavicon);
+            icon.setAttribute("type", originalType);
         }
     });
 
@@ -208,7 +240,7 @@
         menu.style.display = 'none';
     });
 
-        document.getElementById('opt-close-menu').addEventListener('click', (e) => {
+    document.getElementById('opt-close-menu').addEventListener('click', (e) => {
         e.stopPropagation();
         menu.style.display = 'none';
     });
