@@ -64,6 +64,8 @@ function saveSettings() {
     location.reload();
 }
 
+let activeFrameInstance = null;
+
 async function loadFromHash() {
     const hash = window.location.hash.substring(1);
     let url = hash || 'https://google.com/';
@@ -71,30 +73,70 @@ async function loadFromHash() {
 
     const container = document.getElementById('iframe-container');
     container.innerHTML = ''; 
-    const frame = scramjet.createFrame();
-    container.appendChild(frame.frame);
-    frame.go(url);
+    
+    activeFrameInstance = scramjet.createFrame();
+    container.appendChild(activeFrameInstance.frame);
+    activeFrameInstance.go(url);
 
- 
     document.getElementById('viewerTitle').innerText = "BloxProxy - Loading";
 
- 
-    frame.frame.addEventListener('load', () => {
+    activeFrameInstance.frame.addEventListener('load', () => {
         try {
-           
-            const iframeDoc = frame.frame.contentDocument || frame.frame.contentWindow.document;
+            const iframeDoc = activeFrameInstance.frame.contentDocument || activeFrameInstance.frame.contentWindow.document;
             
-        
             if (iframeDoc && iframeDoc.title) {
                 document.getElementById('viewerTitle').innerText = "BloxProxy - " + iframeDoc.title;
             } else {
                 document.getElementById('viewerTitle').innerText = "BloxProxy - " + "Scarmjet";
             }
         } catch (e) {
-          
             document.getElementById('viewerTitle').innerText = "BloxProxy - " + "Scarmjet";
         }
     });
+}
+
+const openNewTabBtn = document.getElementById("openNewTab");
+if (openNewTabBtn) {
+    openNewTabBtn.onclick = () => {
+        if (!activeFrameInstance || !activeFrameInstance.frame) return;
+
+        try {
+            const currentProxiedUrl = activeFrameInstance.frame.contentWindow.location.href;
+
+            const tab = window.open("about:blank");
+            if (tab) {
+                tab.document.write(`
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                        <title>${tab.document.title || 'BloxProxy'}</title>
+                        <style>
+                            html, body {
+                                margin: 0;
+                                padding: 0;
+                                width: 100%;
+                                height: 100%;
+                                overflow: hidden;
+                                background-color: #000;
+                            }
+                            iframe {
+                                width: 100%;
+                                height: 100%;
+                                border: none;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <iframe src="${currentProxiedUrl}"></iframe>
+                    </body>
+                    </html>
+                `);
+                tab.document.close();
+            }
+        } catch (err) {
+            console.error("Failed to generate isolated tab container:", err);
+        }
+    };
 }
 
 window.addEventListener('hashchange', loadFromHash);
