@@ -7,6 +7,29 @@
     const blank = " ";
     const png = "image/png";
 
+    try {
+        let swEnabled = localStorage.getItem("bloxy-sw-js-enabled-sys");
+        
+        if (swEnabled === null) {
+            localStorage.setItem("bloxy-sw-js-enabled-sys", "false");
+            swEnabled = "false";
+        }
+
+        if (swEnabled === "true" && 'serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then((registration) => {
+                        console.log('Service Worker registered successfully:', registration.scope);
+                    })
+                    .catch((error) => {
+                        console.error('Service Worker registration failed:', error);
+                    });
+            });
+        }
+    } catch (err) {
+        console.error("Could not access or write to localStorage for Service Worker initialization:", err);
+    }
+
     document.addEventListener("visibilitychange", () => {
         let icon = document.querySelector("link[rel*='icon']");
         if (!icon) {
@@ -23,7 +46,6 @@
             } catch (err) {
                 config = { preset: "classroom" };
             }
-
 
             if (config.preset === "none") return;
 

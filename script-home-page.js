@@ -16,6 +16,10 @@ const predefinedExtras = [
 
 let extraNavs = JSON.parse(localStorage.getItem("extraNavs") || "[]");
 
+if (localStorage.getItem("bloxy-sw-js-enabled-sys") === null) {
+  localStorage.setItem("bloxy-sw-js-enabled-sys", "false");
+}
+
 function clearContent(){
   iframe.style.display = "none";
   iframe.src = "";
@@ -88,7 +92,7 @@ function renderExtraOverlay(){
   container.appendChild(wispWrapper);
 
   const cloakWrapper = document.createElement("div");
-  cloakWrapper.style = "margin-bottom: 25px; display: flex; flex-direction: column; gap: 5px;";
+  cloakWrapper.style = "margin-bottom: 15px; display: flex; flex-direction: column; gap: 5px;";
   cloakWrapper.innerHTML = `<label style="font-size:13px; color:#e4e4e7;">Idle Tab Cloaking Preset:</label>`;
 
   const cloakSelect = document.createElement("select");
@@ -127,6 +131,40 @@ function renderExtraOverlay(){
   `;
   cloakWrapper.appendChild(customInputsDiv);
   container.appendChild(cloakWrapper);
+
+  const offlineWrapper = document.createElement("div");
+  offlineWrapper.style = "margin-bottom: 25px; display: flex; flex-direction: column; gap: 5px;";
+offlineWrapper.innerHTML = `
+  <label style="font-size:13px; color:#e4e4e7;">Enable Offline Use:</label>
+  <div style="font-size:11px; color:#a1a1aa; margin-top: 2px; line-height: 1.4;">
+    It only loads the pages you already did<br>and it will only show the latest version you loaded.
+  </div>
+`;
+
+  const offlineSelect = document.createElement("select");
+  offlineSelect.style = "padding: 6px; background: #27272a; border: 1px solid #3f3f46; border-radius: 4px; color: #fff; font-size: 13px; cursor: pointer;";
+
+  const offlineOptions = [
+    { value: "false", label: "Disabled (Default)" },
+    { value: "true", label: "Enabled" }
+  ];
+
+  const currentOfflineValue = localStorage.getItem("bloxy-sw-js-enabled-sys") || "false";
+
+  offlineOptions.forEach(opt => {
+    const o = document.createElement("option");
+    o.value = opt.value;
+    o.textContent = opt.label;
+    if (currentOfflineValue === opt.value) o.selected = true;
+    offlineSelect.appendChild(o);
+  });
+
+  offlineSelect.onchange = () => {
+    localStorage.setItem("bloxy-sw-js-enabled-sys", offlineSelect.value);
+  };
+
+  offlineWrapper.appendChild(offlineSelect);
+  container.appendChild(offlineWrapper);
 
   function saveCloakConfig() {
     const selectVal = cloakSelect.value;
