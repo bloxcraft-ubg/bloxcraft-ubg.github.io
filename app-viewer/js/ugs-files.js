@@ -1,9 +1,3 @@
-const repos = [
-  "tharun9772/ugs-1",
-  "tharun9772/ugs-2",
-  "tharun9772/ugs-3"
-]; 
-
 const params = new URLSearchParams(window.location.search);
 let view = params.get("view");
 
@@ -13,33 +7,7 @@ const openNewTab = document.getElementById("openNewTab");
 const closeViewer = document.getElementById("closeViewer");
 
 function cleanName(name) {
-  return name.replace(/^cl/, "").replace(/\.html$/, "");
-}
-
-async function findFile(filename) {
-  for (const repo of repos) {
-    try {
-      const res = await fetch(`https://cdn.jsdelivr.net/gh/tharun9772/game-assets/api_generated/github/${repo}/file.json`);
-      const files = await res.json();
-
-      const match = files.find(f =>
-        f.type === "file" &&
-        f.name === filename
-      );
-
-      if (match) {
-        return {
-          repo,
-          file: match.name,
-          url: `https://cdn.jsdelivr.net/gh/${repo}@main/${match.name}`,
-          name: match.name
-        };
-      }
-    } catch (e) {
-      console.error("Repo failed:", repo);
-    }
-  }
-  return null;
+  return name.replace(/^cl/i, "").replace(/\.html$/i, "");
 }
 
 function show404() {
@@ -63,31 +31,32 @@ function show404() {
 
 async function load() {
   if (!view) return show404();
-
   view = view.replace(/^"+|"+$/g, "").trim();
-
-
   let filename = view.endsWith(".html") ? view : (view + ".html");
+  const gameUrl = `https://raw.githack.com/bubbls/ugs-singlefile/main/UGS-Files/${encodeURIComponent(filename)}`;
 
-  const game = await findFile(filename);
+  try {
+    const res = await fetch(gameUrl);
+    if (!res.ok) return show404(); 
 
-  if (!game) return show404();
+    const html = await res.text();
 
-  viewerTitle.textContent = cleanName(game.file);
-
-  const html = await fetch(game.url).then(r => r.text());
-  viewerFrame.srcdoc = html;
-
-  openNewTab.onclick = async (e) => {
-    e.preventDefault();
-    const html = await fetch(game.url).then(r => r.text());
-    const w = window.open("about:blank", "_blank");
-    w.document.open();
-    w.document.write(html);
-    w.document.close();
-  };
+    viewerTitle.textContent = cleanName(filename);
+    viewerFrame.srcdoc = html;
+    
+    openNewTab.onclick = (e) => {
+      e.preventDefault();
+      const w = window.open("about:blank", "_blank");
+      if (w) {
+        w.document.open();
+        w.document.write(html);
+        w.document.close();
+      }
+    };
+  } catch (e) {
+    console.error("Error direct loading viewer file:", e);
+    show404();
+  }
 }
-
-
 
 load();

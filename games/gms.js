@@ -2,9 +2,11 @@ const grid = document.getElementById("grid");
 const featuredGrid = document.getElementById("featuredGrid");
 const recommendedGrid = document.getElementById("recommendedGrid");
 const topicsGrid = document.getElementById("topicsGrid");
+const favoritesRecentGrid = document.getElementById("favoritesRecentGrid");
 const featuredSection = document.getElementById("featuredSection");
 const recommendedSection = document.getElementById("recommendedSection");
 const topicsSection = document.getElementById("topicsSection");
+const favoritesRecentSection = document.getElementById("favoritesRecentSection");
 const allSection = document.getElementById("allSection");
 const search = document.getElementById("search");
 const count = document.getElementById("count");
@@ -16,37 +18,57 @@ const RECOMMENDED_LIMIT = 100000;
 const FALLBACK_IMG = "/1f3ae.png";
 const LIB_BASE = "https://cdn.jsdelivr.net/gh/tharun9772/game-assets@main/libraries/";
 const TOPIC_BASE = "https://cdn.jsdelivr.net/gh/tharun9772/game-assets@main/topics/";
-
 const DATA = {
-  blox: [], gn: [], elite: [], ugs: [], seraph: [],
-  ckv: [], hydra: [], ccported: [], googleclass: [], truffled: [],
-  nowgg: [], alexrworlds: [], lupine: [], "3kh0": [], "3kh0lite": [],
-  tglsc: [], selenite: [], velera: [], frogies: [], ubg42: [], epicway: [],
-  noahh: [], youtube: []
+  blox: [], 
+  gn: [], 
+  elite: [], 
+  ugs: [], 
+  seraph: [],
+  ckv: [], 
+  hydra: [], 
+  ccported: [], 
+  googleclass: [], 
+  truffled: [],
+  nowgg: [], 
+  alexrworlds: [], 
+  lupine: [], 
+  "3kh0": [], 
+  "3kh0lite": [],
+  tglsc: [], 
+  selenite: [], 
+  velera: [], 
+  frogies: [], 
+  ubg42: [], 
+  epicway: [],
+  noahh: [], 
+  youtube: [], 
+  solo: [], 
+  degloveed: [], 
+  kruated: [], 
+  pizzalite: [],
+  strongdog: [],
+  maz: [],
+  shuttleproxy: []
 };
 
 const FEATURED = JSON.parse(JSON.stringify(DATA));
 const RECOMMENDED = JSON.parse(JSON.stringify(DATA));
-
 const CACHED_TOPICS_RAW = {}; 
 let TOPIC_METADATA = [];
-
 let ACTIVE_LIBS = new Set(["all"]);
 let ACTIVE_TOPICS = new Set(["none"]);
-
 let CURRENT = [];
 let CURRENT_FEATURED = [];
 let CURRENT_RECOMMENDED = [];
 let CURRENT_TOPICS = [];
-
 let FILTERED = [];
 let FILTERED_FEATURED = [];
 let FILTERED_RECOMMENDED = [];
 let FILTERED_TOPICS = [];
-
+let FAVORITES = JSON.parse(localStorage.getItem("ubg_favorites")) || [];
+let RECENTLY_PLAYED = JSON.parse(localStorage.getItem("ubg_recent")) || [];
 let RENDERED = 0;
 let OBSERVER_SENTINEL = null;
-
 const OBSERVER = new IntersectionObserver(entries => {
   if (entries[0].isIntersecting) {
     RESET_OBSERVER_ONLY();
@@ -164,22 +186,37 @@ async function loadElite() {
 }
 
 async function loadUGS() {
-  const repos = ["tharun9772/ugs-1", "tharun9772/ugs-2", "tharun9772/ugs-3"];
-  const results = await Promise.all(repos.map(async repo => {
-    try {
-      const r = await fetch("https://cdn.jsdelivr.net/gh/tharun9772/game-assets/api_generated/github/" + repo + "/file.json");
-      if (!r.ok) return [];
-      const d = await r.json();
-      return safeArray(d)
-        .filter(f => f.type === "file" && f.name?.startsWith("cl") && f.name?.endsWith(".html"))
-        .map(f => ({
-          name: f.name.replace(/^cl/, "").replace(".html", ""),
+  try {
+    const r = await fetch("https://raw.githack.com/bubbls/ugs-singlefile/main/games.js");
+    if (!r.ok) return;
+    const text = await r.text();
+    const arrayMatch = text.match(/let\s+files\s*=\s*\[([\s\S]*?)\];/);
+    if (!arrayMatch) return;
+    const arrayContent = arrayMatch[1];
+    const stringRegex = /"([^"\\]*(?:\\.[^"\\]*)*)"|'([^'\\]*(?:\\.[^'\\]*)*)'/g;
+    let match;
+    const extractedFiles = [];
+
+    while ((match = stringRegex.exec(arrayContent)) !== null) {
+      extractedFiles.push(match[1] || match[2]);
+    }
+    
+    DATA.ugs = dedupeGames(extractedFiles
+      .filter(f => f && f.toLowerCase().startsWith("cl"))
+      .map(f => {
+        const normalizedName = f.includes(".") && f.lastIndexOf(".") > 0 ? f : f + ".html";
+        const displayName = f.replace(/^cl/i, "").replace(/\.html$/i, "");
+
+        return {
+          name: displayName || f,
           img: "https://cdn.jsdelivr.net/gh/tharun9772/game-assets@main/5968517.png",
-          url: "/app-viewer/ugs-files?view=" + encodeURIComponent(f.name)
-        }));
-    } catch (e) { return []; }
-  }));
-  DATA.ugs = dedupeGames(results.flat());
+          url: "/app-viewer/ugs-files?view=" + encodeURIComponent(normalizedName)
+        };
+      })
+    );
+  } catch (e) {
+    console.error("Error parsing external UGS files:", e);
+  }
 }
 
 async function loadSeraph() {
@@ -489,14 +526,183 @@ async function loadYoutube() {
   } catch (e) {}
 }
 
+async function loadSolo() {
+  try {
+    const r = await fetch("https://stromg-quests.dk-ubg.workers.dev/g.json");
+    if (!r.ok) return;
+    const d = await r.json();
+    DATA.solo = dedupeGames(safeArray(d).map(g => {
+      if (!g || !g.alt || !g.url) return null;
+      let imgUrl = ("https://stromg-quests.dk-ubg.workers.dev/" + (g.img || "")).replace(/([^:]\/)\/+/g, "$1");
+      let finalUrl = ("/sail/embed/#play.qatual.com/" + (g.url || "")).replace(/([^:]\/)\/+/g, "$1");
+      return { name: g.alt, img: imgUrl, url: finalUrl };
+    }).filter(Boolean));
+  } catch (e) {}
+}
+
+async function loadDegloved() {
+  try {
+    const r = await fetch("/games/data/json/degloved.json");
+    if (!r.ok) return;
+    const d = await r.json();
+    DATA.degloveed = dedupeGames(safeArray(d).map(g => {
+      if (!g || !g.name || !g.url) return null;
+      return {
+        name: g.name,
+        img: "https://winf-dictionary.dk-ubg.workers.dev/cdn/proxy/image/" + (g.thumbnail || ""),
+        url: "/sail/embed/#" + g.url
+      };
+    }).filter(Boolean));
+  } catch (e) {}
+}
+
+async function loadKruated() {
+  try {
+    const r = await fetch("/games/data/json/kruated.json");
+    if (!r.ok) return;
+    const d = await r.json();
+    DATA.kruated = dedupeGames(safeArray(d).map(g => {
+      if (!g || !g.name || !g.url) return null;
+      return {
+        name: g.name,
+        img: "https://winf-dictionary.dk-ubg.workers.dev/cdn/proxy/image/" + (g.thumbnail || ""),
+        url: "/sail/embed/#" + g.url
+      };
+    }).filter(Boolean));
+  } catch (e) {}
+}
+
+async function loadPizzalite() {
+  try {
+    const r = await fetch("/games/data/json/petezah.json");
+    if (!r.ok) return;
+    const d = await r.json();
+    DATA.pizzalite = dedupeGames(safeArray(d).map(g => {
+      if (!g || !g.name || !g.url) return null;
+      return {
+        name: g.name,
+        img: "https://winf-dictionary.dk-ubg.workers.dev/cdn/proxy/image/" + (g.thumbnail || ""),
+        url: "/sail/embed/#" + g.url
+      };
+    }).filter(Boolean));
+  } catch (e) {}
+}
+
+async function loadStrongdog() {
+  try {
+    const module = await import("/games/data/js/strongdog.js");
+    const d = module.default;
+    processStrongdogData(d);
+  } catch (e) {
+    console.warn("Dynamic import failed, attempting text-parse fallback for strongdog.js:", e);
+    try {
+      const r = await fetch("/games/data/js/strongdog.js");
+      if (!r.ok) return;
+      let text = await r.text();
+      text = text.replace(/export\s+default\s+/, "");
+      
+      const parseJSArray = new Function(`return (${text});`);
+      const d = parseJSArray();
+      processStrongdogData(d);
+    } catch (err) {
+      console.error("Failed to load Strongdog engine via both methods:", err);
+    }
+  }
+}
+
+function processStrongdogData(d) {
+  DATA.strongdog = dedupeGames(safeArray(d).map(g => {
+    if (!g || !g.name || !g.href) return null;
+    
+    let cleanHref = g.href;
+    if (g.page && g.page !== 1) {
+      if (cleanHref.startsWith('./')) {
+        cleanHref = './' + g.page + '/' + cleanHref.slice(2);
+      } else {
+        cleanHref = g.page + '/' + cleanHref;
+      }
+    }
+    
+    let urlParam = cleanHref;
+    if (urlParam.startsWith('./')) {
+      urlParam = urlParam.slice(2);
+    }
+    
+    return {
+      name: g.name,
+      img: "https://winf-dictionary.dk-ubg.workers.dev/cdn/proxy/image/https://strongdog.com/img/" + (g.imgSrc || ""),
+      url: "/sail/embed/#https://strongdog.com/" + urlParam
+    };
+  }).filter(Boolean));
+}
+
+async function loadMaz() {
+  try {
+    const r = await fetch("/games/data/json/the-marz-lib.json");
+    if (!r.ok) return;
+    const d = await r.json();
+    DATA.maz = dedupeGames(safeArray(d).map(g => {
+      if (!g || !g.title || !g.url) return null;
+      return {
+        name: g.title,
+        img: "https://winf-dictionary.dk-ubg.workers.dev/cdn/proxy/image/https://themarzlibrary.org" + g.img,
+        url: "/sail/embed/#https://themarzlibrary.org" + g.url
+      };
+    }).filter(Boolean));
+  } catch (e) {}
+}
+
+async function loadShuttleProxy() {
+  try {
+    const r = await fetch("/games/data/json/shuttleproxy.json");
+    if (!r.ok) return;
+    const d = await r.json();
+    DATA.shuttleproxy = dedupeGames(safeArray(d).map(g => {
+      if (!g || !g.name || !g.root) return null;
+      
+      const cleanRoot = g.root.endsWith('/') ? g.root : g.root + '/';
+      const cleanImg = g.img ? (g.img.startsWith('/') ? g.img.slice(1) : g.img) : '';
+      
+      return {
+        name: g.name,
+        img: "https://winf-dictionary.dk-ubg.workers.dev/cdn/proxy/image/https://assets.shuttlemath.com/" + cleanRoot + cleanImg,
+        url: "/sail/embed/#https://assets.shuttlemath.com/" + g.root
+      };
+    }).filter(Boolean));
+  } catch (e) {}
+}
+
 const LOADER_MAP = {
-  blox: loadBlox, gn: loadGN, elite: loadElite, ugs: loadUGS,
-  seraph: loadSeraph, ckv: loadCKV, hydra: loadHydra, ccported: loadCCPorted,
-  googleclass: loadGoogleClass, truffled: loadTruffled, nowgg: loadNowGG,
-  alexrworlds: loadAlexrworlds, lupine: loadLupine, "3kh0": load3kh0,
-  "3kh0lite": load3kh0Lite, tglsc: loadTGLSC, selenite: loadSelenite,
-  velera: loadVelera, frogies: loadFrogies, ubg42: loadUbg42, epicway: loadEpicway,
-  noahh: loadNoahh, youtube: loadYoutube
+  blox: loadBlox, 
+  gn: loadGN, 
+  elite: loadElite, 
+  ugs: loadUGS,
+  seraph: loadSeraph, 
+  ckv: loadCKV, 
+  hydra: loadHydra, 
+  ccported: loadCCPorted,
+  googleclass: loadGoogleClass, 
+  truffled: loadTruffled, 
+  nowgg: loadNowGG,
+  alexrworlds: loadAlexrworlds, 
+  lupine: loadLupine, 
+  "3kh0": load3kh0,
+  "3kh0lite": load3kh0Lite, 
+  tglsc: loadTGLSC, 
+  selenite: loadSelenite,
+  velera: loadVelera, 
+  frogies: loadFrogies, 
+  ubg42: loadUbg42, 
+  epicway: loadEpicway,
+  noahh: loadNoahh, 
+  youtube: loadYoutube, 
+  solo: loadSolo,
+  degloveed: loadDegloved, 
+  kruated: loadKruated, 
+  pizzalite: loadPizzalite,
+  strongdog: loadStrongdog,
+  maz: loadMaz,
+  shuttleproxy: loadShuttleProxy
 };
 
 const CATEGORY_KEYS = Object.keys(DATA);
@@ -565,6 +771,31 @@ function createCard(g) {
   const card = document.createElement("div");
   card.className = "game-card";
 
+  const favBtn = document.createElement("button");
+  favBtn.className = "fav-btn";
+  favBtn.type = "button";
+  favBtn.innerHTML = "★";
+  favBtn.setAttribute("aria-label", "Favorite Game");
+
+  const isFav = FAVORITES.some(f => f.name === g.name && f.url === g.url);
+  if (isFav) favBtn.classList.add("active");
+
+  favBtn.onclick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    const index = FAVORITES.findIndex(f => f.name === g.name && f.url === g.url);
+    if (index > -1) {
+      FAVORITES.splice(index, 1);
+      favBtn.classList.remove("active");
+    } else {
+      FAVORITES.push(g);
+      favBtn.classList.add("active");
+    }
+    localStorage.setItem("ubg_favorites", JSON.stringify(FAVORITES));
+    pipelineUpdate();
+  };
+
   const img = document.createElement("img");
   img.loading = "lazy";
   img.src = g.img || FALLBACK_IMG;
@@ -584,8 +815,18 @@ function createCard(g) {
   link.className = "play-btn";
   link.href = g.url;
   link.textContent = "Play";
+  
+  link.onclick = () => {
+    RECENTLY_PLAYED = RECENTLY_PLAYED.filter(r => !(r.name === g.name && r.url === g.url));
+    RECENTLY_PLAYED.unshift(g);
+    if (RECENTLY_PLAYED.length > 15) {
+      RECENTLY_PLAYED = RECENTLY_PLAYED.slice(0, 15);
+    }
+    localStorage.setItem("ubg_recent", JSON.stringify(RECENTLY_PLAYED));
+    pipelineUpdate();
+  };
 
-  card.append(img, title, link);
+  card.append(favBtn, img, title, link);
   return card;
 }
 
@@ -653,16 +894,31 @@ function RESET_RENDER() {
 
 function updateCount() {
   if (count) {
-    count.textContent = (FILTERED.length + FILTERED_TOPICS.length) + " games";
+    count.textContent = FILTERED.length + " games";
   }
 }
 
 function renderEverything() {
+  const query = search ? search.value : "";
+  
   if (ACTIVE_TOPICS.has("none") || FILTERED_TOPICS.length === 0) {
     topicsSection.style.display = "none";
   } else {
     topicsSection.style.display = "";
     renderSectionGrid(topicsGrid, FILTERED_TOPICS, { emptyText: "No matching engine games for this topic." });
+  }
+
+  const filteredFavs = applyFilter(FAVORITES, query);
+  const filteredRecents = applyFilter(RECENTLY_PLAYED, query);
+  const uniqueRecents = filteredRecents.filter(recent => 
+    !filteredFavs.some(fav => fav.name === recent.name && fav.url === recent.url)
+  );
+
+  if (filteredFavs.length === 0 && uniqueRecents.length === 0) {
+    favoritesRecentSection.style.display = "none";
+  } else {
+    favoritesRecentSection.style.display = "";
+    renderSectionGrid(favoritesRecentGrid, [...filteredFavs, ...uniqueRecents]);
   }
 
   renderSectionGrid(featuredGrid, FILTERED_FEATURED, { limit: FEATURED_LIMIT, emptyText: "No popular games found." });
@@ -730,14 +986,36 @@ function buildDynamicCategoryLayouts() {
   librariesContainer.appendChild(allEl);
 
   const libraryKeys = [
-    { id: "blox", name: "Bloxcraft UBG" }, { id: "gn", name: "GN-Math" }, { id: "elite", name: "Elite Gamez" },
-    { id: "ugs", name: "Ultimate Game Stash" }, { id: "seraph", name: "Seraph" },
-    { id: "ckv", name: "Chicken Kings Vault" }, { id: "hydra", name: "Hydra" }, { id: "ccported", name: "CCPorted" },
-    { id: "googleclass", name: "Google Class" }, { id: "truffled", name: "Truffled" }, { id: "nowgg", name: "Now.GG" },
-    { id: "alexrworlds", name: "Alexr's World" }, { id: "lupine", name: "LupineVault" }, { id: "3kh0", name: "3kh0" },
-    { id: "3kh0lite", name: "3kh0 Lite" }, { id: "tglsc", name: "TGLSC" }, { id: "selenite", name: "Selenite" },
-    { id: "velera", name: "Velera" }, { id: "frogies", name: "Frogie's Arcade" }, { id: "ubg42", name: "UBG42" },
-    { id: "epicway", name: "Epicway" }, { id: "noahh", name: "Noah's Tutoring Hub" }, { id: "youtube", name: "YouTube Playables" }
+    { id: "blox", name: "Bloxcraft UBG" }, 
+    { id: "gn", name: "GN-Math" }, 
+    { id: "elite", name: "Elite Gamez" },
+    { id: "ugs", name: "Ultimate Game Stash" }, 
+    { id: "seraph", name: "Seraph" },
+    { id: "ckv", name: "Chicken Kings Vault" }, 
+    { id: "hydra", name: "Hydra" }, 
+    { id: "ccported", name: "CCPorted" },
+    { id: "googleclass", name: "Google Class" }, 
+    { id: "truffled", name: "Truffled" }, 
+    { id: "nowgg", name: "Now.GG" },
+    { id: "alexrworlds", name: "Alexr's World" }, 
+    { id: "lupine", name: "LupineVault" }, 
+    { id: "3kh0", name: "3kh0" },
+    { id: "3kh0lite", name: "3kh0 Lite" }, 
+    { id: "tglsc", name: "TGLSC" }, 
+    { id: "selenite", name: "Selenite" },
+    { id: "velera", name: "Velera" }, 
+    { id: "frogies", name: "Frogie's Arcade" }, 
+    { id: "ubg42", name: "UBG42" },
+    { id: "epicway", name: "Epicway" }, 
+    { id: "noahh", name: "Noah's Tutoring Hub" }, 
+    { id: "youtube", name: "YouTube Playables" },
+    { id: "solo", name: "Solo Central" },
+    { id: "degloveed", name: "Degloved" }, 
+    { id: "kruated", name: "Kruated Phear" }, 
+    { id: "pizzalite", name: "Petezah Lite" },
+    { id: "strongdog", name: "Strongdog" },
+    { id: "maz", name: "The Marz Library" },
+    { id: "shuttleproxy", name: "Shuttle Math" }
   ];
 
   libraryKeys.forEach(lib => {

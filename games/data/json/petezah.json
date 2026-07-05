@@ -1,0 +1,385 @@
+
+{
+  "games": [
+    {
+      "name": "Tag",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/tag",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/images/main/taggame.jpg"
+    },
+    {
+      "name": "Poly Track v0.4.1",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/polytrack",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/images/main/polytrack-v2.jpeg"
+    },
+    {
+      "name": "Ragdoll Archers",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/ragdoll-archers",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/images/main/ragdoll.jpg"
+    },
+    {
+      "name": "Ragdoll Hit",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/ragdoll-hit",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/images/main/ragdoll-hit.jpeg"
+    },
+    {
+      "name": "Super Star Car",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/superstarcar",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/images/main/superstarcar.jpeg"
+    },
+    {
+      "name": "Smashy Roads",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/smashyroad",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/images/main/smashy.jpg"
+    },
+    {
+      "name": "Smashy Roads 2",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/smashy-roads-2",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/images/main/smashyroad.webp"
+    },
+    {
+      "name": "Clash Royale",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/clash-royale",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/images/main/clash.jpeg"
+    },
+    {
+      "name": "Highway Racer",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/highway-racer",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/images/main/highway-racer.jpeg"
+    },
+    {
+      "name": "Highway Racer 2",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/highway-race2",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/images/main/highway-racer2.jpeg"
+    },
+    {
+      "name": "Stickman Hook",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/stickman-hook",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/images/main/stickmanhook.jpg"
+    },
+    {
+      "name": "Territorial.io",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/territorial",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/images/main/territorialio.jpg"
+    },
+    {
+      "name": "Slither.io",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/slither",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/images/main/slitherio.jpg"
+    },
+    {
+      "name": "Agar.io",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/agar",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/images/main/agario.jpg"
+    },
+    {
+      "name": "Yohoho.io",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/yohoho/",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/yohoho/IMG_5302.jpeg"
+    },
+    {
+      "name": "Hole.io",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/holeio/",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/images/main/hole.jpg"
+    },
+    {
+      "name": "Skribbl.io",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/skribbl/",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/skribbl/IMG_5303.jpeg"
+    },
+    {
+      "name": "Smash Karts.io",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/smashkarts/index.html",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/smashkarts/smashkarts.webp"
+    },
+    {
+      "name": "Arras.io",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/arras",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/images/main/arras.jpg"
+    },
+    {
+      "name": "Hexanaut.io",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/hexa",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/images/main/hexa.jpg"
+    },
+    {
+      "name": "Deeeep.io",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/dieeeeeep",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/images/main/dieeeep.jpg"
+    },
+    {
+      "name": "Paper.io",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/paperio",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/images/main/paper.jpg"
+    },
+    {
+      "name": "Paper.io 2",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/paperio2",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/images/main/paper2.jpg"
+    },
+    {
+      "name": "ResentCli",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/ResentCli",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/ResentCli/favicon.png"
+    },
+    {
+      "name": "adofai",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/adofai",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/adofai/splash.png"
+    },
+    {
+      "name": "age of war",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/age-of-war",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/age-of-war/icon.jpg"
+    },
+    {
+      "name": "angrybirds",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/angrybirds",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/angrybirds/logo.webp"
+    },
+    {
+      "name": "asmallworldcup",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/asmallworldcup",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/asmallworldcup/icon-256.png"
+    },
+    {
+      "name": "basketrandom",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/basketrandom",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/basketrandom/test.png"
+    },
+    {
+      "name": "bite",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/bite",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/bite/logo.png"
+    },
+    {
+      "name": "blockblast",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/blockblast",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/blockblast/s.png"
+    },
+    {
+      "name": "blocky snakes",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/blocky-snakes",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/blocky-snakes/icon.png"
+    },
+    {
+      "name": "bloonstd3",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/bloonstd3",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/bloonstd3/IMG_5313.jpeg"
+    },
+    {
+      "name": "bloonstd4",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/bloonstd4",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/bloonstd4/IMG_5314.jpeg"
+    },
+    {
+      "name": "bloxorz",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/bloxorz",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/bloxorz/bloxorz.webp"
+    },
+    {
+      "name": "bounceback",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/bounceback",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/bounceback/screenshot.png"
+    },
+    {
+      "name": "btd6",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/btd6",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/btd6/uwu.png"
+    },
+    {
+      "name": "cookieclicker",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/cookieclicker",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/cookieclicker/splash.png"
+    },
+    {
+      "name": "crazygames",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/crazygames",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/crazygames/logo.png"
+    },
+    {
+      "name": "ducklife",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/ducklife",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/ducklife/IMG_5307.png"
+    },
+    {
+      "name": "fc",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/fc",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/fc/IMG_5312.webp"
+    },
+    {
+      "name": "funnyshooter",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/funnyshooter",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/funnyshooter/favicon.ico"
+    },
+    {
+      "name": "gunmayhem2",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/gunmayhem2",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/gunmayhem2/gh2.webp"
+    },
+    {
+      "name": "gunmayhemredux",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/gunmayhemredux",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/gunmayhemredux/gunmayhemredux.jpeg"
+    },
+    {
+      "name": "guymayhem",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/guymayhem",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/guymayhem/icon.png"
+    },
+    {
+      "name": "krunker",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/krunker",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/krunker/IMG_5299.png"
+    },
+    {
+      "name": "littlealchemy",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/littlealchemy",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/littlealchemy/favicon.ico"
+    },
+    {
+      "name": "littlealchemy2",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/littlealchemy2",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/littlealchemy2/a2.png"
+    },
+    {
+      "name": "lolbeans",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/lolbeans",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/lolbeans/IMG_5301.jpeg"
+    },
+    {
+      "name": "ma",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/ma",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/ma/IMG_5320.jpeg"
+    },
+    {
+      "name": "melonplayground",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/melonplayground",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/melonplayground/IMG_5304.jpeg"
+    },
+    {
+      "name": "polytrack",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/polytrack",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/polytrack/splash.png"
+    },
+    {
+      "name": "racesurvival",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/racesurvival",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/racesurvival/logo.jpeg"
+    },
+    {
+      "name": "ragdoll archers",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/ragdoll-archers",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/ragdoll-archers/logo.jpeg"
+    },
+    {
+      "name": "ragdoll archers crazygames",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/ragdoll-archers-crazygames",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/ragdoll-archers-crazygames/logo.jpeg"
+    },
+    {
+      "name": "ragdoll hit",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/ragdoll-hit",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/ragdoll-hit/3c892779be9dabb3589586c83ad3eeed.png"
+    },
+    {
+      "name": "redball",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/redball",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/redball/IMG_5315.jpeg"
+    },
+    {
+      "name": "rooftopsnipers",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/rooftopsnipers",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/rooftopsnipers/logo.png"
+    },
+    {
+      "name": "rooftopsnipers2",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/rooftopsnipers2",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/rooftopsnipers2/icon.png"
+    },
+    {
+      "name": "run3",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/run3",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/run3/run3.png"
+    },
+    {
+      "name": "shellshockers",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/shellshockers",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/shellshockers/IMG_5300.png"
+    },
+    {
+      "name": "skribbl",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/skribbl",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/skribbl/IMG_5303.jpeg"
+    },
+    {
+      "name": "slope2",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/slope2",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/slope2/fullscreen-button.png"
+    },
+    {
+      "name": "slowroads",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/slowroads",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/slowroads/splash.jpeg"
+    },
+    {
+      "name": "smashkarts",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/smashkarts",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/smashkarts/smashkarts.webp"
+    },
+    {
+      "name": "soccerrandom",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/soccerrandom",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/soccerrandom/unnamed.png"
+    },
+    {
+      "name": "spacehuggers",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/spacehuggers",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/spacehuggers/screenshot.png"
+    },
+    {
+      "name": "spidermanvenomsvengence",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/spidermanvenomsvengence",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/spidermanvenomsvengence/splash.png"
+    },
+    {
+      "name": "stickslasher",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/stickslasher",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/stickslasher/favicon.ico"
+    },
+    {
+      "name": "tinyfishing",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/tinyfishing",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/tinyfishing/thumb.png"
+    },
+    {
+      "name": "totm",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/totm",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/totm/progressEmpty.Dark.png"
+    },
+    {
+      "name": "tunnelrush",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/tunnelrush",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/tunnelrush/tunnel.jpg"
+    },
+    {
+      "name": "venge",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/venge",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/venge/IMG_5229.jpeg"
+    },
+    {
+      "name": "wordle",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/wordle",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/wordle/icon.png"
+    },
+    {
+      "name": "zombocalypse",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/zombocalypse",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/zombocalypse/zombocalypse-2.webp"
+    },
+    {
+      "name": "zombsroyale",
+      "url": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/zombsroyale",
+      "thumbnail": "https://linkdropper.zidanwaiba.com.np/storage/ag/originals/zombsroyale/zombsroyale.webp"
+    }
+  ]
+}

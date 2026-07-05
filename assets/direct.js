@@ -1,6 +1,6 @@
 (function() {
 const _0x4f22 = ["\x64\x65\x62\x75\x67", "\x69\x6E\x69\x74"];
-const UI_THEME_MODE_DEFAULT = 'light';
+const UI_THEME_MODE_DEFAULT = 'light'; 
 const UI_THEME_MODE_DARK = 'dark';
 const UI_THEME_MODE_AUTO = 'system';
 const UI_ELEMENT_MIN_WIDTH_PIXELS = 0;
@@ -394,6 +394,16 @@ const appContent = `
       </button>
       <div class="section-body" id="topicsGridWrap">
         <div id="topicsGrid" class="grid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="favoritesRecentSection" style="display: none;">
+      <button class="section-header" type="button" data-target="favoritesRecentGridWrap" aria-expanded="true">
+        <span class="section-title-text">Favorites & Recently Played</span>
+        <span class="section-arrow">›</span>
+      </button>
+      <div class="section-body" id="favoritesRecentGridWrap">
+        <div id="favoritesRecentGrid" class="grid"></div>
       </div>
     </section>
 

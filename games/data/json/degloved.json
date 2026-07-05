@@ -1,0 +1,660 @@
+
+{
+  "games": [
+    {
+      "name": "Terraria",
+      "url": "https://degloved.net/gms/Terraria/index.html",
+      "thumbnail": "https://degloved.net/gms/Terraria/img.png"
+    },
+    {
+      "name": "stardew valley",
+      "url": "https://degloved.net/gms/stardew-valley/index.html",
+      "thumbnail": "https://degloved.net/gms/stardew-valley/stardew-valley.png"
+    },
+    {
+      "name": "balatro",
+      "url": "https://degloved.net/gms/balatro/index.html",
+      "thumbnail": "https://degloved.net/gms/balatro/balatro.png"
+    },
+    {
+      "name": "buckshot roulette",
+      "url": "https://degloved.net/gms/buckshot-roulette/index.html",
+      "thumbnail": "https://degloved.net/gms/buckshot-roulette/buckshot-roulette.apple-touch-icon.png"
+    },
+    {
+      "name": "FEZ",
+      "url": "https://degloved.net/gms/FEZ/index.html",
+      "thumbnail": "https://degloved.net/gms/FEZ/img.png"
+    },
+    {
+      "name": "brotato",
+      "url": "https://degloved.net/gms/brotato/index.html",
+      "thumbnail": "https://degloved.net/gms/brotato/index.apple-touch-icon.png"
+    },
+    {
+      "name": "your only move is hustle",
+      "url": "https://degloved.net/gms/your-only-move-is-hustle/index.html",
+      "thumbnail": "https://degloved.net/gms/your-only-move-is-hustle/index.icon.png"
+    },
+    {
+      "name": "people playground",
+      "url": "https://degloved.net/gms/people-playground/index.html",
+      "thumbnail": "https://degloved.net/gms/people-playground/img.png"
+    },
+    {
+      "name": "Hollow knight",
+      "url": "https://degloved.net/gms/Hollow-knight/index.html",
+      "thumbnail": "https://degloved.net/gms/Hollow-knight/img.png"
+    },
+    {
+      "name": "ultrakill",
+      "url": "https://degloved.net/gms/ultrakill/index.html",
+      "thumbnail": "https://degloved.net/gms/ultrakill/ultrakill.jpg"
+    },
+    {
+      "name": "Overburden",
+      "url": "https://degloved.net/gms/Overburden/index.html",
+      "thumbnail": "https://degloved.net/gms/Overburden/logo.png"
+    },
+    {
+      "name": "I spoke to God",
+      "url": "https://degloved.net/gms/I-spoke-to-God/index.html",
+      "thumbnail": "https://degloved.net/gms/I-spoke-to-God/logo.png"
+    },
+    {
+      "name": "Testimonium",
+      "url": "https://degloved.net/gms/Testimonium/index.html",
+      "thumbnail": "https://degloved.net/gms/Testimonium/logo.png"
+    },
+    {
+      "name": "my dictator stalin cant be this cute",
+      "url": "https://degloved.net/gms/my-dictator-stalin-cant-be-this-cute/index.html",
+      "thumbnail": "https://degloved.net/gms/my-dictator-stalin-cant-be-this-cute/index.icon.png"
+    },
+    {
+      "name": "ddlc",
+      "url": "https://degloved.net/gms/ddlc/index.html",
+      "thumbnail": "https://degloved.net/gms/ddlc/ddlc.png"
+    },
+    {
+      "name": "five nights at epsteins",
+      "url": "https://degloved.net/gms/five-nights-at-epsteins/index.html",
+      "thumbnail": "https://degloved.net/gms/five-nights-at-epsteins/img.png"
+    },
+    {
+      "name": "jeffrey epstein basics in education and kidnapping",
+      "url": "https://degloved.net/gms/jeffrey-epstein-basics-in-education-and-kidnapping/index.html",
+      "thumbnail": "https://degloved.net/gms/jeffrey-epstein-basics-in-education-and-kidnapping/jeffrey-epstein-basics-in-education-and-kidnapping.png"
+    },
+    {
+      "name": "flying gorilla",
+      "url": "https://degloved.net/gms/flying-gorilla/index.html",
+      "thumbnail": "https://degloved.net/gms/flying-gorilla/gorilla.png"
+    },
+    {
+      "name": "speed stars",
+      "url": "https://degloved.net/gms/speed-stars/index.html",
+      "thumbnail": "https://degloved.net/gms/speed-stars/img.png"
+    },
+    {
+      "name": "cheese rolling",
+      "url": "https://degloved.net/gms/cheese-rolling/index.html",
+      "thumbnail": "https://degloved.net/gms/cheese-rolling/cheese.jpg"
+    },
+    {
+      "name": "raft",
+      "url": "https://degloved.net/gms/raft/index.html",
+      "thumbnail": "https://degloved.net/gms/raft/raft.png"
+    },
+    {
+      "name": "schoolboy runaway",
+      "url": "https://degloved.net/gms/schoolboy-runaway/index.html",
+      "thumbnail": "https://degloved.net/gms/schoolboy-runaway/download (4).jpg"
+    },
+    {
+      "name": "void whispers",
+      "url": "https://degloved.net/gms/void-whispers/index.html",
+      "thumbnail": "https://degloved.net/gms/void-whispers/Void-Whispers.apple-touch-icon.png"
+    },
+    {
+      "name": "trizon",
+      "url": "https://degloved.net/gms/trizon/index.html",
+      "thumbnail": "https://degloved.net/gms/trizon/Trizon.png"
+    },
+    {
+      "name": "arco",
+      "url": "https://degloved.net/gms/arco/index.html",
+      "thumbnail": "https://degloved.net/gms/arco/arco.jpg"
+    },
+    {
+      "name": "hayai",
+      "url": "https://degloved.net/gms/hayai/index.html",
+      "thumbnail": "https://degloved.net/gms/hayai/index.apple-touch-icon.png"
+    },
+    {
+      "name": "s.p.l.i.t",
+      "url": "https://degloved.net/gms/s.p.l.i.t/index.html",
+      "thumbnail": "https://degloved.net/gms/s.p.l.i.t/split.apple-touch-icon.png"
+    },
+    {
+      "name": "dawnfolk",
+      "url": "https://degloved.net/gms/dawnfolk/index.html",
+      "thumbnail": "https://degloved.net/gms/dawnfolk/index.apple-touch-icon.png"
+    },
+    {
+      "name": "iron lung",
+      "url": "https://degloved.net/gms/iron-lung/index.html",
+      "thumbnail": "https://degloved.net/gms/iron-lung/img.png"
+    },
+    {
+      "name": "getting over it",
+      "url": "https://degloved.net/gms/getting-over-it/index.html",
+      "thumbnail": "https://degloved.net/gms/getting-over-it/img.png"
+    },
+    {
+      "name": "celeste",
+      "url": "https://degloved.net/gms/celeste/index.html",
+      "thumbnail": "https://degloved.net/gms/celeste/img.png"
+    },
+    {
+      "name": "10 minutes till dawn",
+      "url": "https://degloved.net/gms/10-minutes-till-dawn/index.html",
+      "thumbnail": "https://degloved.net/gms/10-minutes-till-dawn/download (2).jpg"
+    },
+    {
+      "name": "1 date danger",
+      "url": "https://degloved.net/gms/1-date-danger/index.html",
+      "thumbnail": "https://degloved.net/gms/1-date-danger/img.png"
+    },
+    {
+      "name": "2doom",
+      "url": "https://degloved.net/gms/2doom/index.html",
+      "thumbnail": "https://degloved.net/gms/2doom/img.png"
+    },
+    {
+      "name": "a day in the office",
+      "url": "https://degloved.net/gms/a day in the office/index.html",
+      "thumbnail": "https://degloved.net/gms/a day in the office/img.png"
+    },
+    {
+      "name": "A Difficult Game About Climbing",
+      "url": "https://degloved.net/gms/A-Difficult-Game-About-Climbing/index.html",
+      "thumbnail": "https://degloved.net/gms/A-Difficult-Game-About-Climbing/img.png"
+    },
+    {
+      "name": "ages of conflict",
+      "url": "https://degloved.net/gms/ages of conflict/index.html",
+      "thumbnail": "https://degloved.net/gms/ages of conflict/img.png"
+    },
+    {
+      "name": "Antimatter Dimensions",
+      "url": "https://degloved.net/gms/Antimatter Dimensions/index.html",
+      "thumbnail": "https://degloved.net/gms/Antimatter Dimensions/icon.png"
+    },
+    {
+      "name": "Antonblast",
+      "url": "https://degloved.net/gms/Antonblast/index.html",
+      "thumbnail": "https://degloved.net/gms/Antonblast/img.png"
+    },
+    {
+      "name": "Approaches",
+      "url": "https://degloved.net/gms/Approaches/index.html",
+      "thumbnail": "https://degloved.net/gms/Approaches/img.png"
+    },
+    {
+      "name": "astro survivors",
+      "url": "https://degloved.net/gms/astro survivors/index.html",
+      "thumbnail": "https://degloved.net/gms/astro survivors/img.png"
+    },
+    {
+      "name": "babel tower",
+      "url": "https://degloved.net/gms/babel tower/index.html",
+      "thumbnail": "https://degloved.net/gms/babel tower/img.png"
+    },
+    {
+      "name": "backrooms 2D",
+      "url": "https://degloved.net/gms/backrooms 2D/index.html",
+      "thumbnail": "https://degloved.net/gms/backrooms 2D/img.png"
+    },
+    {
+      "name": "bad body guards",
+      "url": "https://degloved.net/gms/bad-body-guards/index.html",
+      "thumbnail": "https://degloved.net/gms/bad-body-guards/logo.png"
+    },
+    {
+      "name": "bad parenting",
+      "url": "https://degloved.net/gms/bad-parenting/index.html",
+      "thumbnail": "https://degloved.net/gms/bad-parenting/img.png"
+    },
+    {
+      "name": "Baldi Birthday Bash",
+      "url": "https://degloved.net/gms/Baldi-Birthday-Bash/index.html",
+      "thumbnail": "https://degloved.net/gms/Baldi-Birthday-Bash/img.png"
+    },
+    {
+      "name": "baldi plus",
+      "url": "https://degloved.net/gms/baldi-plus/index.html",
+      "thumbnail": "https://degloved.net/gms/baldi-plus/img.png"
+    },
+    {
+      "name": "baldi remaster",
+      "url": "https://degloved.net/gms/baldi-remaster/index.html",
+      "thumbnail": "https://degloved.net/gms/baldi-remaster/img.png"
+    },
+    {
+      "name": "basketball bros",
+      "url": "https://degloved.net/gms/basketball-bros/index.html",
+      "thumbnail": "https://degloved.net/gms/basketball-bros/logo.png"
+    },
+    {
+      "name": "bendy and the ink machine",
+      "url": "https://degloved.net/gms/bendy-and-the-ink-machine/index.html",
+      "thumbnail": "https://degloved.net/gms/bendy-and-the-ink-machine/img.png"
+    },
+    {
+      "name": "bitlife",
+      "url": "https://degloved.net/gms/bitlife/index.html",
+      "thumbnail": "https://degloved.net/gms/bitlife/logo.png"
+    },
+    {
+      "name": "bloodmoney",
+      "url": "https://degloved.net/gms/bloodmoney/index.html",
+      "thumbnail": "https://degloved.net/gms/bloodmoney/img.png"
+    },
+    {
+      "name": "burrito bison",
+      "url": "https://degloved.net/gms/burrito-bison/index.html",
+      "thumbnail": "https://degloved.net/gms/burrito-bison/img.png"
+    },
+    {
+      "name": "chasing tails",
+      "url": "https://degloved.net/gms/chasing-tails/index.html",
+      "thumbnail": "https://degloved.net/gms/chasing-tails/img.png"
+    },
+    {
+      "name": "christmas massacre",
+      "url": "https://degloved.net/gms/christmas-massacre/index.html",
+      "thumbnail": "https://degloved.net/gms/christmas-massacre/img.png"
+    },
+    {
+      "name": "class of 09",
+      "url": "https://degloved.net/gms/class-of-09/index.html",
+      "thumbnail": "https://degloved.net/gms/class-of-09/class-of-09.png"
+    },
+    {
+      "name": "clover pit",
+      "url": "https://degloved.net/gms/clover-pit/index.html",
+      "thumbnail": "https://degloved.net/gms/clover-pit/img.png"
+    },
+    {
+      "name": "cookie clicker",
+      "url": "https://degloved.net/gms/cookie-clicker/index.html",
+      "thumbnail": "https://degloved.net/gms/cookie-clicker/logo.png"
+    },
+    {
+      "name": "crazy cars",
+      "url": "https://degloved.net/gms/crazy-cars/index.html",
+      "thumbnail": "https://degloved.net/gms/crazy-cars/download.jpg"
+    },
+    {
+      "name": "cuphead",
+      "url": "https://degloved.net/gms/cuphead/index.html",
+      "thumbnail": "https://degloved.net/gms/cuphead/img.png"
+    },
+    {
+      "name": "dead plate",
+      "url": "https://degloved.net/gms/dead-plate/index.html",
+      "thumbnail": "https://degloved.net/gms/dead-plate/img.png"
+    },
+    {
+      "name": "deadseat",
+      "url": "https://degloved.net/gms/deadseat/index.html",
+      "thumbnail": "https://degloved.net/gms/deadseat/img.png"
+    },
+    {
+      "name": "deepest sword",
+      "url": "https://degloved.net/gms/deepest-sword/index.html",
+      "thumbnail": "https://degloved.net/gms/deepest-sword/splash.jpg"
+    },
+    {
+      "name": "deltatraveler",
+      "url": "https://degloved.net/gms/deltatraveler/index.html",
+      "thumbnail": "https://degloved.net/gms/deltatraveler/img.png"
+    },
+    {
+      "name": "diceamillion",
+      "url": "https://degloved.net/gms/diceamillion/index.html",
+      "thumbnail": "https://degloved.net/gms/diceamillion/img.png"
+    },
+    {
+      "name": "do not take this cat home",
+      "url": "https://degloved.net/gms/do-not-take-this-cat-home/index.html",
+      "thumbnail": "https://degloved.net/gms/do-not-take-this-cat-home/icon.png"
+    },
+    {
+      "name": "duck off",
+      "url": "https://degloved.net/gms/duck-off/index.html",
+      "thumbnail": "https://degloved.net/gms/duck-off/index.apple-touch-icon.png"
+    },
+    {
+      "name": "dud",
+      "url": "https://degloved.net/gms/dud/index.html",
+      "thumbnail": "https://degloved.net/gms/dud/img.png"
+    },
+    {
+      "name": "endoparasitic",
+      "url": "https://degloved.net/gms/endoparasitic/index.html",
+      "thumbnail": "https://degloved.net/gms/endoparasitic/logo.png"
+    },
+    {
+      "name": "endoparasitic 2",
+      "url": "https://degloved.net/gms/endoparasitic-2/index.html",
+      "thumbnail": "https://degloved.net/gms/endoparasitic-2/logo.png"
+    },
+    {
+      "name": "Fear & Hunger",
+      "url": "https://degloved.net/gms/Fear & Hunger/index.html",
+      "thumbnail": "https://degloved.net/gms/Fear & Hunger/img.png"
+    },
+    {
+      "name": "fears to fathom",
+      "url": "https://degloved.net/gms/fears-to-fathom/index.html",
+      "thumbnail": "https://degloved.net/gms/fears-to-fathom/img.png"
+    },
+    {
+      "name": "fish",
+      "url": "https://degloved.net/gms/fish/index.html",
+      "thumbnail": "https://degloved.net/gms/fish/img.png"
+    },
+    {
+      "name": "fnaf1",
+      "url": "https://degloved.net/gms/fnaf1/index.html",
+      "thumbnail": "https://degloved.net/gms/fnaf1/download (1).jpg"
+    },
+    {
+      "name": "fnaf2",
+      "url": "https://degloved.net/gms/fnaf2/index.html",
+      "thumbnail": "https://degloved.net/gms/fnaf2/img.png"
+    },
+    {
+      "name": "football bros",
+      "url": "https://degloved.net/gms/football-bros/index.html",
+      "thumbnail": "https://degloved.net/gms/football-bros/icon.png"
+    },
+    {
+      "name": "generic fishing game",
+      "url": "https://degloved.net/gms/generic-fishing-game/index.html",
+      "thumbnail": "https://degloved.net/gms/generic-fishing-game/banner.png"
+    },
+    {
+      "name": "Geometry Dash Lite",
+      "url": "https://degloved.net/gms/Geometry Dash Lite/index.html",
+      "thumbnail": "https://degloved.net/gms/Geometry Dash Lite/img.png"
+    },
+    {
+      "name": "get yoked",
+      "url": "https://degloved.net/gms/get-yoked/index.html",
+      "thumbnail": "https://degloved.net/gms/get-yoked/get-yoked.png"
+    },
+    {
+      "name": "goblin goop",
+      "url": "https://degloved.net/gms/goblin-goop/index.html",
+      "thumbnail": "https://degloved.net/gms/goblin-goop/goblin-goop.png"
+    },
+    {
+      "name": "Granny",
+      "url": "https://degloved.net/gms/Granny/index.html",
+      "thumbnail": "https://degloved.net/gms/Granny/img.png"
+    },
+    {
+      "name": "half life",
+      "url": "https://degloved.net/gms/half life/index.html",
+      "thumbnail": "https://degloved.net/gms/half life/half-life.png"
+    },
+    {
+      "name": "hellron",
+      "url": "https://degloved.net/gms/hellron/index.html",
+      "thumbnail": "https://degloved.net/gms/hellron/logo.png"
+    },
+    {
+      "name": "helltaker",
+      "url": "https://degloved.net/gms/helltaker/index.html",
+      "thumbnail": "https://degloved.net/gms/helltaker/helltaker.png"
+    },
+    {
+      "name": "hotline miami",
+      "url": "https://degloved.net/gms/hotline-miami/index.html",
+      "thumbnail": "https://degloved.net/gms/hotline-miami/img.png"
+    },
+    {
+      "name": "house of hazards",
+      "url": "https://degloved.net/gms/house-of-hazards/index.html",
+      "thumbnail": "https://degloved.net/gms/house-of-hazards/img.png"
+    },
+    {
+      "name": "idle breakout",
+      "url": "https://degloved.net/gms/idle-breakout/index.html",
+      "thumbnail": "https://degloved.net/gms/idle-breakout/idle-breakout.png"
+    },
+    {
+      "name": "jelly drift",
+      "url": "https://degloved.net/gms/jelly-drift/index.html",
+      "thumbnail": "https://degloved.net/gms/jelly-drift/img.png"
+    },
+    {
+      "name": "Jenny",
+      "url": "https://degloved.net/gms/Jenny/index.html",
+      "thumbnail": "https://degloved.net/gms/Jenny/icon.png"
+    },
+    {
+      "name": "jetpack joyride",
+      "url": "https://degloved.net/gms/jetpack-joyride/index.html",
+      "thumbnail": "https://degloved.net/gms/jetpack-joyride/splash.jpg"
+    },
+    {
+      "name": "killover",
+      "url": "https://degloved.net/gms/killover/index.html",
+      "thumbnail": "https://degloved.net/gms/killover/img.png"
+    },
+    {
+      "name": "kindergarten 1",
+      "url": "https://degloved.net/gms/kindergarten-1/index.html",
+      "thumbnail": "https://degloved.net/gms/kindergarten-1/img.png"
+    },
+    {
+      "name": "kindergarten 2",
+      "url": "https://degloved.net/gms/kindergarten-2/index.html",
+      "thumbnail": "https://degloved.net/gms/kindergarten-2/img.png"
+    },
+    {
+      "name": "kindergarten 3",
+      "url": "https://degloved.net/gms/kindergarten-3/index.html",
+      "thumbnail": "https://degloved.net/gms/kindergarten-3/img.png"
+    },
+    {
+      "name": "lacys flash games",
+      "url": "https://degloved.net/gms/lacys-flash-games/index.html",
+      "thumbnail": "https://degloved.net/gms/lacys-flash-games/logo.png"
+    },
+    {
+      "name": "milk inside a bag of milk",
+      "url": "https://degloved.net/gms/milk-inside-a-bag-of-milk/index.html",
+      "thumbnail": "https://degloved.net/gms/milk-inside-a-bag-of-milk/milk-inside-a-bag-of-milk.png"
+    },
+    {
+      "name": "milk outside a bag of milk",
+      "url": "https://degloved.net/gms/milk-outside-a-bag-of-milk/index.html",
+      "thumbnail": "https://degloved.net/gms/milk-outside-a-bag-of-milk/milk-outside-a-bag-of-milk.png"
+    },
+    {
+      "name": "my rusty submarine",
+      "url": "https://degloved.net/gms/my-rusty-submarine/index.html",
+      "thumbnail": "https://degloved.net/gms/my-rusty-submarine/download.jpg"
+    },
+    {
+      "name": "needy streamer overload",
+      "url": "https://degloved.net/gms/needy-streamer-overload/index.html",
+      "thumbnail": "https://degloved.net/gms/needy-streamer-overload/image.png"
+    },
+    {
+      "name": "nodebuster",
+      "url": "https://degloved.net/gms/nodebuster/index.html",
+      "thumbnail": "https://degloved.net/gms/nodebuster/Nodebuster.icon.png"
+    },
+    {
+      "name": "Nubbys Number Factory (demo)",
+      "url": "https://degloved.net/gms/Nubbys-Number-Factory-(demo)/index.html",
+      "thumbnail": "https://degloved.net/gms/Nubbys-Number-Factory-(demo)/img.png"
+    },
+    {
+      "name": "oneshot",
+      "url": "https://degloved.net/gms/oneshot/index.html",
+      "thumbnail": "https://degloved.net/gms/oneshot/img.png"
+    },
+    {
+      "name": "Pet Rock Simulator",
+      "url": "https://degloved.net/gms/Pet Rock Simulator/index.html",
+      "thumbnail": "https://degloved.net/gms/Pet Rock Simulator/img.png"
+    },
+    {
+      "name": "plague inc evolved",
+      "url": "https://degloved.net/gms/plague-inc-evolved/index.html",
+      "thumbnail": "https://degloved.net/gms/plague-inc-evolved/plague-inc-evolved.png"
+    },
+    {
+      "name": "planet life",
+      "url": "https://degloved.net/gms/planet-life/index.html",
+      "thumbnail": "https://degloved.net/gms/planet-life/img.png"
+    },
+    {
+      "name": "plants vs zombies 2",
+      "url": "https://degloved.net/gms/plants-vs-zombies-2/index.html",
+      "thumbnail": "https://degloved.net/gms/plants-vs-zombies-2/plants-vs-zombies-2.png"
+    },
+    {
+      "name": "postal",
+      "url": "https://degloved.net/gms/postal/index.html",
+      "thumbnail": "https://degloved.net/gms/postal/logo.png"
+    },
+    {
+      "name": "repo",
+      "url": "https://degloved.net/gms/repo/index.html",
+      "thumbnail": "https://degloved.net/gms/repo/images.jpg"
+    },
+    {
+      "name": "retro bowl",
+      "url": "https://degloved.net/gms/retro-bowl/index.html",
+      "thumbnail": "https://degloved.net/gms/retro-bowl/retro-bowl.png"
+    },
+    {
+      "name": "retro bowl college",
+      "url": "https://degloved.net/gms/retro-bowl-college/index.html",
+      "thumbnail": "https://degloved.net/gms/retro-bowl-college/unnamed.png"
+    },
+    {
+      "name": "Shift At Midnight",
+      "url": "https://degloved.net/gms/Shift-At-Midnight/index.html",
+      "thumbnail": "https://degloved.net/gms/Shift-At-Midnight/img.png"
+    },
+    {
+      "name": "side effects",
+      "url": "https://degloved.net/gms/side-effects/index.html",
+      "thumbnail": "https://degloved.net/gms/side-effects/side-effects.png"
+    },
+    {
+      "name": "slender",
+      "url": "https://degloved.net/gms/slender/index.html",
+      "thumbnail": "https://degloved.net/gms/slender/images (2).jpg"
+    },
+    {
+      "name": "slime ranchers",
+      "url": "https://degloved.net/gms/slime-ranchers/index.html",
+      "thumbnail": "https://degloved.net/gms/slime-ranchers/img.png"
+    },
+    {
+      "name": "snow rider 3d",
+      "url": "https://degloved.net/gms/snow-rider-3d/index.html",
+      "thumbnail": "https://degloved.net/gms/snow-rider-3d/logo.png"
+    },
+    {
+      "name": "sonic.exe",
+      "url": "https://degloved.net/gms/sonic.exe/index.html",
+      "thumbnail": "https://degloved.net/gms/sonic.exe/download (7).jpg"
+    },
+    {
+      "name": "soundboard",
+      "url": "https://degloved.net/gms/soundboard/index.html",
+      "thumbnail": "https://degloved.net/gms/soundboard/button.png"
+    },
+    {
+      "name": "space funeral",
+      "url": "https://degloved.net/gms/space-funeral/index.html",
+      "thumbnail": "https://degloved.net/gms/space-funeral/img.png"
+    },
+    {
+      "name": "stick duel battle",
+      "url": "https://degloved.net/gms/stick-duel-battle/index.html",
+      "thumbnail": "https://degloved.net/gms/stick-duel-battle/512x340.jpg"
+    },
+    {
+      "name": "stickman gta",
+      "url": "https://degloved.net/gms/stickman gta/index.html",
+      "thumbnail": "https://degloved.net/gms/stickman gta/img.png"
+    },
+    {
+      "name": "tattletail",
+      "url": "https://degloved.net/gms/tattletail/index.html",
+      "thumbnail": "https://degloved.net/gms/tattletail/img.png"
+    },
+    {
+      "name": "thats not my neighbor",
+      "url": "https://degloved.net/gms/thats-not-my-neighbor/index.html",
+      "thumbnail": "https://degloved.net/gms/thats-not-my-neighbor/thats-not-my-neighbor.apple-touch-icon.png"
+    },
+    {
+      "name": "the man in the window",
+      "url": "https://degloved.net/gms/the-man-in-the-window/index.html",
+      "thumbnail": "https://degloved.net/gms/the-man-in-the-window/download (10).jpg"
+    },
+    {
+      "name": "tomb of the mask",
+      "url": "https://degloved.net/gms/tomb-of-the-mask/index.html",
+      "thumbnail": "https://degloved.net/gms/tomb-of-the-mask/img.png"
+    },
+    {
+      "name": "ultrapool",
+      "url": "https://degloved.net/gms/ultrapool/index.html",
+      "thumbnail": "https://degloved.net/gms/ultrapool/index2.apple-touch-icon.png"
+    },
+    {
+      "name": "undertale yellow",
+      "url": "https://degloved.net/gms/undertale-yellow/index.html",
+      "thumbnail": "https://degloved.net/gms/undertale-yellow/logo.png"
+    },
+    {
+      "name": "untitled goose game",
+      "url": "https://degloved.net/gms/untitled-goose-game/index.html",
+      "thumbnail": "https://degloved.net/gms/untitled-goose-game/img.png"
+    },
+    {
+      "name": "upstream",
+      "url": "https://degloved.net/gms/upstream/index.html",
+      "thumbnail": "https://degloved.net/gms/upstream/Upstream.apple-touch-icon.png"
+    },
+    {
+      "name": "web fishing",
+      "url": "https://degloved.net/gms/web-fishing/index.html",
+      "thumbnail": "https://degloved.net/gms/web-fishing/img.png"
+    },
+    {
+      "name": "yandere simulator",
+      "url": "https://degloved.net/gms/yandere-simulator/index.html",
+      "thumbnail": "https://degloved.net/gms/yandere-simulator/img.png"
+    },
+    {
+      "name": "yume nikki",
+      "url": "https://degloved.net/gms/yume-nikki/index.html",
+      "thumbnail": "https://degloved.net/gms/yume-nikki/img.png"
+    }
+  ]
+}

@@ -4333,167 +4333,265 @@ ${l}`;
                 });
         `;
           return `<!DOCTYPE html>
-            <html>
-                <head>
-                    <meta charset="utf-8" />
-                    <title>Scramjet</title>
-                    <link rel="stylesheet" href="/assets/css/font.css">
-                </head>
-                <body>
-                    <style>
-        :root {
-    --deep: #000000;
-    --shallow: rgb(10 10 10);
-    --beach: #f1e8e1;
-    --shore: #b1a8a1;
-    --accent: #ffffff;
-    --font-monospace: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-}
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Scaarmjet Failure</title>
+    <link rel="stylesheet" href="/assets/css/font.css">
+    <style>
+:root {
+            --bg-sidebar: #090a0f;
+            --bg-main: #0c0d14;
+            --bg-card: #141622;
+            --text-bright: #ffffff;
+            --text-main: #e2e4e9;
+            --text-muted: #7d8291;
+            --font-monospace: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            --font-sans: Arial, sans-serif;
+            --sidebar-width: 65px;
+        }
 
-*:not(div, p, span, ul, li, i, span) {
-    background-color: var(--deep);
-    color: var(--beach);
-    font-family: var(--font-sans);
-}
 
-textarea,
-button {
-    background-color: var(--shallow);
-    border-radius: 1em;
-    padding: 1em;
-    border: none;
-    appearance: none;
-    font-family: Arial;
-    color: var(--beach);
-}
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-button.primary {
-    background-color: var(--accent);
-    color: var(--deep);
-    font-weight: bold;
-}
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+            position: relative;
+        }
 
-textarea {
-    resize: none;
-    height: 20em;
-    text-align: left;
-    font-family: var(--font-monospace);
-}
 
-body {
-    width: 100vw;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
-}
+        .main-content {
+            flex: 1;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 2rem;
+        }
 
-body,
-html,
-#inner {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 0.5em;
-    overflow: hidden;
-}
+        #cover {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(9, 10, 15, 0.4);
+            z-index: 99;
+            pointer-events: none;
+        }
 
-#inner {
-    z-index: 100;
-}
+        #inner {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            gap: 1.5em;
+            z-index: 100;
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+        }
 
-#cover {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: color-mix(in srgb, var(--deep) 70%, transparent);
-    z-index: 99;
-}
+        #errorTitle {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-bright);
+            margin-bottom: 0.1em;
+        }
 
-#info {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 1em;
-    font-family: Arial;
-}
+        #inner > p {
+            font-size: 1.1rem;
+            color: var(--text-main);
+        }
 
-#version-wrapper {
-    width: auto;
-    text-align: right;
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    font-size: 0.8rem;
-    color: var(--shore) !important;
+        #inner b {
+            color: var(--text-bright);
+        }
 
-    i {
-        background-color: color-mix(in srgb, var(--deep), transparent 50%);
-        border-radius: 9999px;
-        padding: 0.2em 0.5em;
-    }
+        #info {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 2.5em;
+            margin-top: 1em;
+            text-align: left;
+            width: 100%;
+            justify-content: center;
+        }
 
-    z-index: 101;
-}
+        #errorTrace-wrapper {
+            position: relative;
+            flex: 1;
+            max-width: 460px;
+        }
 
-a {
-    font-family: Arial;
-    font-weight: bold;
-}
+        textarea {
+            background-color: var(--bg-card);
+            color: var(--text-main);
+            border-radius: 1em;
+            padding: 1.2em;
+            border: 1px solid #222538;
+            appearance: none;
+            width: 100%;
+            height: 21em;
+            resize: none;
+            font-family: var(--font-monospace);
+            font-size: 0.9rem;
+            line-height: 1.45;
+        }
 
-#errorTrace-wrapper {
-    position: relative;
-    width: fit-content;
-}
-#copy-button {
-    position: absolute;
-    top: 0.5em;
-    right: 0.5em;
-    padding: 0.23em;
-    cursor: pointer;
-    opacity: 0;
-    transition: opacity 0.4s;
-    font-size: 0.9em;
-}
+        #copy-button {
+            position: absolute;
+            top: 0.75em;
+            right: 0.75em;
+            background-color: var(--text-bright);
+            color: var(--bg-sidebar);
+            border-radius: 0.5em;
+            padding: 0.4em 0.8em;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            font-size: 0.85em;
+        }
 
-#errorTrace-wrapper:hover #copy-button {
-    opacity: 1;
-}
+        #errorTrace-wrapper:hover #copy-button {
+            opacity: 1;
+        }
+
+        #troubleshooting {
+            flex: 1;
+            max-width: 380px;
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+        }
+
+        #troubleshooting p {
+            font-weight: bold;
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        ul {
+            list-style-position: inside;
+            margin-bottom: 0.5em;
+        }
+
+        li {
+            margin-bottom: 0.6em;
+            color: var(--text-main);
+            font-size: 0.95rem;
+        }
+
+        a {
+            color: var(--text-bright);
+            text-decoration: underline;
+        }
+
+        button.primary#reload {
+            background-color: var(--text-bright);
+            color: var(--bg-sidebar);
+            font-weight: bold;
+            border-radius: 2em;
+            padding: 0.8em 2.8em;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: transform 0.2s, background-color 0.2s;
+            margin-top: 0.5em;
+        }
+
+        button.primary#reload:hover {
+            background-color: var(--text-muted);
+            color: var(--text-bright);
+            transform: scale(1.02);
+        }
+
+        #version-wrapper {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            z-index: 101;
+            font-family: var(--font-monospace);
+        }
+
+        #version-wrapper i {
+            font-style: normal;
+            background-color: var(--bg-sidebar);
+            border-radius: 6px;
+            padding: 0.3em 0.6em;
+            border: 1px solid #171926;
+        }
+
+        @media (max-width: 850px) {
+            #info {
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5em;
+            }
+            #errorTrace-wrapper, #troubleshooting {
+                width: 100%;
+                max-width: 100%;
+            }
+            .main-content {
+                overflow-y: auto;
+                align-items: flex-start;
+                padding-top: 4rem;
+            }
+        }
     </style>
-</body>
-<div id="cover"></div>
-<div id="inner">
-    <h1 id="errorTitle">Uh oh!</h1>
-    <p>There was an error loading <b id="fetchedURL"></b></p>
-    <!-- <p id="errorMessage">Internal Server Error</p> -->
+</head>
+<body>
+<main class="main-content">
+    <div id="cover"></div>
 
-    <div id="info">
-        <div id="errorTrace-wrapper">
-            <textarea id="errorTrace" cols="40" rows="10" readonly></textarea>
-            <button id="copy-button" class="primary">Copy</button>
+    <div id="inner">
+        <h1 id="errorTitle">Uh oh! BloxProxy Error!</h1>
+        <p>There was an error loading <b id="fetchedURL"></b></p>
+
+        <div id="info">
+            <div id="errorTrace-wrapper">
+                <textarea id="errorTrace" readonly></textarea>
+                <button id="copy-button">Copy</button>
+            </div>
+
+            <div id="troubleshooting">
+                <p>Try:</p>
+                <ul>
+                    <li>Checking your internet connection</li>
+                    <li>Verifying you entered the correct address</li>
+                    <li>Clearing the site data</li>
+                    <li>Contacting <b id="hostname"></b>'s owner</li>
+                    <li>Verify the Wisp server isn't censored</li>
+                    <li>Changing your Wisp server in the settings</li>
+                </ul>
+                
+                <p>If you're the owner of <b id="hostname"></b>, try:</p>
+                <ul>
+                    <li>Restarting your server</li>
+                    <li>Updating Scramjet</li>
+                    <li>Troubleshooting the error on the <a href="https://github.com/MercuryWorkshop/scramjet" target="_blank">GitHub repository</a></li>
+                    <li>Please note BloxProxy does not own or run Scarmjet</li>
+                </ul>
+            </div>
         </div>
-        <div id="troubleshooting">
-            <p>Try:</p>
-            <ul>
-                <li>Checking your internet connection</li>
-                <li>Verifying you entered the correct address</li>
-                <li>Clearing the site data</li>
-                <li>Contacting <b id="hostname"></b>'s owner</li>
-                <li>Verify the Wisp server isn't censored</li>
-                <li>Changing your Wisp server in the settings</li>
-            </ul>
-            <p>If you're the owner of <b id="hostname"></b>, try:</p>
-            <ul>
-                <li>Restarting your server</li>
-                <li>Updating Scramjet</li>
-                <li>Troubleshooting the error on the <a href="https://github.com/MercuryWorkshop/scramjet"
-                        target="_blank">GitHub repository</a></li>
-            </ul>
-        </div>
+
+        <button id="reload" class="primary">Reload BloxProxy</button>
     </div>
-    <br>
-    <button id="reload" class="primary">Reload</button>
 </div>
-<p id="version-wrapper"><i>Scramjet v<span id="version"></span> (build <span id="build"></span>)</i></p>
+<p id="version-wrapper"><i>Scramjet v<span id="version"></span> (build <span id="build"></span>)</i> BloxProxy (ReMake) 2.3.2</p>
                     <script src="${
                       "data:application/javascript," + encodeURIComponent(r)
                     }"></script>
