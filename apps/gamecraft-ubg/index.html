@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GameCraft UBG</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #030712;
+            --bg-surface: #0b1329;
+            --bg-card: #111c44;
+            --border-glow: #1f293d;
+            --accent-neon: #00f0ff;
+            --accent-glow: rgba(0, 240, 255, 0.4);
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --grid-line: rgba(255, 255, 255, 0.02);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .grid-overlay {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(var(--grid-line) 1px, transparent 1px), 
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .main-container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .top-nav {
+            position: absolute;
+            top: 25px;
+            right: 40px;
+            z-index: 100;
+            display: flex;
+            gap: 12px;
+        }
+
+        .nav-btn {
+            background: rgba(11, 19, 41, 0.7);
+            border: 1px solid var(--border-glow);
+            color: var(--text-secondary);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            cursor: pointer;
+            backdrop-filter: blur(8px);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-btn:hover {
+            color: var(--accent-neon);
+            border-color: var(--accent-neon);
+            box-shadow: 0 0 15px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        .scroll-wrapper {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 70px 40px 20px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .scroll-wrapper::-webkit-scrollbar {
+            width: 6px;
+        }
+        .scroll-wrapper::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .scroll-wrapper::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+        }
+        .scroll-wrapper::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 240, 255, 0.3);
+        }
+
+        .branding {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .branding h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #fff 30%, var(--accent-neon));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .branding p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .search-container {
+            width: 100%;
+            max-width: 480px;
+            margin-bottom: 50px;
+        }
+
+        .search-box {
+            background: rgba(17, 28, 68, 0.4);
+            border: 1px solid var(--border-glow);
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .search-box:focus-within {
+            border-color: var(--accent-neon);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+            background: rgba(17, 28, 68, 0.7);
+        }
+
+        .search-box input {
+            background: none;
+            border: none;
+            outline: none;
+            color: #fff;
+            font-size: 1.05rem;
+            width: 100%;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        .search-box input::placeholder {
+            color: rgba(255, 255, 255, 0.35);
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 24px;
+            width: 100%;
+            max-width: 1300px;
+            margin-bottom: 40px;
+        }
+
+        .game-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-glow);
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 1 / 1;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .game-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            border-color: var(--accent-neon);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.7), 0 0 20px rgba(0, 240, 255, 0.1);
+        }
+
+        .game-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease, opacity 0.3s;
+        }
+
+        .game-card:hover img {
+            transform: scale(1.08);
+            opacity: 0.4;
+        }
+
+        .card-tag {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(3, 7, 18, 0.85);
+            color: var(--accent-neon);
+            border: 1px solid rgba(0, 240, 255, 0.4);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            backdrop-filter: blur(4px);
+            z-index: 5;
+        }
+
+        .card-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(transparent, rgba(3, 7, 18, 0.95) 75%);
+            color: #fff;
+            padding: 40px 16px 16px 16px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 5;
+        }
+
+        .game-card:hover .card-title {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .app-footer {
+            margin-top: auto;
+            padding: 24px 0;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            width: 100%;
+            max-width: 1300px;
+        }
+
+        #viewerOverlay {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            z-index: 2000;
+            display: none;
+            flex-direction: column;
+        }
+
+        .viewer-header {
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border-glow);
+            padding: 16px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .viewer-meta h2 {
+            color: #fff;
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        .viewer-meta span {
+            color: var(--accent-neon);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            display: block;
+            margin-top: 2px;
+        }
+
+        .viewer-controls button {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border-glow);
+            color: #fff;
+            padding: 8px 16px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            margin-left: 8px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .viewer-controls button:hover {
+            background: var(--accent-neon);
+            border-color: var(--accent-neon);
+            color: #000;
+        }
+
+        #gameFrame {
+            flex-grow: 1;
+            border: none;
+            background: #000;
+        }
+
+        #infoModal {
+            position: fixed;
+            inset: 0;
+            background: rgba(3, 7, 18, 0.85);
+            backdrop-filter: blur(8px);
+            z-index: 3000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-body {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-glow);
+            padding: 35px;
+            border-radius: 24px;
+            width: 90%;
+            max-width: 450px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.3rem;
+            cursor: pointer;
+        }
+
+        .modal-close:hover {
+            color: var(--accent-neon);
+        }
+
+        .modal-title {
+            font-size: 1.6rem;
+            font-weight: 900;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
+        }
+
+        .info-row {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 14px 18px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+
+        .info-row h4 {
+            color: var(--accent-neon);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .info-row p {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .loader {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            grid-column: 1 / -1;
+            padding: 60px;
+        }
+
+        .spin-ring {
+            width: 36px;
+            height: 36px;
+            border: 3px solid rgba(0, 240, 255, 0.1);
+            border-left-color: var(--accent-neon);
+            border-radius: 50%;
+            animation: rotate 0.8s linear infinite;
+            margin-bottom: 16px;
+        }
+
+        @keyframes rotate { 100% { transform: rotate(360deg); } }
+        .loading-msg { color: var(--text-secondary); font-style: italic; font-size: 1.05rem; }
+    </style>
+</head>
+<body>
+
+    <div class="grid-overlay"></div>
+
+    <div class="main-container">
+        <div class="top-nav">
+            <button class="nav-btn" onclick="openSiteInAboutBlank()" title="Deploy Cloaked Base"><i class="fa-solid fa-up-right-from-square"></i></button>
+            <button class="nav-btn" onclick="document.getElementById('infoModal').style.display='flex'" title="System Specs"><i class="fa-solid fa-circle-info"></i></button>
+        </div>
+
+        <div class="scroll-wrapper">
+            <div class="branding">
+                <h1>GameCraft UBG</h1>
+                <p id="gameCount">Making 3000 Games</p>
+            </div>
+
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" id="dumbSearchInput" placeholder="Filter directories..." autocomplete="off">
+                </div>
+            </div>
+
+            <div id="zonesWrapper" class="games-grid">
+                <div class="loader">
+                    <div class="spin-ring"></div>
+                    <p class="loading-msg">Generating Games</p>
+                </div>
+            </div>
+
+            <footer class="app-footer">
+                GameCraft UBG
+            </footer>
+        </div>
+    </div>
+
+    <div id="viewerOverlay">
+        <div class="viewer-header">
+            <div class="viewer-meta">
+                <h2 id="zoneName">Loading...</h2>
+                <span id="zoneAuthor">Source undefined</span>
+            </div>
+            <div class="viewer-controls">
+                <button onclick="openGameInAboutBlank()"><i class="fa-solid fa-up-right-from-square"></i> Sandbox</button>
+                <button onclick="fullscreenZone()"><i class="fa-solid fa-expand"></i>Newtab</button>
+                <button onclick="closeZone()">Close</button>
+            </div>
+        </div>
+        <iframe id="gameFrame" allowfullscreen="true" sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock"></iframe>
+    </div>
+
+    <div id="infoModal">
+        <div class="modal-body">
+            <button class="modal-close" onclick="document.getElementById('infoModal').style.display='none'"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="modal-title">Information</h3>
+            
+            <div class="info-row">
+                <h4>About</h4>
+                <p>GameCraft UBG is a singlefile unblocker used to play over 4000 games! All these games are from and powerd by Bloxcraft UBG!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (async()=>{const d=document,l=localStorage,o=d.getElementById("viewerOverlay"),r=d.getElementById("gameFrame"),s=d.getElementById("dumbSearchInput"),n=d.getElementById("zonesWrapper"),i=d.getElementById("gameCount");let c=[],u=null;const m={name:"Balatro",sourceName:"Custom",author:"Local",resolvedCover:"https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/gameFiles/balatro/baltro.jpg",resolvedUrl:"https://cdn.jsdelivr.net/gh/tharun9772/game-assets@main/beta/gameFiles/svg/balatro.svg"},f=[{name:"GN Math",type:"json",json:"https://cdn.jsdelivr.net/gh/freebuisness/assets@main/zones.json",cover:"https://cdn.jsdelivr.net/gh/freebuisness/covers@main",html:"https://cdn.jsdelivr.net/gh/freebuisness/html@main"},{name:"UGS FILES",type:"combined",repos:["tharun9772/ugs-1","tharun9772/ugs-2","tharun9772/ugs-3"],icon:"https://cdn.jsdelivr.net/gh/tharun9772/game-assets@main/5968517.png"}];window.openSiteInAboutBlank=()=>{let e=window.open("about:blank","_blank"),t=e.document.body,n=e.document.createElement("iframe");t.style.margin=t.style.height="100vh",t.style.overflow="hidden",n.style.border="none",n.style.width=n.style.height="100%",n.src=window.location.href,t.appendChild(n),window.location.replace("https://classroom.google.com")},window.openGameInAboutBlank=()=>{if(!r.src||"about:blank"===r.src)return;let e=window.open("about:blank","_blank"),t=e.document.body,n=e.document.createElement("iframe");t.style.margin=t.style.height="100vh",t.style.overflow="hidden",n.style.border="none",n.style.width=n.style.height="100%",n.src=r.src,t.appendChild(n),window.closeZone()},window.closeZone=()=>{o.style.display="none",r.src="about:blank",u&&(URL.revokeObjectURL(u),u=null)},window.fullscreenZone=()=>{r.requestFullscreen?r.requestFullscreen():r.webkitRequestFullscreen?r.webkitRequestFullscreen():r.mozRequestFullScreen&&r.mozRequestFullScreen()};const h=e=>{i.textContent=`Showing ${e.length} games`,n.innerHTML="",e.length?e.forEach(t=>{const o=d.createElement("div");o.className="game-card",o.innerHTML=`<div class="card-tag">${t.sourceName}</div><img src="${t.resolvedCover}" loading="lazy" onerror="this.src='https://via.placeholder.com/200x200/111329/ffffff?text=${encodeURIComponent(t.name)}'"><div class="card-title">${t.name}</div>`,o.onclick=e=>{e.preventDefault(),window.openZone(t)},n.appendChild(o)}):n.innerHTML='<p class="loading-msg">No games found.</p>'},g=()=>{const e=s.value.toLowerCase().trim();if(""===e)return void h(c);const t=e.split(/\s+/);h(c.filter(e=>t.every(t=>`${e.name} ${e.author||""} ${e.sourceName||""}`.toLowerCase().includes(t))))};window.openZone=e=>{const t=e.resolvedUrl,s=t+(t.includes("?")?"&":"?")+"t="+Date.now();if(r.src="about:blank",d.getElementById("zoneName").textContent="Connecting to "+e.name+"...",d.getElementById("zoneAuthor").textContent="AUTHOR: "+(e.author||"UNKNOWN"),o.style.display="flex",t.startsWith("/")||t.startsWith("http")&&!t.includes("cdn.jsdelivr.net")&&!t.includes("api.github.com"))return r.src=t,void(d.getElementById("zoneName").textContent=e.name);fetch(s).then(e=>{if(!e.ok)throw Error();return e.text()}).then(s=>{u&&URL.revokeObjectURL(u);const n=`<script>window.onbeforeunload=function(){return"Staying!"};window.open=function(){return null};setInterval(function(){document.querySelectorAll('.ad, .ads, .adsbygoogle, .banner-ads, [id^="ad-"], iframe[src*="doubleclick"]').forEach(e=>e.remove())},500);<\/script>`,i=s.toLowerCase().includes("<head>")?s.replace(/<head>/i,"<head>"+n):n+s;u=URL.createObjectURL(new Blob([i],{type:"text/html;charset=utf-8"})),r.src=u,d.getElementById("zoneName").textContent=e.name}).catch(()=>{r.src=t,d.getElementById("zoneName").textContent=e.name})},s.addEventListener("input",()=>{clearTimeout(window.sT),window.sT=setTimeout(g,150)});const a=l.getItem("gamesDataCache");a&&(()=>{try{c=JSON.parse(a),h(c)}catch(e){}})();let p=[m];await Promise.all(f.map(async e=>{let t=[];try{if("json"===e.type){const s=await fetch(e.json+"?t="+Date.now()),n=await s.json();t=n.map(t=>({...t,sourceName:e.name,resolvedCover:t.cover?t.cover.replace("{COVER_URL}",e.cover).replace("{HTML_URL}",e.html):e.icon||"",resolvedUrl:t.url?t.url.replace("{HTML_URL}",e.html):""}))}else if("combined"===e.type)for(const s of e.repos){const n=await fetch(`https://api.github.com/repos/${s}/contents/`);if(n.ok){(await n.json()).forEach(n=>{"dir"!==n.type&&!n.name.endsWith(".html")||t.push({name:n.name.replace(".html",""),id:n.sha,author:s,sourceName:e.name,resolvedCover:e.icon,resolvedUrl:`https://cdn.jsdelivr.net/gh/${s}@main/${n.name}${"dir"===n.type?"/index.html":""}`})})}}}catch(s){}return t})).then(e=>{e.forEach(e=>p=p.concat(e));const t=[];const o=new Set;for(const e of p){const s=e.name+e.resolvedUrl;o.has(s)||(o.add(s),t.push(e))}c=t,l.setItem("gamesDataCache",JSON.stringify(c)),""===s.value.trim()?h(c):g()})})();
+    </script>
+</body>
+</html>
