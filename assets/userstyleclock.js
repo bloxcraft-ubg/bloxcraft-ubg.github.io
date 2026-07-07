@@ -1,3 +1,5 @@
+const weather = "https://weather-forcast.dk-ubg.workers.dev/weather/api/forecast.json?ip="
+
     let timeOffset = 0;
     let isIPTime = false;
     let currentCalendarDate = new Date();
