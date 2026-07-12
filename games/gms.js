@@ -612,26 +612,12 @@ async function loadStrongdog() {
 
 function processStrongdogData(d) {
   DATA.strongdog = dedupeGames(safeArray(d).map(g => {
-    if (!g || !g.name || !g.href) return null;
-    
-    let cleanHref = g.href;
-    if (g.page && g.page !== 1) {
-      if (cleanHref.startsWith('./')) {
-        cleanHref = './' + g.page + '/' + cleanHref.slice(2);
-      } else {
-        cleanHref = g.page + '/' + cleanHref;
-      }
-    }
-    
-    let urlParam = cleanHref;
-    if (urlParam.startsWith('./')) {
-      urlParam = urlParam.slice(2);
-    }
+    if (!g || !g.name || !g.id) return null;
     
     return {
       name: g.name,
       img: "https://winf-dictionary.dk-ubg.workers.dev/cdn/proxy/image/https://strongdog.com/img/" + (g.imgSrc || ""),
-      url: "/sail/embed/#https://strongdog.com/" + urlParam
+      url: "/sail/embed/#https://strongdog.com/learn/?id=" + g.id
     };
   }).filter(Boolean));
 }

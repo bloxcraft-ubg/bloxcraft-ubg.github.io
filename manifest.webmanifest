@@ -1,0 +1,21 @@
+{
+  "name": "Bloxcraft UBG",
+  "short_name": "Bloxcraft",
+  "description": "The Unblocked Games Site with tens of thousands of games with 2 proxies and the best features no unblocked game site has!",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#05060d",
+  "theme_color": "#5555FF",
+  "icons": [
+    {
+      "src": "/bloxcraft_transparent.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/bloxcraft_transparent.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
