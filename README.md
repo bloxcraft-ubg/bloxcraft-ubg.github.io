@@ -8,7 +8,7 @@ Many Games You Can Play!
 **Scarmjet and UV Static 2.0 Proxy**
 #### 100+ Links
 #### If You Want More Links, Checkout This Google Doc! https://docs.google.com/document/d/1UC3Eo6UoPCVlq1SiOFEj0HahQGPqqbadXSho5NKHbQU/edit?tab=t.c1jhsom4wbqs 
-
+**BTW, Most of our ported games are on [Bloxy's Playables](https://playables.bloxcraft.win)**
 Need To Request A DMCA Takdown To Us?
 https://bloxcraft-ubg.pages.dev/request-dmca/ Visit This Page For More Info On How To DO That.
 
