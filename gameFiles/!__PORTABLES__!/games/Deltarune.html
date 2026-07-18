@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>DELTARUNE</title>
+  <link rel="icon" type="image/png" href="https://cdn.jsdelivr.net/gh/ByAlvaro19/deltarune/icons/soul.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ByAlvaro19/deltarune/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bloxys-playables/assets@main/deltarune/g.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</head>
+<body>
+  <div id="main-menu-ui">
+    <div class="logo-container">
+      <img src="https://cdn.jsdelivr.net/gh/bloxys-playables/assets@main/deltarune/icon.png" alt="Logo" class="logo">
+    </div>
+
+    <div id="notice-container"></div>
+
+    <div class="menu">
+        <span class="chapter" style="color: cyan;  align-items: center; display: flex; justify-content: center;">Play @ Bloxy's Playables</span>
+        <span class="chapter" style="color: green;  align-items: center; display: flex; justify-content: center;">CHAPTERS</span>
+      <a href="javascript:loadChapter(1)" class="row">
+        <span class="chapter">CHAPTER 1</span>
+        <span class="title">The Beginning</span>
+        <img src="https://cdn.jsdelivr.net/gh/ByAlvaro19/deltarune/icons/1.png">
+      </a>
+      <a href="javascript:loadChapter(2)" class="row">
+        <span class="chapter">CHAPTER 2</span>
+        <span class="title">A Cyber's World</span>
+        <img src="https://cdn.jsdelivr.net/gh/ByAlvaro19/deltarune/icons/2.png">
+      </a>
+      <a href="javascript:loadChapter(3)" class="row">
+        <span class="chapter">CHAPTER 3</span>
+        <span class="title">Late Night</span>
+        <img src="https://cdn.jsdelivr.net/gh/ByAlvaro19/deltarune/icons/3.png">
+      </a>
+      <a href="javascript:loadChapter(4)" class="row">
+        <span class="chapter">CHAPTER 4</span>
+        <span class="title">Prophecy</span>
+        <img src="https://cdn.jsdelivr.net/gh/ByAlvaro19/deltarune/icons/4.png">
+      </a>
+      <a href="javascript:loadChapter(5)" class="row">
+        <span class="chapter">CHAPTER 5</span>
+        <span class="title">Festival Day</span>
+        <img src="https://cdn.jsdelivr.net/gh/ByAlvaro19/deltarune/icons/5.png">
+      </a>
+      <a href="javascript:alert('Chapter 6 coming soon!')" class="disabled-row">
+        <span class="chapter">CHAPTER 6</span>
+        <span class="disabled-title">--</span>
+        <img src="https://cdn.jsdelivr.net/gh/ByAlvaro19/deltarune/icons/0.png">
+      </a>
+      <a href="javascript:alert('Chapter 7 coming soon!')" class="disabled-row">
+        <span class="chapter">CHAPTER 7</span>
+        <span class="disabled-title">--</span>
+        <img src="https://cdn.jsdelivr.net/gh/ByAlvaro19/deltarune/icons/0.png">
+      </a>
+      
+      <span class="chapter" style="color: green;  align-items: center; display: flex; justify-content: center;">MAIN SYSTEM SETTINGS</span>
+      
+      <a href="javascript:toggleMobileHardware()" class="row">
+        <span class="chapter">SYSTEM</span>
+        <span class="title" id="mobile-controls-status-text">Mobile controls: OFF</span>
+        <img src="https://cdn.jsdelivr.net/gh/ByAlvaro19/deltarune/icons/mobile.png" style="opacity:1;">
+      </a>
+
+      <a href="javascript:exportSave()" class="row">
+        <span class="chapter">Export</span>
+        <span class="title">(.zip)</span>
+        <img src="https://cdn.jsdelivr.net/gh/ByAlvaro19/deltarune/icons/export.png" style="opacity:1;">
+      </a>
+      <a href="javascript:document.getElementById('importFile').click()" class="row">
+        <span class="chapter">Import</span>
+        <span class="title">(.zip)</span>
+        <img src="https://cdn.jsdelivr.net/gh/ByAlvaro19/deltarune/icons/import.png" style="opacity:1;">
+      </a>
+      <input type="file" id="importFile" accept=".zip" style="display:none" onchange="importSave(this)">
+    </div>
+    <span class="chapter" style="color: cyan;  align-items: center; display: flex; justify-content: center;">Play @ Bloxy's Playables</span>
+  </div>
+
+  <div id="loader-screen">
+      <p>Loading...</p>
+      <p>Play @ Bloxy's Playables</p>
+      </div>
+  <iframe id="game-frame"></iframe>
+
+  <div id="hud-layer">
+      <div id="dpad-group" class="touch-group draggable" data-save-id="dpad">
+          <div class="dpad-container" id="dpad-touch-zone">
+              <div id="up" class="dpad-btn">▲</div>
+              <div id="down" class="dpad-btn">▼</div>
+              <div id="left" class="dpad-btn">◀</div>
+              <div id="right" class="dpad-btn">▶</div>
+          </div>
+      </div>
+      <div id="btn-z" class="touch-group draggable" data-save-id="z-btn"><div class="btn game-btn" data-key="z">Z</div></div>
+      <div id="btn-x" class="touch-group draggable" data-save-id="x-btn"><div class="btn game-btn" data-key="x">X</div></div>
+      <div id="btn-c" class="touch-group draggable" data-save-id="c-btn"><div class="btn game-btn" data-key="c">C</div></div>
+  </div>
+
+  <div id="settings-bar">
+      <button id="settings-toggle">Mobile Settings</button>
+  </div>
+
+  <div id="settings-panel">
+      <div style="margin-bottom:15px"><label>Opacity</label><input type="range" id="opacity-slider" min="0.05" max="1" step="0.05" style="width:100%"></div>
+      <div style="margin-bottom:15px"><label>Size</label><input type="range" id="size-slider" min="0.5" max="3.0" step="0.1" style="width:100%"></div>
+      <button id="reset-pos" style="width:100%; background:#922; color:white; border:none; padding:10px; border-radius:6px;">Reset Layout</button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/gh/bloxys-playables/assets@main/deltarune/script.js"></script>
+</body>
+</html>

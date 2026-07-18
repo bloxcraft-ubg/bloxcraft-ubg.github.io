@@ -46,7 +46,6 @@ const DATA = {
   degloveed: [], 
   kruated: [], 
   pizzalite: [],
-  strongdog: [],
   maz: [],
   shuttleproxy: []
 };
@@ -151,7 +150,7 @@ async function loadLibraryExtras(cat) {
 
 async function loadBlox() {
   try {
-    const r = await fetch("/games/gms.json");
+    const r = await fetch("/games/blockers.json");
     if (!r.ok) return;
     DATA.blox = dedupeGames(safeArray(await r.json()).map(normalize).filter(Boolean));
   } catch (e) {}
@@ -588,40 +587,6 @@ async function loadPizzalite() {
   } catch (e) {}
 }
 
-async function loadStrongdog() {
-  try {
-    const module = await import("/games/data/js/strongdog.js");
-    const d = module.default;
-    processStrongdogData(d);
-  } catch (e) {
-    console.warn("Dynamic import failed, attempting text-parse fallback for strongdog.js:", e);
-    try {
-      const r = await fetch("/games/data/js/strongdog.js");
-      if (!r.ok) return;
-      let text = await r.text();
-      text = text.replace(/export\s+default\s+/, "");
-      
-      const parseJSArray = new Function(`return (${text});`);
-      const d = parseJSArray();
-      processStrongdogData(d);
-    } catch (err) {
-      console.error("Failed to load Strongdog engine via both methods:", err);
-    }
-  }
-}
-
-function processStrongdogData(d) {
-  DATA.strongdog = dedupeGames(safeArray(d).map(g => {
-    if (!g || !g.name || !g.id) return null;
-    
-    return {
-      name: g.name,
-      img: "https://winf-dictionary.dk-ubg.workers.dev/cdn/proxy/image/https://strongdog.com/img/" + (g.imgSrc || ""),
-      url: "/sail/embed/#https://strongdog.com/learn/?id=" + g.id
-    };
-  }).filter(Boolean));
-}
-
 async function loadMaz() {
   try {
     const r = await fetch("/games/data/json/the-marz-lib.json");
@@ -686,7 +651,6 @@ const LOADER_MAP = {
   degloveed: loadDegloved, 
   kruated: loadKruated, 
   pizzalite: loadPizzalite,
-  strongdog: loadStrongdog,
   maz: loadMaz,
   shuttleproxy: loadShuttleProxy
 };
@@ -999,7 +963,6 @@ function buildDynamicCategoryLayouts() {
     { id: "degloveed", name: "Degloved" }, 
     { id: "kruated", name: "Kruated Phear" }, 
     { id: "pizzalite", name: "Petezah Lite" },
-    { id: "strongdog", name: "Strongdog" },
     { id: "maz", name: "The Marz Library" },
     { id: "shuttleproxy", name: "Shuttle Math" }
   ];

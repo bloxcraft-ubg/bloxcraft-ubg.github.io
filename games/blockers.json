@@ -488,5 +488,25 @@
     "name": "Paper.io 3D (Paper io)",
     "img": "/gameFiles/paper-io-3d/icon.jpeg",
     "url": "/app-viewer/?view=/gameFiles/paper-io-3d/"
+  },
+          {
+    "name": "1v1.lol",
+    "img": "/app-viewer/?view=/gameFiles/!__PORTABLES__!/IMG/1v1.png",
+    "url": "/app-viewer/?view=/gameFiles/!__PORTABLES__!/games/1v1.lol.html"
+  },
+          {
+    "name": "Deltarune",
+    "img": "/app-viewer/?view=/gameFiles/!__PORTABLES__!/IMG/Deltarune.png",
+    "url": "/app-viewer/?view=/gameFiles/!__PORTABLES__!/games/Deltarune.html"
+  },
+          {
+    "name": "Undertale",
+    "img": "/app-viewer/?view=/gameFiles/!__PORTABLES__!/IMG/Undertale.png",
+    "url": "/app-viewer/?view=/gameFiles/!__PORTABLES__!/games/Undertale.html"
+  },
+          {
+    "name": "Undertale Yellow",
+    "img": "/app-viewer/?view=/gameFiles/!__PORTABLES__!/IMG/Undertale Yellow.png",
+    "url": "/app-viewer/?view=/gameFiles/!__PORTABLES__!/games/Undertale Yellow.html"
   }
 ]
