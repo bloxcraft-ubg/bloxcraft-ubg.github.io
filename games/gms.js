@@ -173,12 +173,12 @@ async function loadGN() {
 
 async function loadElite() {
   try {
-    const r = await fetch("https://cdn.jsdelivr.net/gh/tharuniscool/elite-gamez.github.io@main/games.json");
+    const r = await fetch("https://cdn.jsdelivr.net/gh/1234chromebook1234-creator/ww@main/games.json");
     if (!r.ok) return;
     const d = await r.json();
     DATA.elite = dedupeGames(safeArray(d).map(g => ({
       name: g.title || "Unknown",
-      img: "https://cdn.jsdelivr.net/gh/tharuniscool/elite-gamez.github.io@main/" + g.image,
+      img: "https://cdn.jsdelivr.net/gh/1234chromebook1234-creator/ww@main/" + g.image,
       url: "/app-viewer/elite-gamez?url=" + encodeURIComponent(g.url)
     })));
   } catch (e) {}
@@ -251,7 +251,7 @@ async function loadCKV() {
 
 async function loadHydra() {
   try {
-    const r = await fetch("https://cdn.jsdelivr.net/gh/tharuniscool/hydra-assets@main/gmes.json");
+    const r = await fetch("https://cdn.jsdelivr.net/gh/1234chromebook1234-creator/hh@main/gmes.json");
     if (!r.ok) return;
     const d = await r.json();
     let rawArray = Array.isArray(d) ? d : safeArray(d);
@@ -261,7 +261,7 @@ async function loadHydra() {
       if (!file) return null;
       let thumb = g.thumb || g.image || g.img || FALLBACK_IMG;
       if (thumb !== FALLBACK_IMG && !thumb.startsWith("http")) {
-        thumb = "https://cdn.jsdelivr.net/gh/tharuniscool/hydra-assets@main/" + thumb.replace(/^\/+/, "");
+        thumb = "https://cdn.jsdelivr.net/gh/1234chromebook1234-creator/hh@main/" + thumb.replace(/^\/+/, "");
       }
       return { name: g.title || g.name || "Unknown", img: thumb, url: "/app-viewer/hydra-network/?view=" + encodeURIComponent(file) };
     }).filter(Boolean));
