@@ -6,7 +6,7 @@
   },
   {
     "name": "Balatro",
-    "img": "/gameFiles/balatro/baltro.jpg",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/gameFiles/balatro/baltro.jpg",
     "url": "/app-viewer/?view=/gameFiles/balatro"
   },
   {
@@ -176,7 +176,7 @@
   },
   {
     "name": "Bloxy Maze",
-    "img": "/maze_game.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/maze_game.png",
     "url": "/app-viewer/?view=/gameFiles/maze"
   },
   {
@@ -191,7 +191,7 @@
   },
   {
     "name": "Player V.S Zombie",
-    "img": "/zombie_head.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/zombie_head.png",
     "url": "/app-viewer/?view=/gameFiles/zombie-waves"
   },
   {
@@ -201,7 +201,7 @@
   },
   {
     "name": "Magic Tiles 3",
-    "img": "/magic_tiles_assets_67.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/magic_tiles_assets_67.png",
     "url": "/app-viewer/?view=/gameFiles/magic-tiles"
   },
   {
@@ -211,12 +211,12 @@
   },
   {
     "name": "Bridge Race",
-    "img": "/1f3ae.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/1f3ae.png",
     "url": "/app-viewer/?view=/gameFiles/bridge-race"
   },
   {
     "name": "Survival Zombie Game",
-    "img": "/zombie_head.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/zombie_head.png",
     "url": "/app-viewer/?view=/gameFiles/survival-zombie-game"
   },
   {
@@ -226,17 +226,17 @@
   },
   {
     "name": "Run 1",
-    "img": "/assets_run_game.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/assets_run_game.png",
     "url": "/app-viewer/?view=/gameFiles/run-1"
   },
   {
     "name": "Run 2",
-    "img": "/assets_run_game.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/assets_run_game.png",
     "url": "/app-viewer/?view=/gameFiles/run-2"
   },
   {
     "name": "Run 3",
-    "img": "/assets_run_game.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/assets_run_game.png",
     "url": "/app-viewer/?view=/gameFiles/run-3"
   },
   {
@@ -246,7 +246,7 @@
   },
   {
     "name": "Ultimate Clicker Game",
-    "img": "/assets_curser_gameicon.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/assets_curser_gameicon.png",
     "url": "/app-viewer/?view=/gameFiles/ultimate-clicker-game"
   },
   {
@@ -256,12 +256,12 @@
   },
   {
     "name": "Basic Zombie Game",
-    "img": "/zombie_head.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/zombie_head.png",
     "url": "/app-viewer/?view=/gameFiles/basic-zombie-game"
   },
   {
     "name": "Slime.io",
-    "img": "/slime-io-game.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/slime-io-game.png",
     "url": "/app-viewer/?view=/gameFiles/slime-io"
   },
   {
@@ -276,7 +276,7 @@
   },
   {
     "name": "Brainrot (Brain Rot) Clicker",
-    "img": "/assets_curser_gameicon.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/assets_curser_gameicon.png",
     "url": "/app-viewer/?view=/gameFiles/custom-brainrot-clicker"
   },
   {
@@ -291,52 +291,52 @@
   },
   {
     "name": "Bloxytrack",
-    "img": "/yellow_car_game_assets.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/yellow_car_game_assets.png",
     "url": "/app-viewer/?view=/gameFiles/bloxytrack"
   },
   {
     "name": "Guess The Words",
-    "img": "/assets_emoji_guess.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/assets_emoji_guess.png",
     "url": "/app-viewer/?view=/gameFiles/guess-the-words"
   },
   {
     "name": "Breakout",
-    "img": "/1f3ae.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/1f3ae.png",
     "url": "/app-viewer/?view=/gameFiles/breakout-game"
   },
   {
     "name": "Connect Four",
-    "img": "/1f3ae.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/1f3ae.png",
     "url": "/app-viewer/?view=/gameFiles/connect-four"
   },
   {
     "name": "1",
-    "img": "/1f3ae.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/1f3ae.png",
     "url": "/app-viewer/?view=/gameFiles/0001"
   },
   {
     "name": "Hang Man",
-    "img": "/1f3ae.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/1f3ae.png",
     "url": "/app-viewer/?view=/gameFiles/hangman-game"
   },
   {
     "name": "Colour Memorise",
-    "img": "/1f3ae.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/1f3ae.png",
     "url": "/app-viewer/?view=/gameFiles/color-memorise"
   },
   {
     "name": "Memory Match",
-    "img": "/1f3ae.pngg",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/1f3ae.pngg",
     "url": "/app-viewer/?view=/gameFiles/memory-match"
   },
   {
     "name": "Awesome Tanks 2",
-    "img": "/1f3ae.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/1f3ae.png",
     "url": "/app-viewer/?view=/gameFiles/awesome-tanks-2"
   },
   {
     "name": "Awesome Tanks",
-    "img": "/1f3ae.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/1f3ae.png",
     "url": "/app-viewer/?view=/gameFiles/awesome-tanks"
   },
   {
@@ -346,87 +346,87 @@
   },
   {
     "name": "Word Search",
-    "img": "/1f3ae.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/1f3ae.png",
     "url": "/app-viewer/?view=/gameFiles/word-search"
   },
   {
     "name": "State.io",
-    "img": "/1f3ae.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/1f3ae.png",
     "url": "/app-viewer/?view=/gameFiles/state-io"
   },
   {
     "name": "Tiny Fishing",
-    "img": "/tiny_asset_fishing.jpeg",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/tiny_asset_fishing.jpeg",
     "url": "/app-viewer/?view=/gameFiles/tiny-fishing"
   },
   {
     "name": "Draw A Line",
-    "img": "/1f3ae.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/1f3ae.png",
     "url": "/app-viewer/?view=/gameFiles/draw-a-line"
   },
   {
     "name": "Whack A Mole",
-    "img": "/1f3ae.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/1f3ae.png",
     "url": "/app-viewer/?view=/gameFiles/whack-a-mole"
   },
   {
     "name": "Camouflage And Sniper",
-    "img": "/1f3ae.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/1f3ae.png",
     "url": "/app-viewer/?view=/gameFiles/camouflage-and-sniper"
   },
   {
     "name": "Bloxy Cookie Clicker",
-    "img": "/gamecookie_item.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/gamecookie_item.png",
     "url": "/app-viewer/?view=/gameFiles/bloxy-cookie-clicker"
   },
   {
     "name": "Square Clicker",
-    "img": "/1f3ae.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/1f3ae.png",
     "url": "/app-viewer/?view=/gameFiles/square-clicker"
   },
   {
     "name": "Moto X3M 3",
-    "img": "/1f3ae.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/1f3ae.png",
     "url": "/app-viewer/?view=/gameFiles/moto-z3m-3"
   },
   {
     "name": "Banana Clicker",
-    "img": "/gamebanana_item.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/gamebanana_item.png",
     "url": "/app-viewer/?view=/gameFiles/banana-clicker"
   },
   {
     "name": "Sandtris",
-    "img": "/1f3ae.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/1f3ae.png",
     "url": "/app-viewer/?view=/gameFiles/sandtris"
   },
   {
     "name": "Apple Clicker",
-    "img": "/apple_gameclicker_bloxcraft.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/apple_gameclicker_bloxcraft.png",
     "url": "/app-viewer/?view=/gameFiles/apple-clicker"
   },
   {
     "name": "Money Rush",
-    "img": "/1f3ae.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/1f3ae.png",
     "url": "/app-viewer/?view=/gameFiles/money-rush"
   },
   {
     "name": "Chrome Dino Game",
-    "img": "/chrome-dino-game.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/chrome-dino-game.png",
     "url": "/app-viewer/?view=/gameFiles/chrome-dino-game"
   },
   {
     "name": "Sandboxels",
-    "img": "/1f3ae.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/1f3ae.png",
     "url": "/app-viewer/?view=/gameFiles/sandboxels"
   },
   {
     "name": "Planet Clicker",
-    "img": "/planet-clicker-image.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/planet-clicker-image.png",
     "url": "/app-viewer/?view=/gameFiles/planet-clicker"
   },
   {
     "name": "Cookie Clicker",
-    "img": "/cookie-clicker-image.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/cookie-clicker-image.png",
     "url": "/app-viewer/?view=/gameFiles/cookie-clicker"
   },
   {
@@ -441,71 +441,71 @@
   },
   {
     "name": "Chocolate Clicker",
-    "img": "/chocolate_emoji.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/chocolate_emoji.png",
     "url": "/app-viewer/?view=/refined-beta/chocolate-clicker"
   },
   {
     "name": "Guess The Emoji",
-    "img": "/assets_emoji_guess.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/assets_emoji_guess.png",
     "url": "/app-viewer/?view=/refined-beta/emoji-guess-game"
   },
   {
     "name": "Guess The Logo",
-    "img": "/assets_guess_the_logo_game.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/assets_guess_the_logo_game.png",
     "url": "/app-viewer/?view=/refined-beta/guess-logo-game"
   },
   {
     "name": "Dodge The Purple Shapes",
-    "img": "/assets_game_refinedbeta_4.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/assets_game_refinedbeta_4.png",
     "url": "/app-viewer/?view=/refined-beta/dodger-game"
   },
   {
     "name": "Click Tester",
-    "img": "/assets_handcurser.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/assets_handcurser.png",
     "url": "/app-viewer/?view=/refined-beta/clicker-tester-game"
   },
   {
     "name": "Duck Duck Clicker",
-    "img": "/gameFiles/duck-duck-clicker/bloxcraft-ubg-is-ubg.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/gameFiles/duck-duck-clicker/bloxcraft-ubg-is-ubg.png",
     "url": "/app-viewer/?view=/gameFiles/duck-duck-clicker/"
   },
     {
     "name": "Baldi's Basics : Birthday bash/dash (Baldis Basic's)",
-    "img": "/gameFiles/baldi-basic-bday/bday.jpeg",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/gameFiles/baldi-basic-bday/bday.jpeg",
     "url": "/app-viewer/?view=/gameFiles/baldi-basic-bday/"
   },
       {
     "name": "Candy Clicker",
-    "img": "/gameFiles/candy-clicker/candy-clicker-icon.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/gameFiles/candy-clicker/candy-clicker-icon.png",
     "url": "/app-viewer/?view=/gameFiles/candy-clicker/"
   },
         {
     "name": "Jelly Truck",
-    "img": "/gameFiles/jelly-truck/icon.webp",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/gameFiles/jelly-truck/icon.webp",
     "url": "/app-viewer/?view=/gameFiles/jelly-truck/"
   },
         {
     "name": "Paper.io 3D (Paper io)",
-    "img": "/gameFiles/paper-io-3d/icon.jpeg",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/gameFiles/paper-io-3d/icon.jpeg",
     "url": "/app-viewer/?view=/gameFiles/paper-io-3d/"
   },
           {
     "name": "1v1.lol",
-    "img": "/app-viewer/?view=/gameFiles/!__PORTABLES__!/IMG/1v1.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/app-viewer/?view=/gameFiles/!__PORTABLES__!/IMG/1v1.png",
     "url": "/app-viewer/?view=/gameFiles/!__PORTABLES__!/games/1v1.lol.html"
   },
           {
     "name": "Deltarune",
-    "img": "/app-viewer/?view=/gameFiles/!__PORTABLES__!/IMG/Deltarune.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/app-viewer/?view=/gameFiles/!__PORTABLES__!/IMG/Deltarune.png",
     "url": "/app-viewer/?view=/gameFiles/!__PORTABLES__!/games/Deltarune.html"
   },
           {
     "name": "Undertale",
-    "img": "/app-viewer/?view=/gameFiles/!__PORTABLES__!/IMG/Undertale.png",
+    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/app-viewer/?view=/gameFiles/!__PORTABLES__!/IMG/Undertale.png",
     "url": "/app-viewer/?view=/gameFiles/!__PORTABLES__!/games/Undertale.html"
   },
           {
-    "name": "Undertale Yellow",
+    "name": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@mainUndertale Yellow",
     "img": "/app-viewer/?view=/gameFiles/!__PORTABLES__!/IMG/Undertale Yellow.png",
     "url": "/app-viewer/?view=/gameFiles/!__PORTABLES__!/games/Undertale Yellow.html"
   }
