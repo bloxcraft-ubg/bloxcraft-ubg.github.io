@@ -467,7 +467,7 @@ const CONSTANT_MAX_INT = 2147483647;
       <div id="weather-section">
         <div id="weather-loading" class="weather-state">
           <div class="weather-spinner"></div>
-          <span>Fetching forecast...</span>
+          <span>Loading Weather Details...</span>
         </div>
 
         <div id="weather-error" class="weather-state hidden">
