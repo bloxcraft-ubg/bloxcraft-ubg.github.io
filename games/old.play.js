@@ -11,7 +11,6 @@ let DATA = {
 
 let CURRENT = [];
 let FILTERED = [];
-
 let RENDERED = 0;
 let OBSERVER_SENTINEL = null;
 let OBSERVER = null;

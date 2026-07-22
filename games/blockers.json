@@ -496,17 +496,17 @@
   },
           {
     "name": "Deltarune",
-    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/app-viewer/?view=/gameFiles/!__PORTABLES__!/IMG/Deltarune.png",
+    "img": "/gameFiles/!__PORTABLES__!/IMG/Deltarune.png",
     "url": "/app-viewer/?view=/gameFiles/!__PORTABLES__!/games/Deltarune.html"
   },
           {
     "name": "Undertale",
-    "img": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@main/app-viewer/?view=/gameFiles/!__PORTABLES__!/IMG/Undertale.png",
+    "img": "/gameFiles/!__PORTABLES__!/IMG/Undertale.png",
     "url": "/app-viewer/?view=/gameFiles/!__PORTABLES__!/games/Undertale.html"
   },
           {
-    "name": "https://cdn.jsdelivr.net/gh/tharun9772/Bloxcraft-UBG@mainUndertale Yellow",
-    "img": "/app-viewer/?view=/gameFiles/!__PORTABLES__!/IMG/Undertale Yellow.png",
+    "name": "Undertale Yellow",
+    "img": "/gameFiles/!__PORTABLES__!/IMG/Undertale Yellow.png",
     "url": "/app-viewer/?view=/gameFiles/!__PORTABLES__!/games/Undertale Yellow.html"
   }
 ]
