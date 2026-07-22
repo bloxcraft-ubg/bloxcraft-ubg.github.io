@@ -440,9 +440,88 @@ const CONSTANT_MAX_INT = 2147483647;
         <input type="file" id="importSaveInput" accept=".json" style="display:none" onchange="importSiteSave(this)">
         
   <div id="widget-container">
-    
-    <div class="widget-summary" id="widget-summary-trigger">
-      
+    <div id="expanded-top-row">
+      <div id="calendar-section">
+        <div class="calendar-header">
+          <span id="calendar-month-year"></span>
+          <div>
+            <button class="calendar-nav-btn" id="prev-month">▼</button>
+            <button class="calendar-nav-btn" id="next-month">▲</button>
+          </div>
+        </div>
+        <div class="calendar-weekdays">
+          <div>SU</div><div>MO</div><div>TU</div><div>WE</div><div>TH</div><div>FR</div><div>SA</div>
+        </div>
+        <div class="calendar-days" id="calendar-days"></div>
+
+        <div id="timer-section">
+          <div class="timer-title">Activity Tracker</div>
+          <div id="timer-display">00:00:00:00</div>
+          <div class="timer-controls">
+            <button class="timer-btn" id="timer-toggle-btn">Start</button>
+            <button class="timer-btn" id="timer-reset-btn">Reset</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="weather-section">
+        <div id="weather-loading" class="weather-state">
+          <div class="weather-spinner"></div>
+          <span>Fetching forecast...</span>
+        </div>
+
+        <div id="weather-error" class="weather-state hidden">
+          <span>Unable to fetch weather data</span>
+          <button id="weather-retry-btn">Retry</button>
+        </div>
+
+        <div id="weather-content" class="hidden">
+          <div class="weather-top-bar">
+            <div class="weather-location-box">
+              <span id="weather-city">--</span>
+              <span id="weather-region">--</span>
+            </div>
+            <div id="weather-alert-badge" class="alert-badge hidden">
+              <span class="alert-pulse"></span>
+              <span id="alert-count-text">Alert</span>
+            </div>
+          </div>
+
+          <div id="weather-alerts-drawer" class="alerts-drawer hidden">
+            <div id="alerts-list"></div>
+          </div>
+
+          <div class="weather-current-banner">
+            <img id="weather-icon" src="" alt="Weather Icon" />
+            <div class="weather-temp-group">
+              <div id="weather-temp-main">--°C</div>
+              <div id="weather-condition">--</div>
+            </div>
+            <div class="weather-hl-box">
+              <div>H: <span id="weather-max-temp">--</span>°</div>
+              <div>L: <span id="weather-min-temp">--</span>°</div>
+            </div>
+          </div>
+
+          <div class="weather-stats-grid">
+            <div class="stat-item">💧 <span id="weather-humidity">--%</span></div>
+            <div class="stat-item">💨 <span id="weather-wind">-- km/h</span></div>
+            <div class="stat-item">🌧️ <span id="weather-rain-chance">--%</span></div>
+            <div class="stat-item">☀️ <span id="weather-uv">UV --</span></div>
+          </div>
+
+          <div class="hourly-header">24-Hour Forecast</div>
+          <div class="hourly-scroll-container" id="hourly-container"></div>
+
+          <div class="weather-astro-bar">
+            <span>🌅 Sunrise <strong id="weather-sunrise">--</strong></span>
+            <span>送 Sunset <strong id="weather-sunset">--</strong></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="bottom-row">
       <div class="battery-wrapper">
         <div class="battery-status">
           <div class="battery-icon-container">
@@ -453,7 +532,7 @@ const CONSTANT_MAX_INT = 2147483647;
         <div id="battery-status-text">Battery</div>
       </div>
 
-      <div class="clock-side">
+      <div class="clock-side" id="clock-trigger" title="Click clock to expand widget">
         <div class="time-wrapper">
           <span id="time-display">00:00 AM</span>
           <span id="seconds-display">00</span>
@@ -461,26 +540,11 @@ const CONSTANT_MAX_INT = 2147483647;
         <div class="details-wrapper">
           <span><span class="status-dot"></span><span id="source-tag">System</span></span>
           <span id="date-display">--- --</span>
-        </div>
-      </div>
-    </div>
-
-    <div id="calendar-section">
-      <hr class="divider">
-      <div class="calendar-header">
-        <span id="calendar-month-year"></span>
-        <div>
-          <button class="calendar-nav-btn" id="prev-month">▼</button>
-          <button class="calendar-nav-btn" id="next-month">▲</button>
-        </div>
-      </div>
-      <div class="calendar-weekdays">
-        <div>SU</div><div>MO</div><div>TU</div><div>WE</div><div>TH</div><div>FR</div><div>SA</div>
-      </div>
-      <div class="calendar-days" id="calendar-days"></div>
-  </div>
-    </div>
-      </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
 
       <div class="stats">
         <h1>Views:</h1>
