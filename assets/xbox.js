@@ -284,77 +284,48 @@
     });
   }
 
-  function simulateFullClick(target, x, y, button = 0) {
+  function simulateFastClick(target, x, y, button = 0) {
     if (!target) return;
 
-    const opts = {
-      bubbles: true,
-      cancelable: true,
-      view: window,
-      clientX: x,
-      clientY: y,
-      screenX: x,
-      screenY: y,
-      button: button,
-      buttons: button === 0 ? 1 : 2
-    };
+    const clickable = target.closest('a, button, [onclick], input, textarea, select, [role="button"]') || target;
+    const opts = { bubbles: true, cancelable: true, view: window, clientX: x, clientY: y, button: button, buttons: button === 0 ? 1 : 2 };
 
     if (button === 0) {
-      target.dispatchEvent(new PointerEvent('pointerdown', opts));
-      target.dispatchEvent(new MouseEvent('mousedown', opts));
-      target.dispatchEvent(new PointerEvent('pointerup', opts));
-      target.dispatchEvent(new MouseEvent('mouseup', opts));
-      
-      const clickableTarget = target.closest('a, button, [onclick], input, textarea, select, [role="button"]') || target;
-      clickableTarget.dispatchEvent(new MouseEvent('click', opts));
-      
-      if (typeof clickableTarget.click === 'function') {
-        clickableTarget.click();
-      }
-      
-      if (typeof target.focus === 'function') {
-        target.focus();
-      }
+      clickable.dispatchEvent(new MouseEvent('mousedown', opts));
+      clickable.dispatchEvent(new MouseEvent('mouseup', opts));
+      clickable.dispatchEvent(new MouseEvent('click', opts));
+      if (typeof clickable.focus === 'function') clickable.focus();
     } else if (button === 2) {
-      target.dispatchEvent(new PointerEvent('pointerdown', opts));
-      target.dispatchEvent(new MouseEvent('mousedown', opts));
-      target.dispatchEvent(new PointerEvent('pointerup', opts));
-      target.dispatchEvent(new MouseEvent('mouseup', opts));
-      target.dispatchEvent(new MouseEvent('contextmenu', opts));
+      clickable.dispatchEvent(new MouseEvent('mousedown', opts));
+      clickable.dispatchEvent(new MouseEvent('mouseup', opts));
+      clickable.dispatchEvent(new MouseEvent('contextmenu', opts));
     }
   }
 
   const iframeReceiverScript = `
     (function receiverInit() {
-      function simulateFullClick(target, x, y, button = 0) {
+      let cachedFrameRect = null;
+
+      function updateRect() {
+        if (window.frameElement) {
+          cachedFrameRect = window.frameElement.getBoundingClientRect();
+        }
+      }
+
+      function simulateFastClick(target, x, y, button = 0) {
         if (!target) return;
-        const opts = {
-          bubbles: true,
-          cancelable: true,
-          view: window,
-          clientX: x,
-          clientY: y,
-          screenX: x,
-          screenY: y,
-          button: button,
-          buttons: button === 0 ? 1 : 2
-        };
+        const clickable = target.closest('a, button, [onclick], input, textarea, select, [role="button"]') || target;
+        const opts = { bubbles: true, cancelable: true, view: window, clientX: x, clientY: y, button: button, buttons: button === 0 ? 1 : 2 };
 
         if (button === 0) {
-          target.dispatchEvent(new PointerEvent('pointerdown', opts));
-          target.dispatchEvent(new MouseEvent('mousedown', opts));
-          target.dispatchEvent(new PointerEvent('pointerup', opts));
-          target.dispatchEvent(new MouseEvent('mouseup', opts));
-          const clickableTarget = target.closest('a, button, [onclick], input, textarea, select, [role="button"]') || target;
-          clickableTarget.dispatchEvent(new MouseEvent('click', opts));
-          if (typeof clickableTarget.click === 'function') clickableTarget.click();
-          if (typeof target.focus === 'function') target.focus();
+          clickable.dispatchEvent(new MouseEvent('mousedown', opts));
+          clickable.dispatchEvent(new MouseEvent('mouseup', opts));
+          clickable.dispatchEvent(new MouseEvent('click', opts));
+          if (typeof clickable.focus === 'function') clickable.focus();
         } else if (button === 2) {
-          target.dispatchEvent(new PointerEvent('pointerdown', opts));
-          target.dispatchEvent(new MouseEvent('mousedown', opts));
-          target.dispatchEvent(new PointerEvent('pointerup', opts));
-          target.dispatchEvent(new MouseEvent('mouseup', opts));
-          target.dispatchEvent(new MouseEvent('contextmenu', opts));
+          clickable.dispatchEvent(new MouseEvent('mousedown', opts));
+          clickable.dispatchEvent(new MouseEvent('mouseup', opts));
+          clickable.dispatchEvent(new MouseEvent('contextmenu', opts));
         }
       }
 
@@ -396,22 +367,21 @@
         const data = event.data;
         if (!data || data.type !== 'XBOX_ACTION') return;
 
-        const frames = document.querySelectorAll('iframe');
-        frames.forEach(frame => {
-          try { frame.contentWindow?.postMessage(data, '*'); } catch (e) {}
-        });
+        if (data.action === 'LEFT_CLICK' || data.action === 'RIGHT_CLICK') {
+          if (!cachedFrameRect || data.forceRectUpdate) updateRect();
+          
+          const rect = cachedFrameRect || { left: 0, top: 0 };
+          const localX = data.x - rect.left;
+          const localY = data.y - rect.top;
 
-        const rect = window.frameElement ? window.frameElement.getBoundingClientRect() : { left: 0, top: 0 };
-        const localX = data.x - rect.left;
-        const localY = data.y - rect.top;
-        const el = document.elementFromPoint(localX, localY) || document.activeElement;
-
-        if (data.action === 'LEFT_CLICK' && el) {
-          simulateFullClick(el, localX, localY, 0);
-        } else if (data.action === 'RIGHT_CLICK' && el) {
-          simulateFullClick(el, localX, localY, 2);
+          if (localX >= 0 && localY >= 0 && localX <= window.innerWidth && localY <= window.innerHeight) {
+            const el = document.elementFromPoint(localX, localY) || document.activeElement;
+            if (el && el.tagName !== 'IFRAME') {
+              simulateFastClick(el, localX, localY, data.action === 'LEFT_CLICK' ? 0 : 2);
+            }
+          }
         } else if (data.action === 'SCROLL') {
-          window.scrollBy({ top: data.amount, behavior: 'smooth' });
+          window.scrollBy({ top: data.amount, behavior: 'auto' });
         } else if (data.action === 'TYPE') {
           const active = document.activeElement;
           if (active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active.isContentEditable)) {
@@ -424,6 +394,11 @@
         } else if (data.action === 'ESC') {
           document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', code: 'Escape', keyCode: 27, bubbles: true }));
         }
+
+        const frames = document.querySelectorAll('iframe');
+        frames.forEach(frame => {
+          try { frame.contentWindow?.postMessage(data, '*'); } catch (e) {}
+        });
       });
 
       setupRecursiveFrames(document);
@@ -470,6 +445,9 @@
   const cursorSpeed = 8;
   const buttonStates = {};
   let kbdOpen = false;
+
+  let clickTimer = null;
+  const clickSpeedMs = 10;
 
   function snapToNearestObject() {
     const selector = 'a, button, input, textarea, select, [role="button"], [tabindex], [onclick], img, div[onclick]';
@@ -547,7 +525,7 @@
     if (action === 'LEFT_CLICK' || action === 'RIGHT_CLICK') {
       let target = document.elementFromPoint(posX, posY);
       if (target && target.tagName !== 'IFRAME') {
-        simulateFullClick(target, posX, posY, action === 'LEFT_CLICK' ? 0 : 2);
+        simulateFastClick(target, posX, posY, action === 'LEFT_CLICK' ? 0 : 2);
       }
     }
   }
@@ -671,8 +649,18 @@
           snapToNearestObject();
         }
 
-        if (justPressed('btn_7', isPressed(7, gp))) {
-          broadcast('LEFT_CLICK');
+        if (isPressed(7, gp)) {
+          if (!clickTimer) {
+            broadcast('LEFT_CLICK', { forceRectUpdate: true });
+            clickTimer = setInterval(() => {
+              broadcast('LEFT_CLICK');
+            }, clickSpeedMs);
+          }
+        } else {
+          if (clickTimer) {
+            clearInterval(clickTimer);
+            clickTimer = null;
+          }
         }
 
         if (justPressed('btn_6', isPressed(6, gp))) broadcast('RIGHT_CLICK');
