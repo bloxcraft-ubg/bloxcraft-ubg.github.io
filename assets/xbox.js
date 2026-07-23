@@ -302,6 +302,49 @@
     }
   }
 
+  function handleTypeAction(targetDoc, key) {
+    const active = targetDoc.activeElement || targetDoc.querySelector('input:focus, textarea:focus, [contenteditable]:focus');
+    if (!active) return;
+
+    if (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA') {
+      const start = active.selectionStart || active.value.length;
+      const end = active.selectionEnd || active.value.length;
+
+      if (key === '⌫') {
+        if (start === end && start > 0) {
+          active.value = active.value.slice(0, start - 1) + active.value.slice(end);
+          active.setSelectionRange(start - 1, start - 1);
+        } else {
+          active.value = active.value.slice(0, start) + active.value.slice(end);
+          active.setSelectionRange(start, start);
+        }
+      } else if (key === 'Space') {
+        active.value = active.value.slice(0, start) + ' ' + active.value.slice(end);
+        active.setSelectionRange(start + 1, start + 1);
+      } else if (key === '↵') {
+        active.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', keyCode: 13, code: 'Enter', bubbles: true }));
+        active.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter', keyCode: 13, code: 'Enter', bubbles: true }));
+        active.dispatchEvent(new KeyboardEvent('keyup', { key: 'Enter', keyCode: 13, code: 'Enter', bubbles: true }));
+      } else if (key.length === 1) {
+        active.value = active.value.slice(0, start) + key + active.value.slice(end);
+        active.setSelectionRange(start + 1, start + 1);
+      }
+
+      active.dispatchEvent(new Event('input', { bubbles: true }));
+      active.dispatchEvent(new Event('change', { bubbles: true }));
+    } else if (active.isContentEditable) {
+      if (key === '⌫') {
+        targetDoc.execCommand('delete', false, null);
+      } else if (key === 'Space') {
+        targetDoc.execCommand('insertText', false, ' ');
+      } else if (key === '↵') {
+        targetDoc.execCommand('insertParagraph', false, null);
+      } else if (key.length === 1) {
+        targetDoc.execCommand('insertText', false, key);
+      }
+    }
+  }
+
   const iframeReceiverScript = `
     (function receiverInit() {
       let cachedFrameRect = null;
@@ -326,6 +369,49 @@
           clickable.dispatchEvent(new MouseEvent('mousedown', opts));
           clickable.dispatchEvent(new MouseEvent('mouseup', opts));
           clickable.dispatchEvent(new MouseEvent('contextmenu', opts));
+        }
+      }
+
+      function handleTypeAction(targetDoc, key) {
+        const active = targetDoc.activeElement || targetDoc.querySelector('input:focus, textarea:focus, [contenteditable]:focus');
+        if (!active) return;
+
+        if (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA') {
+          const start = active.selectionStart || active.value.length;
+          const end = active.selectionEnd || active.value.length;
+
+          if (key === '⌫') {
+            if (start === end && start > 0) {
+              active.value = active.value.slice(0, start - 1) + active.value.slice(end);
+              active.setSelectionRange(start - 1, start - 1);
+            } else {
+              active.value = active.value.slice(0, start) + active.value.slice(end);
+              active.setSelectionRange(start, start);
+            }
+          } else if (key === 'Space') {
+            active.value = active.value.slice(0, start) + ' ' + active.value.slice(end);
+            active.setSelectionRange(start + 1, start + 1);
+          } else if (key === '↵') {
+            active.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', keyCode: 13, code: 'Enter', bubbles: true }));
+            active.dispatchEvent(new KeyboardEvent('keypress', { key: 'Enter', keyCode: 13, code: 'Enter', bubbles: true }));
+            active.dispatchEvent(new KeyboardEvent('keyup', { key: 'Enter', keyCode: 13, code: 'Enter', bubbles: true }));
+          } else if (key.length === 1) {
+            active.value = active.value.slice(0, start) + key + active.value.slice(end);
+            active.setSelectionRange(start + 1, start + 1);
+          }
+
+          active.dispatchEvent(new Event('input', { bubbles: true }));
+          active.dispatchEvent(new Event('change', { bubbles: true }));
+        } else if (active.isContentEditable) {
+          if (key === '⌫') {
+            targetDoc.execCommand('delete', false, null);
+          } else if (key === 'Space') {
+            targetDoc.execCommand('insertText', false, ' ');
+          } else if (key === '↵') {
+            targetDoc.execCommand('insertParagraph', false, null);
+          } else if (key.length === 1) {
+            targetDoc.execCommand('insertText', false, key);
+          }
         }
       }
 
@@ -383,14 +469,7 @@
         } else if (data.action === 'SCROLL') {
           window.scrollBy({ top: data.amount, behavior: 'auto' });
         } else if (data.action === 'TYPE') {
-          const active = document.activeElement;
-          if (active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active.isContentEditable)) {
-            if (data.key === '⌫') active.value = active.value.slice(0, -1);
-            else if (data.key === 'Space') active.value += ' ';
-            else if (data.key === '↵') active.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', keyCode: 13, bubbles: true }));
-            else if (data.key.length === 1) active.value += data.key;
-            active.dispatchEvent(new Event('input', { bubbles: true }));
-          }
+          handleTypeAction(document, data.key);
         } else if (data.action === 'ESC') {
           document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', code: 'Escape', keyCode: 27, bubbles: true }));
         }
@@ -516,10 +595,15 @@
   function broadcast(action, payload = {}) {
     const msg = { type: 'XBOX_ACTION', action, x: posX, y: posY, ...payload };
     window.postMessage(msg, '*');
-    
+
     const allFrames = document.querySelectorAll('iframe');
     allFrames.forEach(frame => {
-      try { frame.contentWindow?.postMessage(msg, '*'); } catch (e) {}
+      try { 
+        if (action === 'TYPE' && frame.contentWindow) {
+          frame.contentWindow.focus();
+        }
+        frame.contentWindow?.postMessage(msg, '*'); 
+      } catch (e) {}
     });
 
     if (action === 'LEFT_CLICK' || action === 'RIGHT_CLICK') {
@@ -527,6 +611,8 @@
       if (target && target.tagName !== 'IFRAME') {
         simulateFastClick(target, posX, posY, action === 'LEFT_CLICK' ? 0 : 2);
       }
+    } else if (action === 'TYPE') {
+      handleTypeAction(document, payload.key);
     }
   }
 
