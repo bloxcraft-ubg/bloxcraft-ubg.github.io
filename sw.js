@@ -1,4 +1,5 @@
 // DEVELOPERS: Do not move this sw.js file, you will break everything if you move it to any folder!
+// Do not change CACHE_NAME Aswell it will ruin people's saves
 const CACHE_NAME = 'dynamic-everything-cache-v1';
 
 self.addEventListener('install', (event) => {
