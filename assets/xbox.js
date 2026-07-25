@@ -40,7 +40,7 @@
       filter: drop-shadow(0px 2px 6px rgba(0,0,0,0.9)) !important;
     }
 
-    #xbox-toast {
+   #xbox-toast {
       position: fixed !important;
       top: -100px !important;
       left: 50% !important;
@@ -52,7 +52,7 @@
       border-radius: 12px !important;
       border: 1px solid rgba(168, 85, 247, 0.35) !important;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9), 0 0 20px rgba(168, 85, 247, 0.25) !important;
-      z-index: 2147483647 !important;
+      z-index: 2147483644 !important;
       font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, sans-serif !important;
       font-size: 13.5px !important;
       font-weight: 600 !important;
@@ -76,7 +76,7 @@
       box-shadow: 0 0 8px rgba(168, 85, 247, 0.4) !important;
     }
 
-    #xbox-controls-modal {
+    .xbox-modal-base {
       position: fixed !important;
       top: 50% !important;
       left: 50% !important;
@@ -88,14 +88,14 @@
       border-radius: 16px !important;
       padding: 22px !important;
       box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95), 0 0 30px rgba(168, 85, 247, 0.2) !important;
-      z-index: 2147483647 !important;
+      z-index: 2147483644 !important;
       font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, sans-serif !important;
       color: #f3f4f6 !important;
       opacity: 0 !important;
       pointer-events: none !important;
       transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
     }
-    #xbox-controls-modal.open {
+    .xbox-modal-base.open {
       opacity: 1 !important;
       pointer-events: auto !important;
       transform: translate(-50%, -50%) scale(1) !important;
@@ -130,6 +130,34 @@
       box-shadow: inset 0 0 6px rgba(168, 85, 247, 0.1) !important;
     }
 
+    .dpad-settings-desc {
+      text-align: center !important;
+      font-size: 12px !important;
+      color: #9ca3af !important;
+      margin-bottom: 16px !important;
+      line-height: 1.4 !important;
+    }
+    .dpad-option-btn {
+      display: block !important;
+      width: 100% !important;
+      background: #171226 !important;
+      border: 1px solid rgba(168, 85, 247, 0.3) !important;
+      color: #f3f4f6 !important;
+      padding: 12px !important;
+      margin-bottom: 10px !important;
+      border-radius: 8px !important;
+      font-size: 14px !important;
+      font-weight: 600 !important;
+      cursor: pointer !important;
+      transition: all 0.2s ease !important;
+      text-align: center !important;
+    }
+    .dpad-option-btn:hover, .dpad-option-btn.active, .dpad-option-btn.xbox-hover {
+      background: linear-gradient(135deg, #a855f7, #6b21a8) !important;
+      box-shadow: 0 0 15px rgba(168, 85, 247, 0.4) !important;
+      border-color: #e9d5ff !important;
+    }
+
     #xbox-gboard {
       position: fixed !important;
       bottom: -350px !important;
@@ -143,7 +171,7 @@
       border-bottom: none !important;
       padding: 16px !important;
       box-shadow: 0 -15px 50px rgba(0, 0, 0, 0.9), 0 0 25px rgba(168, 85, 247, 0.15) !important;
-      z-index: 2147483646 !important;
+      z-index: 2147483643 !important;
       transition: bottom 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
       font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, sans-serif !important;
       user-select: none !important;
@@ -177,7 +205,7 @@
 
     .gboard-key.wide { flex: 1.5 !important; background: #221a38 !important; }
     .gboard-key.space { flex: 4 !important; }
-    .gboard-key.active {
+    .gboard-key.active, .gboard-key.xbox-hover {
       background: linear-gradient(135deg, #a855f7, #6b21a8) !important;
       color: #ffffff !important;
       box-shadow: 0 0 18px rgba(168, 85, 247, 0.7) !important;
@@ -186,12 +214,20 @@
     }
   `;
 
-  let cursor, keyboardContainer, toastEl, controlsModal;
-  let hasShownToast = false;
+  let cursor, keyboardContainer, toastEl, controlsModal, dpadModal;
+  let hasShownInitialConnection = false;
   let controlsOpen = false;
+  let dpadModalOpen = false;
   let kbdOpen = false;
   let isCursorVisible = false;
   let lastActiveInput = null;
+  
+  let toastTimeout = null;
+  
+  let dpadMode = localStorage.getItem('xbox_dpad_mode');
+  let bBtnHeld = false;
+  let bBtnHoldStart = 0;
+  let activeDpadKeys = {};
 
   document.addEventListener('focusin', (e) => {
     const el = e.target;
@@ -205,6 +241,11 @@
     if (controlsOpen) {
       controlsOpen = false;
       if (controlsModal) controlsModal.classList.remove('open');
+      closedAny = true;
+    }
+    if (dpadModalOpen) {
+      dpadModalOpen = false;
+      if (dpadModal) dpadModal.classList.remove('open');
       closedAny = true;
     }
     if (kbdOpen) {
@@ -243,6 +284,30 @@
     }
   }
 
+  function showToast(message, duration = 5000) {
+    if (!toastEl) return;
+    if (toastTimeout) clearTimeout(toastTimeout);
+    toastEl.innerHTML = message;
+    toastEl.classList.add('show');
+    toastTimeout = setTimeout(() => {
+      toastEl.classList.remove('show');
+    }, duration);
+  }
+
+  function saveDpadMode(mode) {
+    dpadMode = mode;
+    localStorage.setItem('xbox_dpad_mode', mode);
+    
+    if (dpadModal) {
+      dpadModal.querySelectorAll('.dpad-option-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.mode === mode);
+      });
+    }
+
+    closeMenus();
+    showToast('D-Pad settings saved successfully!', 3000);
+  }
+
   function initUI() {
     if (document.getElementById('xbox-hand-cursor')) return;
 
@@ -259,10 +324,10 @@
 
     toastEl = document.createElement('div');
     toastEl.id = 'xbox-toast';
-    toastEl.innerHTML = `🎮 Controller Connected! Press <span class="btn-badge">B</span> to see controls`;
 
     controlsModal = document.createElement('div');
     controlsModal.id = 'xbox-controls-modal';
+    controlsModal.className = 'xbox-modal-base';
     controlsModal.innerHTML = `
       <div class="xbox-modal-header">Controller Controls</div>
       <div class="xbox-control-row"><span>Move Cursor</span> <span class="xbox-key-tag">Joysticks</span></div>
@@ -271,19 +336,41 @@
       <div class="xbox-control-row"><span>Right Click</span> <span class="xbox-key-tag">LT</span></div>
       <div class="xbox-control-row"><span>Scroll Page</span> <span class="xbox-key-tag">LB / RB</span></div>
       <div class="xbox-control-row"><span>Open Keyboard</span> <span class="xbox-key-tag">Y Button</span></div>
-      <div class="xbox-control-row"><span>Navigate Keyboard</span> <span class="xbox-key-tag">D-PAD</span></div>
+      <div class="xbox-control-row"><span>Navigate Keyboard (Keyboard)</span> <span class="xbox-key-tag">D-PAD</span></div>
       <div class="xbox-control-row"><span>Type Key (Keyboard)</span> <span class="xbox-key-tag">A Button</span></div>
       <div class="xbox-control-row"><span>Toggle Fullscreen</span> <span class="xbox-key-tag">X Button</span></div>
       <div class="xbox-control-row"><span>Take Screenshot</span> <span class="xbox-key-tag">View Button</span></div>
       <div class="xbox-control-row"><span>Close Menus / ESC</span> <span class="xbox-key-tag">Menu Button</span></div>
       <div class="xbox-control-row"><span>Toggle Controls Menu</span> <span class="xbox-key-tag">B Button</span></div>
+      <div class="xbox-control-row"><span>WASD/Arrow Keys (If Enabled)</span> <span class="xbox-key-tag">D-PAD</span></div>
+      <div class="xbox-control-row"><span>Escape/Close Menu</span> <span class="xbox-key-tag">Menu Button</span></div>
+      <div class="xbox-control-row"><span>Screenshot</span> <span class="xbox-key-tag">View button</span></div>
     `;
 
-    const targetBody = document.body || document.documentElement;
-    targetBody.appendChild(cursor);
+    dpadModal = document.createElement('div');
+    dpadModal.id = 'xbox-dpad-modal';
+    dpadModal.className = 'xbox-modal-base';
+    dpadModal.innerHTML = `
+      <div class="xbox-modal-header">D-Pad Configuration</div>
+      <div class="dpad-settings-desc">What should the D-Pad control while navigating pages?<br/>(Does not affect keyboard menu)</div>
+      <button class="dpad-option-btn ${dpadMode === 'wasd' ? 'active' : ''}" data-mode="wasd">1. W A S D</button>
+      <button class="dpad-option-btn ${dpadMode === 'arrows' ? 'active' : ''}" data-mode="arrows">2. Arrow Keys</button>
+      <button class="dpad-option-btn ${dpadMode === 'none' ? 'active' : ''}" data-mode="none">3. None</button>
+    `;
+
+    const dpadButtons = dpadModal.querySelectorAll('.dpad-option-btn');
+    dpadButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        saveDpadMode(btn.dataset.mode);
+      });
+    });
+
+const targetBody = document.body || document.documentElement;
     targetBody.appendChild(keyboardContainer);
     targetBody.appendChild(toastEl);
     targetBody.appendChild(controlsModal);
+    targetBody.appendChild(dpadModal);
+    targetBody.appendChild(cursor); 
 
     window.addEventListener('mousemove', () => {
       if (isCursorVisible && cursor) {
@@ -333,7 +420,25 @@
         if (key === 'Space') keyEl.classList.add('space');
         if (rIdx === kbdRow && cIdx === kbdCol) keyEl.classList.add('active');
 
-        keyEl.textContent = displayKey;
+       keyEl.textContent = displayKey;
+
+        keyEl.addEventListener('click', () => {
+          if (key === 'Shift') {
+            isShift = !isShift;
+          } else if (key === '123') {
+            isNumbers = true;
+            kbdRow = 0; kbdCol = 0;
+          } else if (key === 'ABC') {
+            isNumbers = false;
+            kbdRow = 0; kbdCol = 0;
+          } else {
+            let char = key;
+            if (isShift && char.length === 1) char = char.toUpperCase();
+            broadcast('TYPE', { key: char });
+          }
+          renderKeyboard();
+        });
+
         rowEl.appendChild(keyEl);
       });
       keyboardContainer.appendChild(rowEl);
@@ -595,6 +700,9 @@
           handleTypeAction(document, data.key);
         } else if (data.action === 'ESC') {
           document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', code: 'Escape', keyCode: 27, bubbles: true }));
+        } else if (data.action === 'KEY_EVENT') {
+          const evType = data.state === 'down' ? 'keydown' : 'keyup';
+          document.dispatchEvent(new KeyboardEvent(evType, { key: data.key, code: data.code, bubbles: true }));
         }
 
         const frames = document.querySelectorAll('iframe');
@@ -735,12 +843,17 @@
       }
     } else if (action === 'TYPE') {
       handleTypeAction(document, payload.key);
+    } else if (action === 'KEY_EVENT') {
+      const evType = payload.state === 'down' ? 'keydown' : 'keyup';
+      document.dispatchEvent(new KeyboardEvent(evType, { key: payload.key, code: payload.code, bubbles: true }));
     }
   }
 
   function updateCursorState() {
     if (!cursor) return;
     let el = document.elementFromPoint(posX, posY);
+
+    document.querySelectorAll('.xbox-hover').forEach(node => node.classList.remove('xbox-hover'));
 
     if (el && el.tagName === 'IFRAME') {
       try {
@@ -751,6 +864,16 @@
     }
 
     if (!el) return;
+
+ const dpadBtn = el.closest('.dpad-option-btn');
+    if (dpadBtn) {
+      dpadBtn.classList.add('xbox-hover');
+    }
+
+    const kbdKey = el.closest('.gboard-key');
+    if (kbdKey) {
+      kbdKey.classList.add('xbox-hover');
+    }
 
     const isTextElement = el.tagName === 'INPUT' ||
                           el.tagName === 'TEXTAREA' ||
@@ -780,7 +903,9 @@
 
     if (up || down || left || right) renderKeyboard();
 
-    if (justPressed('k_select', isPressed(0, gp) || isPressed(7, gp))) {
+    let isHoveringKey = document.elementFromPoint(posX, posY)?.closest('.gboard-key');
+
+    if (!isHoveringKey && justPressed('k_select', isPressed(0, gp) || isPressed(7, gp))) {
       let char = currentLayout[kbdRow][kbdCol];
       if (char === 'Shift') {
         isShift = !isShift;
@@ -798,20 +923,52 @@
     }
   }
 
-  function showConnectionToast() {
-    if (hasShownToast || !toastEl) return;
-    hasShownToast = true;
-    toastEl.classList.add('show');
-    setTimeout(() => {
-      toastEl.classList.remove('show');
-    }, 5000);
+  function checkDpadKeyGameplay(btnKey, isPressedNow, keyName, keyCodeName) {
+    if (isPressedNow && !activeDpadKeys[btnKey]) {
+      activeDpadKeys[btnKey] = true;
+      broadcast('KEY_EVENT', { key: keyName, code: keyCodeName, state: 'down' });
+    } else if (!isPressedNow && activeDpadKeys[btnKey]) {
+      activeDpadKeys[btnKey] = false;
+      broadcast('KEY_EVENT', { key: keyName, code: keyCodeName, state: 'up' });
+    }
+  }
+
+  function handleDpadGameplay(gp) {
+    if (!dpadMode || dpadMode === 'none') return;
+    
+    const up = isPressed(12, gp);
+    const down = isPressed(13, gp);
+    const left = isPressed(14, gp);
+    const right = isPressed(15, gp);
+
+    const map = dpadMode === 'wasd' 
+      ? { up: ['w', 'KeyW'], down: ['s', 'KeyS'], left: ['a', 'KeyA'], right: ['d', 'KeyD'] }
+      : { up: ['ArrowUp', 'ArrowUp'], down: ['ArrowDown', 'ArrowDown'], left: ['ArrowLeft', 'ArrowLeft'], right: ['ArrowRight', 'ArrowRight'] };
+
+    checkDpadKeyGameplay('d_up_game', up, map.up[0], map.up[1]);
+    checkDpadKeyGameplay('d_down_game', down, map.down[0], map.down[1]);
+    checkDpadKeyGameplay('d_left_game', left, map.left[0], map.left[1]);
+    checkDpadKeyGameplay('d_right_game', right, map.right[0], map.right[1]);
+  }
+
+  function handleInitialConnection() {
+    if (hasShownInitialConnection) return;
+    hasShownInitialConnection = true;
+    
+    if (!dpadMode) {
+      dpadModalOpen = true;
+      if (dpadModal) dpadModal.classList.add('open');
+      showToast(`🎮 Controller Connected! Please configure your D-Pad. Press <span class="btn-badge">B</span> to see controls`);
+    } else {
+      showToast(`🎮 Controller Connected! Press <span class="btn-badge">B</span> to see controls`);
+    }
   }
 
   function gamepadLoop() {
     const gp = getActiveGamepad();
 
     if (gp) {
-      showConnectionToast();
+      handleInitialConnection();
 
       const lx = gp.axes[0] || 0;
       const ly = gp.axes[1] || 0;
@@ -840,14 +997,37 @@
 
       updateCursorState();
 
-      if (justPressed('btn_1', isPressed(1, gp))) {
-        controlsOpen = !controlsOpen;
-        if (controlsModal) controlsModal.classList.toggle('open', controlsOpen);
+      if (isPressed(1, gp)) {
+        if (!bBtnHeld) {
+          bBtnHeld = true;
+          bBtnHoldStart = performance.now();
+          showToast(`Hold <span class="btn-badge">B</span> for 2 seconds to go to D-Pad Settings`, 2000);
+        } else if (performance.now() - bBtnHoldStart >= 2000) {
+          if (!dpadModalOpen) {
+            closeMenus();
+            dpadModalOpen = true;
+            if (dpadModal) dpadModal.classList.add('open');
+            showToast('D-Pad Configuration Opened', 3000);
+            bBtnHoldStart = performance.now(); 
+          }
+        }
+      } else {
+        if (bBtnHeld) {
+          if (performance.now() - bBtnHoldStart < 2000 && !dpadModalOpen) {
+            closeMenus();
+            controlsOpen = true;
+            if (controlsModal) controlsModal.classList.add('open');
+          }
+          bBtnHeld = false;
+        }
       }
 
       if (justPressed('btn_3', isPressed(3, gp))) {
         kbdOpen = !kbdOpen;
         if (keyboardContainer) keyboardContainer.classList.toggle('open', kbdOpen);
+        if (kbdOpen) { controlsOpen = false; dpadModalOpen = false; } 
+        if (controlsModal) controlsModal.classList.remove('open');
+        if (dpadModal) dpadModal.classList.remove('open');
       }
 
       if (justPressed('btn_9', isPressed(9, gp))) {
@@ -857,29 +1037,39 @@
         }
       }
 
-      if (kbdOpen) {
+if (kbdOpen) {
         handleDpadKeyboard(gp);
+
+        if (justPressed('k_cursor_click', isPressed(0, gp) || isPressed(7, gp))) {
+          let currentTarget = document.elementFromPoint(posX, posY);
+          if (currentTarget && currentTarget.closest('.gboard-key')) {
+            simulateFastClick(currentTarget.closest('.gboard-key'), posX, posY, 0);
+          }
+        }
       } else {
+        if (!dpadModalOpen) {
+          handleDpadGameplay(gp);
+        }
+
         if (justPressed('btn_0', isPressed(0, gp))) {
-          snapToNearestObject();
+          let currentTarget = document.elementFromPoint(posX, posY);
+          if (currentTarget && currentTarget.closest('.dpad-option-btn')) {
+            simulateFastClick(currentTarget.closest('.dpad-option-btn'), posX, posY, 0);
+          } else {
+            snapToNearestObject();
+          }
         }
 
         if (isPressed(7, gp)) {
           if (!clickTimer) {
             broadcast('LEFT_CLICK', { forceRectUpdate: true });
-            clickTimer = setInterval(() => {
-              broadcast('LEFT_CLICK');
-            }, clickSpeedMs);
+            clickTimer = setInterval(() => { broadcast('LEFT_CLICK'); }, clickSpeedMs);
           }
         } else {
-          if (clickTimer) {
-            clearInterval(clickTimer);
-            clickTimer = null;
-          }
+          if (clickTimer) { clearInterval(clickTimer); clickTimer = null; }
         }
 
         if (justPressed('btn_6', isPressed(6, gp))) broadcast('RIGHT_CLICK');
-
         if (isPressed(4, gp)) broadcast('SCROLL', { amount: -110 });
         if (isPressed(5, gp)) broadcast('SCROLL', { amount: 110 });
 
@@ -891,9 +1081,7 @@
           }
         }
 
-        if (justPressed('btn_8', isPressed(8, gp))) {
-          captureScreenshot();
-        }
+        if (justPressed('btn_8', isPressed(8, gp))) captureScreenshot();
       }
     }
 

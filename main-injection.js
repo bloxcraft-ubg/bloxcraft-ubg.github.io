@@ -107,7 +107,7 @@
     
     const style = document.createElement('style');
     style.innerHTML = `
-        #custom-macro-menu {
+       #custom-macro-menu {
             position: absolute;
             background: #18181b;
             border: 1px solid #27272a;
@@ -118,7 +118,7 @@
             font-size: 13px;
             font-weight: 500;
             color: #e4e4e7;
-            z-index: 99999999;
+            z-index: 2147483646 !important; 
             display: none;
             min-width: 190px;
             user-select: none;
@@ -150,7 +150,7 @@
             padding: 2px 6px;
             font-size: 12px;
             color: #a1a1aa;
-            z-index: 100000000;
+            z-index: 2147483646 !important;
         }
         .close-btn:hover {
             color: #ffffff;
