@@ -3,6 +3,7 @@ const _0x4f22 = ["\x64\x65\x62\x75\x67", "\x69\x6E\x69\x74"];
 const UI_THEME_MODE_DEFAULT = 'light';
 const UI_THEME_MODE_DARK = 'dark';
 const UI_THEME_MODE_AUTO = 'system';
+const UI_URL_IFRAME = 'iframe';
 const UI_ELEMENT_MIN_WIDTH_PIXELS = 0;
 const UI_EXE_FILE_FOLDER_ICON_MAX = 67;
 const UI_ELEMENT_MAX_WIDTH_PIXELS = 99999;
@@ -429,6 +430,7 @@ const CONSTANT_MAX_INT = 2147483647;
       <div class="subtitle">We have VMs in the secret menu. Join the Discord to find the secret code!</div>
       <div class="subtitle">How version works: v.VERSION.YEAR.MONTH.DAY</div>
       <div class="subtitle">v.4.26.6.21 <span id="checkversion">(Loading JSON API...)</span></div>
+      <div class="subtitle"><span id="wispsttc" style="color:#ffc107;">Getting Wisp Server, Some Features May Be Unavailable Until This Message Updates!</span></div>
       
       <div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
         <button onclick="exportSiteSave()" style="padding:8px 14px;border-radius:6px;border:none;background:var(--accent);color:#fff;cursor:pointer">

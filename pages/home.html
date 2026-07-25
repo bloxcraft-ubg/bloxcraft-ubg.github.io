@@ -58,51 +58,103 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="subtitle">We have VMs in the secret menu. Join the Discord to find the secret code!</div>
       <div class="subtitle">How version works: v.VERSION.YEAR.MONTH.DAY</div>
       <div class="subtitle">v.4.26.6.21 <span id="checkversion">(Loading JSON API...)</span></div>
+      <div class="subtitle"><span id="wispsttc" style="color:#ffc107;">Getting Wisp Server, Some Features May Be Unavailable Until This Message Updates!</span></div>
       
-          <div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
-  <button onclick="exportSiteSave()" style="padding:8px 14px;border-radius:6px;border:none;background:var(--accent);color:#fff;cursor:pointer">
-    Export Site Save
-  </button>
-  <button onclick="document.getElementById('importSaveInput').click()" style="padding:8px 14px;border-radius:6px;border:none;background:var(--accent3);color:#000;cursor:pointer">
-    Import Site Save
-  </button>
-  <input type="file" id="importSaveInput" accept=".json" style="display:none" onchange="importSiteSave(this)">
-</div>
-<div class="clock-side">
-        <div class="time-wrapper">
-          <span id="time-display">00:00 AM</span>
-          <span id="seconds-display">00</span>
+      <div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
+        <button onclick="exportSiteSave()" style="padding:8px 14px;border-radius:6px;border:none;background:var(--accent);color:#fff;cursor:pointer">
+          Export Site Save
+        </button>
+        <button onclick="document.getElementById('importSaveInput').click()" style="padding:8px 14px;border-radius:6px;border:none;background:var(--accent3);color:#000;cursor:pointer">
+          Import Site Save
+        </button>
+        <input type="file" id="importSaveInput" accept=".json" style="display:none" onchange="importSiteSave(this)">
+        
+  <div id="widget-container">
+    <div id="expanded-top-row">
+      <div id="calendar-section">
+        <div class="calendar-header">
+          <span id="calendar-month-year"></span>
+          <div>
+            <button class="calendar-nav-btn" id="prev-month">▼</button>
+            <button class="calendar-nav-btn" id="next-month">▲</button>
+          </div>
         </div>
-        <div class="details-wrapper">
-          <span><span class="status-dot"></span><span id="source-tag">System</span></span>
-          <span id="date-display">--- --</span>
+        <div class="calendar-weekdays">
+          <div>SU</div><div>MO</div><div>TU</div><div>WE</div><div>TH</div><div>FR</div><div>SA</div>
+        </div>
+        <div class="calendar-days" id="calendar-days"></div>
+
+        <div id="timer-section">
+          <div class="timer-title">Activity Tracker</div>
+          <div id="timer-display">00:00:00:00</div>
+          <div class="timer-controls">
+            <button class="timer-btn" id="timer-toggle-btn">Start</button>
+            <button class="timer-btn" id="timer-reset-btn">Reset</button>
+          </div>
         </div>
       </div>
-<div class="stats">
-      <h1>Views:</h1>
-      <a href="https://www.hitwebcounter.com/" target="_blank" rel="noopener">
-        <img
-          src="https://hitwebcounter.com/counter/counter.php?page=21379887&style=0010&nbdigits=11&type=page&initCount=0"
-          alt="Page Views Counter"
-        >
-      </a>
 
-      <h1>Unique Visitors:</h1>
-      <a href="https://www.hitwebcounter.com/" target="_blank" rel="noopener">
-        <img
-          src="https://hitwebcounter.com/counter/counter.php?page=21458567&style=0010&nbdigits=11&type=ip&initCount=0"
-          alt="Unique Visitors Counter"
-        >
-      </a>
-      <h2>By using this site, you agree to the <a href="/terms" target="_blank" >Terms Of Service</a> and <a href="/privacy-policy" target="_blank">Privacy Policy</a></h2>
+      <div id="weather-section">
+        <div id="weather-loading" class="weather-state">
+          <div class="weather-spinner"></div>
+          <span>Loading Weather Details...</span>
+        </div>
+
+        <div id="weather-error" class="weather-state hidden">
+          <span>Unable to fetch weather data</span>
+          <button id="weather-retry-btn">Retry</button>
+        </div>
+
+        <div id="weather-content" class="hidden">
+          <div class="weather-top-bar">
+            <div class="weather-location-box">
+              <span id="weather-city">--</span>
+              <span id="weather-region">--</span>
+            </div>
+            <div id="weather-alert-badge" class="alert-badge hidden">
+              <span class="alert-pulse"></span>
+              <span id="alert-count-text">Alert</span>
+            </div>
+          </div>
+
+          <div id="weather-alerts-drawer" class="alerts-drawer hidden">
+            <div id="alerts-list"></div>
+          </div>
+
+          <div class="weather-current-banner">
+            <img id="weather-icon" src="" alt="Weather Icon" />
+            <div class="weather-temp-group">
+              <div id="weather-temp-main">--°C</div>
+              <div id="weather-condition">--</div>
+            </div>
+            <div class="weather-hl-box">
+              <div>H: <span id="weather-max-temp">--</span>°</div>
+              <div>L: <span id="weather-min-temp">--</span>°</div>
+            </div>
+          </div>
+
+          <div class="weather-stats-grid">
+            <div class="stat-item">💧 <span id="weather-humidity">--%</span></div>
+            <div class="stat-item">💨 <span id="weather-wind">-- km/h</span></div>
+            <div class="stat-item">🌧️ <span id="weather-rain-chance">--%</span></div>
+            <div class="stat-item">☀️ <span id="weather-uv">UV --</span></div>
+          </div>
+
+          <div class="hourly-header">24-Hour Forecast</div>
+          <div class="hourly-scroll-container" id="hourly-container"></div>
+
+          <div class="weather-astro-bar">
+            <span>🌅 Sunrise <strong id="weather-sunrise">--</strong></span>
+            <span>送 Sunset <strong id="weather-sunset">--</strong></span>
+          </div>
+        </div>
+      </div>
     </div>
-    </div>
-</div>
-</div>
 
 <script src="/script-home-page.js"></script>
 <script src="/main-injection.js"></script>
 <script src="/assets-homepage.js"></script>
 <script src="/assets/userstyleclock.js"></script>
+<script src="/assets/ws.js"></script>
 </body>
 </html>
