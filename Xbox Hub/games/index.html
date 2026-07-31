@@ -38,34 +38,92 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script src="/Xbox Hub/games/direcr.js"></script>
 <script src="/games/gms.js"></script>
 <script src="/main-injection.js"></script>
-<script>
-  (function() {
-    function rewriteLinks() {
-        document.querySelectorAll('a[href], [data-url]').forEach(el => {
-            const href = el.getAttribute('href');
-            const dataUrl = el.getAttribute('data-url');
-            
-            if (href && !href.startsWith('/Xbox Hub/inject?=') && !href.startsWith('http') && !href.startsWith('#') && !href.startsWith('javascript:')) {
-                const cleanHref = href.startsWith('/') ? href.substring(1) : href;
-                el.setAttribute('href', '/Xbox Hub/inject?=' + cleanHref);
-            }
-            
-            if (dataUrl && !dataUrl.startsWith('/Xbox Hub/inject?=') && !dataUrl.startsWith('http')) {
-                const cleanDataUrl = dataUrl.startsWith('/') ? dataUrl.substring(1) : dataUrl;
-                el.setAttribute('data-url', '/Xbox Hub/inject?=' + cleanDataUrl);
+<script src="/assets/xbox.js"></script>
+  <script>
+(function() {
+    const selector = 'a[href], [data-url], button, input, .card, .cat, .game-card';
+
+    function findElementsInShadow(root, selector, list = []) {
+        if (!root) return list;
+        
+        root.querySelectorAll(selector).forEach(el => list.push(el));
+        
+        root.querySelectorAll('*').forEach(el => {
+            if (el.shadowRoot) {
+                findElementsInShadow(el.shadowRoot, selector, list);
             }
         });
+        
+        return list;
     }
 
-    const observer = new MutationObserver(() => {
-        rewriteLinks();
-    });
+    setInterval(() => {
+        const allElements = findElementsInShadow(document, selector);
+        allElements.forEach(el => {
+            if (!el.classList.contains('focusable')) {
+                el.classList.add('focusable');
+            }
+        });
+    }, 100);
 
-    window.addEventListener('DOMContentLoaded', () => {
-        rewriteLinks();
-        observer.observe(document.body, { childList: true, subtree: true });
+    document.addEventListener('click', function(ev) {
+        const path = ev.composedPath();
+        let el = null;
+
+        for (let targetNode of path) {
+            if (targetNode.nodeType === Node.ELEMENT_NODE && targetNode.matches(selector)) {
+                el = targetNode;
+                break;
+            }
+        }
+
+        if (!el) return;
+
+        if (el.classList.contains('game-card') || el.classList.contains('card')) {
+            const internalPlayBtn = el.querySelector('.play-btn, a');
+            if (internalPlayBtn && internalPlayBtn !== el) {
+                ev.preventDefault();
+                ev.stopPropagation();
+                internalPlayBtn.click();
+                return;
+            }
+        }
+
+        let href = el.getAttribute('href');
+        if (href && !href.startsWith('/Xbox Hub/inject?=/') && !href.startsWith('http') && !href.startsWith('#') && !href.startsWith('javascript:')) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            const cleanHref = href.startsWith('/') ? href.substring(1) : href;
+            window.location.href = '/Xbox Hub/inject?=/' + cleanHref;
+            return;
+        }
+
+        let dataUrl = el.getAttribute('data-url');
+        if (dataUrl && !dataUrl.startsWith('/Xbox Hub/inject?=/') && !dataUrl.startsWith('http')) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            const cleanDataUrl = dataUrl.startsWith('/') ? dataUrl.substring(1) : dataUrl;
+            window.location.href = '/Xbox Hub/inject?=/' + cleanDataUrl;
+            return;
+        }
+    }, true);
+
+    Object.defineProperty(HTMLAnchorElement.prototype, 'href', {
+        get: function() {
+            return this.getAttribute('href');
+        },
+        set: function(val) {
+            if (val && !val.startsWith('/Xbox Hub/inject?=/') && !val.startsWith('http') && !val.startsWith('#') && !val.startsWith('javascript:')) {
+                const cleanHref = val.startsWith('/') ? val.substring(1) : val;
+                this.setAttribute('href', '/Xbox Hub/inject?=/' + cleanHref);
+            } else {
+                this.setAttribute('href', val);
+            }
+        },
+        configurable: true
     });
 })();
-</script>
+
+  </script>
 </body>
 </html>

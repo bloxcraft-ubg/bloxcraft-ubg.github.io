@@ -1,6 +1,6 @@
 (function() {
 const _0x4f22 = ["\x64\x65\x62\x75\x67", "\x69\x6E\x69\x74"];
-const UI_THEME_MODE_DEFAULT = 'light'; 
+const UI_THEME_MODE_DEFAULT = 'light';
 const UI_THEME_MODE_DARK = 'dark';
 const UI_THEME_MODE_AUTO = 'system';
 const UI_ELEMENT_MIN_WIDTH_PIXELS = 0;
@@ -363,107 +363,235 @@ const CONSTANT_MAX_INT = 2147483647;
     }
     
 const startupContent = `
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NQM8XR48"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-`;
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NQM8XR48"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    `;
 
-const appContent = `
-  <div class="topbar">
-
-
-  <div class="topbar header">
-    <div class="header-left" style="display: flex; align-items: center; gap: 12px;">
-        <div class="xbox-logo" style="width: 32px; height: 32px;">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="#107C10">
-                <path d="M433.9 382.2C478.2 436.5 498.6 481 488.3 500.9C480.4 516 431.6 545.5 395.7 556.8C366.1 566.1 327.3 570.1 295.3 567C257.1 563.3 218.4 549.6 185.2 528C157.3 509.8 151 502.3 151 487.4C151 457.5 183.9 405.1 240.2 345.3C272.2 311.4 316.7 271.6 321.6 272.7C331 274.8 405.9 347.8 433.9 382.2zM252.6 207.8C222.9 180.9 194.5 153.9 166.2 144.4C151 139.3 149.9 139.6 137.5 152.5C108.3 182.9 84 232.2 77.2 274.9C71.8 309.1 71.1 318.7 73 335.4C78.6 385.9 90.3 420.8 113.5 456.3C123 470.9 125.6 473.6 122.8 466.2C118.6 455.2 122.5 428.7 132.3 402.2C146.6 363.2 186.2 289.3 252.6 207.8zM564.2 271.3C547.3 191.3 496.7 141 489.6 141C482.3 141 465.4 147.5 453.6 154.9C430.3 169.4 412.6 186.3 389.3 207.7C431.7 261 491.5 347.1 512.2 410C519 430.7 521.9 451.1 519.6 462.3C517.9 470.8 517.9 470.8 521 466.9C527.1 459.2 540.9 435.6 546.4 423.4C553.8 407.2 561.4 383.2 565 364.7C569.3 342.2 568.9 293.9 564.2 271.3zM205.3 107C253 104.5 315 141.5 319.6 142.4C320.3 142.5 330 138.2 341.2 132.7C405.1 101.6 435.2 106.9 448.6 107.5C384.7 68.2 295.9 57.5 214.7 95.8C191.3 106.9 190.7 107.7 205.3 107z"/>
-            </svg>
+    const appContent = `
+      <div class="topbar header" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 30px; background: #081a0b; border-bottom: 1px solid #102e13;">
+        <div class="header-left" style="display: flex; align-items: center; gap: 12px;">
+            <div class="xbox-logo" style="width: 32px; height: 32px;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="#107C10">
+                    <path d="M433.9 382.2C478.2 436.5 498.6 481 488.3 500.9C480.4 516 431.6 545.5 395.7 556.8C366.1 566.1 327.3 570.1 295.3 567C257.1 563.3 218.4 549.6 185.2 528C157.3 509.8 151 502.3 151 487.4C151 457.5 183.9 405.1 240.2 345.3C272.2 311.4 316.7 271.6 321.6 272.7C331 274.8 405.9 347.8 433.9 382.2zM252.6 207.8C222.9 180.9 194.5 153.9 166.2 144.4C151 139.3 149.9 139.6 137.5 152.5C108.3 182.9 84 232.2 77.2 274.9C71.8 309.1 71.1 318.7 73 335.4C78.6 385.9 90.3 420.8 113.5 456.3C123 470.9 125.6 473.6 122.8 466.2C118.6 455.2 122.5 428.7 132.3 402.2C146.6 363.2 186.2 289.3 252.6 207.8zM564.2 271.3C547.3 191.3 496.7 141 489.6 141C482.3 141 465.4 147.5 453.6 154.9C430.3 169.4 412.6 186.3 389.3 207.7C431.7 261 491.5 347.1 512.2 410C519 430.7 521.9 451.1 519.6 462.3C517.9 470.8 517.9 470.8 521 466.9C527.1 459.2 540.9 435.6 546.4 423.4C553.8 407.2 561.4 383.2 565 364.7C569.3 342.2 568.9 293.9 564.2 271.3zM205.3 107C253 104.5 315 141.5 319.6 142.4C320.3 142.5 330 138.2 341.2 132.7C405.1 101.6 435.2 106.9 448.6 107.5C384.7 68.2 295.9 57.5 214.7 95.8C191.3 106.9 190.7 107.7 205.3 107z"/>
+                </svg>
+            </div>
+            <div class="logo" style="font-size: 1.15rem; font-weight: 700; color: #fff;">Xbox Hub: Games</div>
         </div>
-        <div class="logo" style="font-size: 1.15rem; font-weight: 700; color: #fff; text-shadow: none;">Xbox Hub: Games</div>
-    </div>
-    
-    <div class="header-right" style="display: flex; align-items: center; gap: 16px;">
-    <input id="search" class="search" placeholder="Search...">
-        <span id="count" style="color: #a0a0a0; font-weight: 600;">0 Games</span>
-        <a href="/Xbox Hub/" class="back-btn focusable" style="background: transparent; border: 1.5px solid #107C10; color: white; display: flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 4px; text-decoration: none; font-weight: 600; cursor: pointer;">
-            <svg class="back-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="16" height="16" fill="currentColor">
-                <path d="M73.4 297.4C60.9 309.9 60.9 330.2 73.4 342.7L233.4 502.7C245.9 515.2 266.2 515.2 278.7 502.7C291.2 490.2 291.2 469.9 278.7 457.4L173.3 352L544 352C561.7 352 576 337.7 576 320C576 302.3 561.7 288 544 288L173.3 288L278.7 182.6C291.2 170.1 291.2 149.8 278.7 137.3C266.2 124.8 245.9 124.8 233.4 137.3L73.4 297.3z"/>
-            </svg>
-            <span>Xbox Hub</span>
-         </a>
-     </div>
-  </div>
-</div>
-
-  <div class="navigation-wrapper">
-    <div class="category-row">
-      <div class="row-label">Game Libraries</div>
-      <div class="categories" id="librariesContainer"></div>
-    </div>
-    
-    <div class="category-row">
-      <div class="row-label">Topics</div>
-      <div class="categories" id="topicsContainer"></div>
-    </div>
-  </div>
-
-  <div class="sections">
-    <section class="section" id="topicsSection" style="display: none;">
-      <button class="section-header" type="button" data-target="topicsGridWrap" aria-expanded="true">
-        <span class="section-title-text">Selected Topic</span>
-        <span class="section-arrow">›</span>
-      </button>
-      <div class="section-body" id="topicsGridWrap">
-        <div id="topicsGrid" class="grid"></div>
+        <input id="search" class="search focusable" placeholder="Search games...">
+        <div class="header-right" style="display: flex; align-items: center; gap: 16px;">
+            <div id="count" class="count" style="color: #a0a0a0; font-weight: 600;">0 Games</div>
+            <a href="#" onclick="location.href='/Xbox Hub/'; return false;" class="back-btn focusable" style="background: transparent; border: 1.5px solid #107C10; color: white; display: flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 4px; text-decoration: none; font-weight: 600;">
+                <svg class="back-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="16" height="16" fill="currentColor">
+                    <path d="M73.4 297.4C60.9 309.9 60.9 330.2 73.4 342.7L233.4 502.7C245.9 515.2 266.2 515.2 278.7 502.7C291.2 490.2 291.2 469.9 278.7 457.4L173.3 352L544 352C561.7 352 576 337.7 576 320C576 302.3 561.7 288 544 288L173.3 288L278.7 182.6C291.2 170.1 291.2 149.8 278.7 137.3C266.2 124.8 245.9 124.8 233.4 137.3L73.4 297.3z"/>
+                </svg>
+                <span>Xbox Hub</span>
+            </a>
+        </div>
       </div>
-    </section>
 
-    <section class="section" id="favoritesRecentSection" style="display: none;">
-      <button class="section-header" type="button" data-target="favoritesRecentGridWrap" aria-expanded="true">
-        <span class="section-title-text">Favorites & Recently Played</span>
-        <span class="section-arrow">›</span>
-      </button>
-      <div class="section-body" id="favoritesRecentGridWrap">
-        <div id="favoritesRecentGrid" class="grid"></div>
+      <div class="navigation-wrapper">
+        <div class="category-row">
+          <div class="row-label">Game Libraries</div>
+          <div class="categories" id="librariesContainer"></div>
+        </div>
+        
+        <div class="category-row">
+          <div class="row-label">Topics</div>
+          <div class="categories" id="topicsContainer"></div>
+        </div>
       </div>
-    </section>
 
-    <section class="section" id="featuredSection">
-      <button class="section-header" type="button" data-target="featuredGridWrap" aria-expanded="true">
-        <span class="section-title-text">Popular Games</span>
-        <span class="section-arrow">›</span>
-      </button>
-      <div class="section-body" id="featuredGridWrap">
-        <div id="featuredGrid" class="grid"></div>
-      </div>
-    </section>
+      <div class="sections">
+        <section class="section" id="topicsSection" style="display: none;">
+          <button class="section-header focusable" type="button" data-target="topicsGridWrap" aria-expanded="true">
+            <span class="section-title-text">Selected Topic</span>
+            <span class="section-arrow">›</span>
+          </button>
+          <div class="section-body" id="topicsGridWrap">
+            <div id="topicsGrid" class="grid"></div>
+          </div>
+        </section>
 
-    <section class="section" id="recommendedSection">
-      <button class="section-header" type="button" data-target="recommendedGridWrap" aria-expanded="true">
-        <span class="section-title-text">Recommended Games</span>
-        <span class="section-arrow">›</span>
-      </button>
-      <div class="section-body" id="recommendedGridWrap">
-        <div id="recommendedGrid" class="grid"></div>
-      </div>
-    </section>
+        <section class="section" id="favoritesRecentSection" style="display: none;">
+          <button class="section-header focusable" type="button" data-target="favoritesRecentGridWrap" aria-expanded="true">
+            <span class="section-title-text">Favorites & Recently Played</span>
+            <span class="section-arrow">›</span>
+          </button>
+          <div class="section-body" id="favoritesRecentGridWrap">
+            <div id="favoritesRecentGrid" class="grid"></div>
+          </div>
+        </section>
 
-    <section class="section" id="allSection">
-      <button class="section-header" type="button" data-target="gridWrap" aria-expanded="true">
-        <span class="section-title-text">All Games</span>
-        <span class="section-arrow">›</span>
-      </button>
-      <div class="section-body" id="gridWrap">
-        <div id="grid" class="grid"></div>
+        <section class="section" id="featuredSection">
+          <button class="section-header focusable" type="button" data-target="featuredGridWrap" aria-expanded="true">
+            <span class="section-title-text">Popular Games</span>
+            <span class="section-arrow">›</span>
+          </button>
+          <div class="section-body" id="featuredGridWrap">
+            <div id="featuredGrid" class="grid"></div>
+          </div>
+        </section>
+
+        <section class="section" id="recommendedSection">
+          <button class="section-header focusable" type="button" data-target="recommendedGridWrap" aria-expanded="true">
+            <span class="section-title-text">Recommended Games</span>
+            <span class="section-arrow">›</span>
+          </button>
+          <div class="section-body" id="recommendedGridWrap">
+            <div id="recommendedGrid" class="grid"></div>
+          </div>
+        </section>
+
+        <section class="section" id="allSection">
+          <button class="section-header focusable" type="button" data-target="gridWrap" aria-expanded="true">
+            <span class="section-title-text">All Games</span>
+            <span class="section-arrow">›</span>
+          </button>
+          <div class="section-body" id="gridWrap">
+            <div id="grid" class="grid"></div>
+          </div>
+        </section>
       </div>
-    </section>
-  </div>
-`;
-    const uiContent = startupContent + "\n\n" + appContent;
+    `;
+
+const uiContent = startupContent + "\n\n" + appContent;
 
     const self = document.currentScript;
     if (self) {
         self.insertAdjacentHTML('beforebegin', uiContent);
     }
+
+    function processElements() {
+        document.querySelectorAll('a[href], [data-url], button, input, .card, .cat, .game-card').forEach(el => {
+            if (!el.classList.contains('focusable')) {
+                el.classList.add('focusable');
+            }
+            
+            const href = el.getAttribute('href');
+            if (href && !href.startsWith('/Xbox Hub/inject?=') && !href.startsWith('http') && !href.startsWith('#') && !href.startsWith('javascript:')) {
+                const cleanHref = href.startsWith('/') ? href.substring(1) : href;
+                el.setAttribute('href', '/Xbox Hub/inject?=' + cleanHref);
+            }
+
+            const dataUrl = el.getAttribute('data-url');
+            if (dataUrl && !dataUrl.startsWith('/Xbox Hub/inject?=') && !dataUrl.startsWith('http')) {
+                const cleanDataUrl = dataUrl.startsWith('/') ? dataUrl.substring(1) : dataUrl;
+                el.setAttribute('data-url', '/Xbox Hub/inject?=' + cleanDataUrl);
+            }
+        });
+    }
+
+    let currentFocusIndex = 0;
+    function getFocusables() {
+        return Array.from(document.querySelectorAll('.focusable')).filter(el => {
+            const rect = el.getBoundingClientRect();
+            return rect.width > 0 && rect.height > 0 && window.getComputedStyle(el).display !== 'none' && window.getComputedStyle(el).visibility !== 'hidden';
+        });
+    }
+
+    function updateFocus(index) {
+        const focusables = getFocusables();
+        if (focusables.length === 0) return;
+        
+        if (index < 0) index = focusables.length - 1;
+        if (index >= focusables.length) index = 0;
+        
+        currentFocusIndex = index;
+        focusables.forEach((el, idx) => {
+            if (idx === currentFocusIndex) {
+                el.classList.add('focused');
+                el.focus();
+                el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+            } else {
+                el.classList.remove('focused');
+            }
+        });
+    }
+
+    window.addEventListener('keydown', (e) => {
+        const focusables = getFocusables();
+        if (focusables.length === 0) return;
+
+        let activeEl = document.activeElement;
+        let currentIndex = focusables.indexOf(activeEl);
+        if (currentIndex === -1) currentIndex = currentFocusIndex;
+
+        if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(e.key)) {
+            e.preventDefault();
+            if (e.key === 'ArrowRight' || e.key === 'Tab') {
+                currentIndex++;
+            } else if (e.key === 'ArrowLeft' || (e.key === 'Tab' && e.shiftKey)) {
+                currentIndex--;
+            } else if (e.key === 'ArrowDown') {
+                currentIndex += Math.min(4, focusables.length - currentIndex);
+            } else if (e.key === 'ArrowUp') {
+                currentIndex -= Math.min(4, currentIndex);
+            }
+            updateFocus(currentIndex);
+        } else if (e.key === 'Enter' || e.key === ' ') {
+            if (activeEl && focusables.includes(activeEl)) {
+                if (activeEl.tagName === 'INPUT') return;
+                e.preventDefault();
+                activeEl.click();
+            }
+        }
+    });
+
+    let lastGamepadState = {};
+    function pollGamepads() {
+        const gamepads = navigator.getGamepads ? navigator.getGamepads() : [];
+        for (let gp of gamepads) {
+            if (!gp) continue;
+            
+            const aButtonPressed = gp.buttons[0] && gp.buttons[0].pressed;
+            const dpadUp = gp.buttons[12] && gp.buttons[12].pressed;
+            const dpadDown = gp.buttons[13] && gp.buttons[13].pressed;
+            const dpadLeft = gp.buttons[14] && gp.buttons[14].pressed;
+            const dpadRight = gp.buttons[15] && gp.buttons[15].pressed;
+            
+            const gpId = gp.index;
+            if (!lastGamepadState[gpId]) lastGamepadState[gpId] = { a: false, up: false, down: false, left: false, right: false };
+
+            let focusables = getFocusables();
+            let activeEl = document.activeElement;
+            let idx = focusables.indexOf(activeEl);
+            if (idx === -1) idx = currentFocusIndex;
+
+            if (dpadRight && !lastGamepadState[gpId].right) {
+                updateFocus(idx + 1);
+            } else if (dpadLeft && !lastGamepadState[gpId].left) {
+                updateFocus(idx - 1);
+            } else if (dpadDown && !lastGamepadState[gpId].down) {
+                updateFocus(Math.min(focusables.length - 1, idx + 4));
+            } else if (dpadUp && !lastGamepadState[gpId].up) {
+                updateFocus(Math.max(0, idx - 4));
+            }
+
+            if (aButtonPressed && !lastGamepadState[gpId].a) {
+                if (activeEl && focusables.includes(activeEl) && activeEl.tagName !== 'INPUT') {
+                    activeEl.click();
+                }
+            }
+
+            lastGamepadState[gpId].a = aButtonPressed;
+            lastGamepadState[gpId].up = dpadUp;
+            lastGamepadState[gpId].down = dpadDown;
+            lastGamepadState[gpId].left = dpadLeft;
+            lastGamepadState[gpId].right = dpadRight;
+        }
+        requestAnimationFrame(pollGamepads);
+    }
+
+    const observer = new MutationObserver(() => {
+        processElements();
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+        processElements();
+        observer.observe(document.body, { childList: true, subtree: true });
+        setTimeout(() => updateFocus(0), 500);
+        requestAnimationFrame(pollGamepads);
+    });
 
 console.log("<--Bloxcraft UBG--->");
     console.log("The one game site with 8000+ Games!");

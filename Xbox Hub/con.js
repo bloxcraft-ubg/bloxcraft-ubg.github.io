@@ -129,7 +129,7 @@
                 </div>
 
                 <div class="controls-section">
-                    <h3>Xbox Hub, Games</h3>
+                    <h3>Xbox Hubs</h3>
                     <div class="controls-grid">
                         <div class="control-row"><span>Navigate:</span> <span class="key-badge">Left Stick / D-Pad</span></div>
                         <div class="control-row"><span>Select:</span> <span class="key-badge">A Button</span></div>
