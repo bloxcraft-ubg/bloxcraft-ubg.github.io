@@ -27,6 +27,7 @@
           }
 
           processedHtml = htmlText;
+          viewerFrame.sandbox = "allow-scripts allow-forms allow-popups allow-pointer-lock";
           viewerFrame.srcdoc = htmlText;
         } catch (e) {
           console.error(e);

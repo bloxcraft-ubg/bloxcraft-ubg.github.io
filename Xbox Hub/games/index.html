@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Bloxcraft UBG - Games</title>
+    <meta name="description" content="The Unblocked Games Site For You To Play!">
+<meta property="og:title" content="Bloxcraft UBG Games">
+<meta property="og:type" content="article">
+<meta property="og:url" content="/">
+<meta property="og:site_name" content="Bloxcraft UBG">
+<meta property="og:image" content="/gamepage_banner.png" />
+<meta name="theme-color" content="#5555FF"> 
+<meta property="og:description" content="The Unblocked Games Site You Can Play Everyday! It Also has Some Custom Games.">
+  <link id="favicon" rel="shortcut icon" type="image/png" href="/bloxcraft.png">
+  <link rel="stylesheet" href="/Xbox Hub/games/play.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-W0KXN0103E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-W0KXN0103E');
+</script>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NQM8XR48');</script>
+
+
+</head>
+
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NQM8XR48"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript><h1>Please Enable javascript</h1></noscript>
+<script src="/Xbox Hub/games/direcr.js"></script>
+<script src="/games/gms.js"></script>
+<script src="/main-injection.js"></script>
+<script>
+  (function() {
+    function rewriteLinks() {
+        document.querySelectorAll('a[href], [data-url]').forEach(el => {
+            const href = el.getAttribute('href');
+            const dataUrl = el.getAttribute('data-url');
+            
+            if (href && !href.startsWith('/Xbox Hub/inject?=') && !href.startsWith('http') && !href.startsWith('#') && !href.startsWith('javascript:')) {
+                const cleanHref = href.startsWith('/') ? href.substring(1) : href;
+                el.setAttribute('href', '/Xbox Hub/inject?=' + cleanHref);
+            }
+            
+            if (dataUrl && !dataUrl.startsWith('/Xbox Hub/inject?=') && !dataUrl.startsWith('http')) {
+                const cleanDataUrl = dataUrl.startsWith('/') ? dataUrl.substring(1) : dataUrl;
+                el.setAttribute('data-url', '/Xbox Hub/inject?=' + cleanDataUrl);
+            }
+        });
+    }
+
+    const observer = new MutationObserver(() => {
+        rewriteLinks();
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+        rewriteLinks();
+        observer.observe(document.body, { childList: true, subtree: true });
+    });
+})();
+</script>
+</body>
+</html>

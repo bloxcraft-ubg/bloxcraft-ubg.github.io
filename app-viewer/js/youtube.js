@@ -25,23 +25,10 @@ if (!view) {
       const fullUrl = game.url;
       viewerTitle.textContent = game.name;
 
-      fetch(fullUrl)
-        .then(r => r.text())
-        .then(html => {
-          viewerFrame.srcdoc = html;
-        });
+      viewerFrame.src = fullUrl;
 
-      openNewTab.onclick = async () => {
-        try {
-          const html = await fetch(fullUrl).then(r => r.text());
-          const tab = window.open("about:blank");
-          if (tab) {
-            tab.document.write(html);
-            tab.document.close();
-          }
-        } catch (e) {
-          console.error("Popup blocker or link generation failure encountered:", e);
-        }
+      openNewTab.onclick = () => {
+        window.open(fullUrl, "_blank", "noopener,noreferrer");
       };
 
     })
