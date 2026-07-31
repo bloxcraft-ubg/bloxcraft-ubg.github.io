@@ -1,0 +1,117 @@
+ body {
+            background: radial-gradient(circle at top left, #0e2b10 0%, #000000 80%);
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 40px 60px;
+            overflow-x: hidden;
+            user-select: none;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .xbox-logo {
+            width: 40px;
+            height: 40px;
+            background: #107C10;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .header-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .back-btn {
+            background: transparent;
+            border: 3px solid transparent;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .back-btn img,
+        .back-btn svg {
+            height: 24px;
+            width: auto;
+        }
+
+        .category-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            font-weight: 500;
+            color: #eaeaea;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 15px;
+            padding-bottom: 40px;
+        }
+
+        .card {
+            background: #1a1a1a;
+            border-radius: 4px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 3px solid transparent;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            cursor: pointer;
+        }
+
+.card img,
+.card svg {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    background: #2a2a2a;
+    fill: white;
+    box-sizing: border-box;
+    padding: 20px; 
+}
+
+        .card-title {
+            padding: 12px;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            background: #222;
+        }
+
+        .focusable.focused {
+            border-color: #107C10;
+            transform: scale(1.06);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            z-index: 10;
+        }
+
+        .er-m {
+            color: #aaa;
+            font-style: italic;
+        }

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <!-- 
+    Monochrome White Edition - Production File
+    The reflection glint is subtracted from the knob geometry so it remains perfectly legible on dark/colored backgrounds.
+  -->
+  <g id="joystick-white">
+    <!-- Center Shaft/Stick -->
+    <rect x="187" y="130" width="26" height="70" rx="4" fill="#ffffff" />
+    
+    <!-- Base Platform -->
+    <rect x="107" y="190" width="186" height="64" rx="24" fill="#ffffff" />
+
+    <!-- Top Ball/Knob with Cutout Reflection -->
+    <path d="M 200,50 
+             A 50,50 0 1,1 199.9,50 
+             Z 
+             M 187,73 
+             A 10,10 0 1,0 187.1,73 
+             Z" 
+          fill="#ffffff" 
+          fill-rule="evenodd" />
+  </g>
+</svg>
