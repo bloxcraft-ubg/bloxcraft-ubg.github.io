@@ -1,6 +1,6 @@
 // Bloxcraft UBG - Ultimate Game Stash Games Backup
 // This may not be the latest
-// This Is NOT the one for the old repos like tharun972/ugs-1, tha....
+// This Is NOT the one for the old repos like tharun972/ugs-1, tharun9772...
 // LAST GAME IS dungeons and degenerate gamble
 let files = [
   "cl1",
