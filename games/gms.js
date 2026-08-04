@@ -47,7 +47,8 @@ const DATA = {
   kruated: [], 
   pizzalite: [],
   maz: [],
-  shuttleproxy: []
+  shuttleproxy: [],
+  bloxypl: []
 };
 
 const FEATURED = JSON.parse(JSON.stringify(DATA));
@@ -623,6 +624,114 @@ async function loadShuttleProxy() {
   } catch (e) {}
 }
 
+async function loadBloxyPL() {
+  function sanitizeRawJsonString(str) {
+    if (!str) return "";
+    let cleaned = str
+      .replace(/\/\/.*$/gm, '')
+      .replace(/\/\*[\s\S]*?\*\//g, '')
+      .replace(/[\u201C\u201D]/g, '"')
+      .replace(/[\u2018\u2019]/g, "'")
+      .replace(/,\s*([\]}])/g, '$1')
+      .replace(/["']\s*["']/g, '"')
+      .trim();
+
+    if (cleaned.startsWith('[') && !cleaned.endsWith(']')) {
+      const lastObj = cleaned.lastIndexOf('}');
+      if (lastObj !== -1) {
+        cleaned = cleaned.substring(0, lastObj + 1) + ']';
+      } else {
+        cleaned += ']';
+      }
+    }
+    return cleaned;
+  }
+
+  function sanitizeUrlComponent(str) {
+    if (!str) return '';
+    return String(str).replace(/["']/g, '').trim();
+  }
+
+  async function fetchAndParseJson(url) {
+    try {
+      const res = await fetch(url);
+      if (!res.ok) return [];
+
+      const rawText = await res.text();
+      const sanitizedText = sanitizeRawJsonString(rawText);
+
+      try {
+        const parsed = JSON.parse(sanitizedText);
+        return typeof safeArray === "function" ? safeArray(parsed) : (Array.isArray(parsed) ? parsed : []);
+      } catch (parseError) {
+        const objectMatches = sanitizedText.match(/\{[\s\S]*?\}/g);
+        if (objectMatches) {
+          const recovered = [];
+          for (const rawObj of objectMatches) {
+            try {
+              recovered.push(JSON.parse(rawObj));
+            } catch (e) {
+              const nameMatch = rawObj.match(/"name"\s*:\s*"([^"]+)"/i);
+              if (nameMatch) recovered.push({ name: nameMatch[1] });
+            }
+          }
+          return recovered;
+        }
+        return [];
+      }
+    } catch (e) {
+      return [];
+    }
+  }
+
+  try {
+    const [htmlData, emuData, swfData] = await Promise.all([
+      fetchAndParseJson("https://cdn.jsdelivr.net/gh/bloxys-playables/html-files@main/cdn-data/g.json"),
+      fetchAndParseJson("https://cdn.jsdelivr.net/gh/bloxys-playables/emulator-files@main/cdn-data/g.json"),
+      fetchAndParseJson("https://cdn.jsdelivr.net/gh/bloxys-playables/ruffle-files@main/cdn-data/g.json")
+    ]);
+
+    const processCategory = (data, defaultImg, hashType) => {
+      const list = typeof safeArray === "function" ? safeArray(data) : (Array.isArray(data) ? data : []);
+      return list.map(g => {
+        if (!g || !g.name) return null;
+        
+        const cleanName = sanitizeUrlComponent(g.name);
+        if (!cleanName) return null;
+
+        return {
+          name: cleanName,
+          img: g.img || defaultImg,
+          url: `/app-viewer/bloxy-plays/#${hashType}?name=` + encodeURIComponent(cleanName)
+        };
+      }).filter(Boolean);
+    };
+
+    const htmlGames = processCategory(
+      htmlData,
+      "https://cdn.jsdelivr.net/gh/bloxys-playables/html-files@main/cdn-data/html.png",
+      "html"
+    );
+
+    const emuGames = processCategory(
+      emuData,
+      "https://cdn.jsdelivr.net/gh/bloxys-playables/emulator-files@main/cdn-data/emu.png",
+      "emu"
+    );
+
+    const swfGames = processCategory(
+      swfData,
+      "https://cdn.jsdelivr.net/gh/bloxys-playables/ruffle-files@main/cdn-data/swf.png",
+      "swf"
+    );
+
+    const allGames = [...htmlGames, ...emuGames, ...swfGames];
+    DATA.bloxypl = typeof dedupeGames === "function" ? dedupeGames(allGames) : allGames;
+  } catch (e) {
+    console.error("Error loading BloxyPL:", e);
+  }
+}
+
 const LOADER_MAP = {
   blox: loadBlox, 
   gn: loadGN, 
@@ -652,7 +761,8 @@ const LOADER_MAP = {
   kruated: loadKruated, 
   pizzalite: loadPizzalite,
   maz: loadMaz,
-  shuttleproxy: loadShuttleProxy
+  shuttleproxy: loadShuttleProxy,
+  bloxypl: loadBloxyPL
 };
 
 const CATEGORY_KEYS = Object.keys(DATA);
@@ -964,7 +1074,8 @@ function buildDynamicCategoryLayouts() {
     { id: "kruated", name: "Kruated Phear" }, 
     { id: "pizzalite", name: "Petezah Lite" },
     { id: "maz", name: "The Marz Library" },
-    { id: "shuttleproxy", name: "Shuttle Math" }
+    { id: "shuttleproxy", name: "Shuttle Math" },
+    { id: "bloxypl", name: "Bloxy's Playables" }
   ];
 
   libraryKeys.forEach(lib => {
