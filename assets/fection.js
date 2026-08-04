@@ -429,7 +429,7 @@ const CONSTANT_MAX_INT = 2147483647;
       <div class="subtitle">We have hundreds and thousands of games you can play every day!</div>
       <div class="subtitle">We have VMs in the secret menu. Join the Discord to find the secret code!</div>
       <div class="subtitle">How version works: v.VERSION.YEAR.MONTH.DAY</div>
-      <div class="subtitle">v.4.26.6.21 <span id="checkversion">(Loading JSON API...)</span></div>
+      <div class="subtitle">v.4.26.8.6 <span id="checkversion">(Loading JSON API...)</span></div>
       <div class="subtitle"><span id="wispsttc" style="color:#ffc107;">Getting Wisp Server, Some Features May Be Unavailable Until This Message Updates!</span></div>
       
       <div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
