@@ -21,7 +21,7 @@ window.loadGames = function() {
                     card.dataset.url = "/Xbox Hub/inject?=" + game.url;
                     
                     card.innerHTML = `
-                        <img src="${game.img}" alt="${game.name}" onerror="this.src='https://via.placeholder.com/150/2a2a2a/FFFFFF?text=Image+Missing'">
+                        <img src="${game.img}" alt="${game.name}" onerror="this.src='https://via.placeholder.com/150/2a2a2a/FFFFFF?text=${game.name}'">
                         <div class="card-title">${game.name}</div>
                     `;
                     grid.appendChild(card);
