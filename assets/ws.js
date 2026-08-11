@@ -2,6 +2,7 @@
 
     const status = document.getElementById("wispsttc");
 
+    // Please do not update thie with too many wisp servers, not as good thing for chromebooks to check all of them at once
 
     const primaryServers = [
         "wss://pgis-wisp.onrender.com/",
@@ -10,7 +11,11 @@
         "wss://pgis-wisp-4.onrender.com/",
         "wss://wisp.mercurywork.shop/",
         "wss://bare-server.fly.dev/wisp/",
-        "wss://homework--spmspy0800.replit.app/wisp/"
+        "wss://homework--spmspy0800.replit.app/wisp/",
+        "wss://onyxv1.ai.studio/wisp/",
+        "wss://reverse.myapl.org/wisp/",
+        "wss://inkmath.adijaya.id/wisp/"
+        
     ];
 
 
