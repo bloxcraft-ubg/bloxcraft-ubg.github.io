@@ -368,6 +368,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 `;
 
 const appContent = `
+
+<div id="loader">
+  <div class="loader-content">
+     <img src="/bloxcraft_transparent.png" style="width: 200px; height: 200px;">
+    <p>&nbsp;</p>
+    <div class="spinner"></div>
+    <div id="hint">Loading...</div>
+  </div>
+</div>
+
   <div class="topbar">
     <div class="logo">Bloxcraft UBG</div>
     <input id="search" class="search" placeholder="Search...">
