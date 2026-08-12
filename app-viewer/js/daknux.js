@@ -1,5 +1,5 @@
     const params = new URLSearchParams(window.location.search);
-    const rawId = params.get("gn-id") || params.get("id");
+    const rawId = params.get("g-id") || params.get("id");
     const id = rawId ? rawId.replace(/^"+|"+$/g, "").trim() : null;
 
     const viewerFrame = document.getElementById("viewerFrame");
