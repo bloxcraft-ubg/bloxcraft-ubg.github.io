@@ -529,7 +529,7 @@ async function loadYoutube() {
 
 async function loadSolo() {
   try {
-    const r = await fetch("https://stromg-quests.dk-ubg.workers.dev/g.json");
+    const r = await fetch("https://stromg-quests.dk-ubg.workers.dev/gg.json");
     if (!r.ok) return;
     const d = await r.json();
     DATA.solo = dedupeGames(safeArray(d).map(g => {
@@ -1083,7 +1083,6 @@ function buildDynamicCategoryLayouts() {
     { id: "velera", name: "Velera" }, 
     { id: "frogies", name: "Frogie's Arcade" }, 
     { id: "ubg42", name: "UBG42" },
-    { id: "epicway", name: "Epicway" }, 
     { id: "noahh", name: "Noah's Tutoring Hub" }, 
     { id: "youtube", name: "YouTube Playables" },
     { id: "solo", name: "Solo Central" },
