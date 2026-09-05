@@ -3,7 +3,7 @@
 
 if (localStorage.getItem('cstcurser') !== '1') {
         const initCursor = () => {
-            if (document.getElementById('stable-custom-cursor')) return;
+            if (document.getElementById('stable-custom-cursorr')) return;
 
             const styleTag = document.createElement('style');
             styleTag.type = 'text/css';
@@ -39,7 +39,7 @@ if (localStorage.getItem('cstcurser') !== '1') {
                         z-index: 2147483647;
                         top: 0;
                         left: 0;
-                        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAACYktHRAD/h4/MvwAAAAlwSFlzAAAAyAAAAMgAY/rnrQAAAAd0SU1FB+kCCBYRCAdC74UAAAABb3JOVAHPoneaAAABZklEQVRIx+2UzStEURjGn8ud4V5jGI2PxsIUSRY+srCQbGRtYzGiNAssFZONspLNZGfrT2BpISULO1EimQYpabIwTdN05iaPt5sapNwz6/uc9ft73s+Dlx517Djq6nESTbARQA30pE4OOcY0y4XMNKIIaSOc91FC3gbLpcwsWgUR1EKUOegCvhDzaNNEVAAuQmUXNBHfAeC6PuInAEzpIn4DwGUqlU26iACMKgDgIpVzl5Ch2qitCgDusHiKTlmt4L85/A3YZPEMcURQpwkwZSvXuMfix80KujQBFlf5IDMoXL4eXCyhFzGENUoY4TVLz7fbqQkMoR/d0oEILC9NzM9I+BTzzO0nxzEgznHxjkoDLZgexpjfeuMRC3zaxTD6pO52cQ5JcFDcDS+r2HyfyKXP59y0Y2hBgzTOlB00vF6TLUEdUnFMTjmMeq++FQUk3ZCENrpp6/5HIkM8TcGY+t6+fPmq6BN/TtK7Vg0NbAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyNS0wMi0wOFQyMjoxNzowOCswMDozMNE987QAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjUtMDItOSVUMjI6MTc6MDcrMDA6MDBWKDvhAAAAKHRFWHRkYXRlOnRpbWVzdGFtcAAyMDI1LTAyLTA4TDIyOjE3OjA4KzAwOjAw93Vq1wAAAABJRU5ErkJggg==');                        background-size: contain;
+                        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAACYktHRAD/h4/MvwAAAAlwSFlzAAAAyAAAAMgAY/rnrQAAAAd0SU1FB+kCCBYRCAdC74UAAAABb3JOVAHPoneaAAABZklEQVRIx+2UzStEURjGn8ud4V5jGI2PxsIUSRY+srCQbGRtYzGiNAssFZONspLNZGfrT2BpISULO1EimQYpabIwTdN05iaPt5sapNwz6/uc9ft73s+Dlx517Djq6nESTbARQA30pE4OOcY0y4XMNKIIaSOc91FC3gbLpcwsWgUR1EKUOegCvhDzaNNEVAAuQmUXNBHfAeC6PuInAEzpIn4DwGUqlU26iACMKgDgIpVzl5Ch2qitCgDusHiKTlmt4L85/A3YZPEMcURQpwkwZSvXuMfix80KujQBFlf5IDMoXL4eXCyhFzGENUoY4TVLz7fbqQkMoR/d0oEILC9NzM9I+BTzzO0nxzEgznHxjkoDLZgexpjfeuMRC3zaxTD6pO52cQ5JcFDcDS+r2HyfyKXP59y0Y2hBgzTOlB00vF6TLUEdUnFMTjmMeq++FQUk3ZCENrpp6/5HIkM8TcGY+t6+fPmq6BN/TtK7Vg0NbAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyNS0wMi0wOFQyMjoxNzowOCswMDozMNE987QAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjUtMDItOSVUMjI6MTc6MDcrMDA6MDBWKDvhAAAAKHRFWHRkYXRlOnRpbWVzdGFtcAAyMDI1LTAyLTA4TDIyOjE3OjA4KzAwOjAw93Vq1wAAAABJRU5ErkJggg==');
                         background-repeat: no-repeat;
                         transform-origin: top left;
                         will-change: transform;
@@ -53,10 +53,10 @@ if (localStorage.getItem('cstcurser') !== '1') {
             `;
             document.head.appendChild(styleTag);
 
-            const cursor = document.createElement('div');
-            cursor.id = 'stable-custom-cursorr';
-            cursor.className = 'custom-cursorr';
-            document.body.appendChild(cursor);
+            const cursorr = document.createElement('div');
+            cursorr.id = 'stable-custom-cursorr';
+            cursorr.className = 'custom-cursorr';
+            document.body.appendChild(cursorr);
 
             let mouseX = -100;
             let mouseY = -100;
@@ -64,58 +64,72 @@ if (localStorage.getItem('cstcurser') !== '1') {
             let isVisible = false;
             let isOverIframe = false;
 
-            const updateCursorVisibility = () => {
+            const updateCursorrVisibility = () => {
                 if (!isDesktop || isOverIframe || !isVisible) {
-                    cursor.style.opacity = '0';
+                    cursorr.style.opacity = '0';
                 } else {
-                    cursor.style.opacity = '1';
+                    cursorr.style.opacity = '1';
                 }
             };
 
             window.addEventListener('resize', () => {
                 isDesktop = window.innerWidth >= 769;
-                cursor.style.display = isDesktop ? 'block' : 'none';
+                cursorr.style.display = isDesktop ? 'block' : 'none';
             });
 
             if (isDesktop) {
-                cursor.style.display = 'block';
+                cursorr.style.display = 'block';
             }
 
             window.addEventListener('mousemove', (e) => {
                 if (!isDesktop) return;
+
+                if (e.clientX < 0 || e.clientY < 0 || e.clientX > window.innerWidth || e.clientY > window.innerHeight) {
+                    isVisible = false;
+                    updateCursorrVisibility();
+                    return;
+                }
+
                 mouseX = e.clientX;
                 mouseY = e.clientY;
                 if (!isVisible) {
                     isVisible = true;
                 }
-                updateCursorVisibility();
-                cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)${cursor.classList.contains('active') ? ' scale(1.3)' : ''}`;
+                updateCursorrVisibility();
+                cursorr.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)${cursorr.classList.contains('active') ? ' scale(1.3)' : ''}`;
             }, { passive: true });
 
             document.addEventListener('mousedown', () => {
                 if (!isDesktop || isOverIframe) return;
-                cursor.classList.add('active');
-                cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) scale(1.3)`;
+                cursorr.classList.add('active');
+                cursorr.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) scale(1.3)`;
             });
 
             document.addEventListener('mouseup', () => {
                 if (!isDesktop || isOverIframe) return;
-                cursor.classList.remove('active');
-                cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+                cursorr.classList.remove('active');
+                cursorr.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
             });
 
             document.addEventListener('mouseleave', () => {
                 isVisible = false;
-                updateCursorVisibility();
+                updateCursorrVisibility();
             });
 
             document.addEventListener('mouseenter', (e) => {
                 if (!isDesktop) return;
+
+                if (e.clientX < 0 || e.clientY < 0 || e.clientX > window.innerWidth || e.clientY > window.innerHeight) {
+                    isVisible = false;
+                    updateCursorrVisibility();
+                    return;
+                }
+
                 mouseX = e.clientX;
                 mouseY = e.clientY;
                 isVisible = true;
-                updateCursorVisibility();
-                cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+                updateCursorrVisibility();
+                cursorr.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
             }, { passive: true });
 
             const trackIframes = () => {
@@ -125,12 +139,12 @@ if (localStorage.getItem('cstcurser') !== '1') {
 
                     iframe.addEventListener('mouseenter', () => {
                         isOverIframe = true;
-                        updateCursorVisibility();
+                        updateCursorrVisibility();
                     });
 
                     iframe.addEventListener('mouseleave', () => {
                         isOverIframe = false;
-                        updateCursorVisibility();
+                        updateCursorrVisibility();
                     });
                 });
             };

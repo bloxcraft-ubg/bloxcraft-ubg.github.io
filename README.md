@@ -12,7 +12,7 @@ Many Games You Can Play!
 Need To Request A DMCA Takdown To Us?
 https://bloxcraft-ubg.pages.dev/request-dmca/ Visit This Page For More Info On How To DO That.
 
-`12000+ Games`
+`14000+ Games`
 
 ```
 Bloxcraft UBG
