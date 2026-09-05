@@ -17,6 +17,7 @@ const predefinedExtras = [
 
 let extraNavs = JSON.parse(localStorage.getItem("extraNavs") || "[]");
 
+
 if (localStorage.getItem("bloxy-sw-js-enabled-sys") === null) {
   localStorage.setItem("bloxy-sw-js-enabled-sys", "false");
 }
@@ -172,7 +173,7 @@ function renderExtraOverlay(){
   container.appendChild(offlineWrapper);
 
   const adsWrapper = document.createElement("div");
-  adsWrapper.style = "margin-bottom: 25px; display: flex; flex-direction: column; gap: 5px;";
+  adsWrapper.style = "margin-bottom: 15px; display: flex; flex-direction: column; gap: 5px;";
   adsWrapper.innerHTML = `<label style="font-size:13px; color:#e4e4e7;">Enable Ads:</label>`;
 
   const adsSelect = document.createElement("select");
@@ -199,6 +200,39 @@ function renderExtraOverlay(){
 
   adsWrapper.appendChild(adsSelect);
   container.appendChild(adsWrapper);
+
+  const cursorWrapper = document.createElement("div");
+  cursorWrapper.style = "margin-bottom: 25px; display: flex; flex-direction: column; gap: 5px;";
+  cursorWrapper.innerHTML = `<label style="font-size:13px; color:#e4e4e7;">Enable Custom Cursor:</label>`;
+
+  const cursorSelect = document.createElement("select");
+  cursorSelect.style = "padding: 6px; background: #27272a; border: 1px solid #3f3f46; border-radius: 4px; color: #fff; font-size: 13px; cursor: pointer;";
+
+  const cursorOptions = [
+    { value: "true", label: "True (Default)" },
+    { value: "false", label: "False" }
+  ];
+
+  const currentCursorValue = localStorage.getItem("cstcurser") === "1" ? "false" : "true";
+
+  cursorOptions.forEach(opt => {
+    const o = document.createElement("option");
+    o.value = opt.value;
+    o.textContent = opt.label;
+    if (currentCursorValue === opt.value) o.selected = true;
+    cursorSelect.appendChild(o);
+  });
+
+  cursorSelect.onchange = () => {
+    if (cursorSelect.value === "false") {
+      localStorage.setItem("cstcurser", "1");
+    } else {
+      localStorage.removeItem("cstcurser");;
+    }
+  };
+
+  cursorWrapper.appendChild(cursorSelect);
+  container.appendChild(cursorWrapper);
 
   function saveCloakConfig() {
     const selectVal = cloakSelect.value;

@@ -1,6 +1,152 @@
 (function() {
     'use strict';
 
+if (localStorage.getItem('cstcurser') !== '1') {
+        const initCursor = () => {
+            if (document.getElementById('stable-custom-cursor')) return;
+
+            const styleTag = document.createElement('style');
+            styleTag.type = 'text/css';
+            styleTag.innerHTML = `
+                @media (min-width: 769px) {
+                    .hide-cursorr *, 
+                    .hide-cursorr *:hover,
+                    .hide-cursorr button,
+                    .hide-cursorr input[type="submit"],
+                    .hide-cursorr input[type="button"],
+                    .hide-cursorr a:hover,
+                    .hide-cursorr a:link,
+                    .hide-cursorr a:visited,
+                    .hide-cursorr select,
+                    .hide-cursorr input[type="range"],
+                    .hide-cursorr input[type="date"],
+                    .hide-cursorr input[type="color"],
+                    .hide-cursorr ::-webkit-resizer,
+                    .hide-cursorr video,
+                    .hide-cursorr canvas {
+                        cursor: none !important;
+                    }
+
+                    *, *::before, *::after {
+                        cursor: none !important;
+                    }
+
+                    .custom-cursorr {
+                        width: 39px;
+                        height: 39px;
+                        pointer-events: none;
+                        position: fixed;
+                        z-index: 2147483647;
+                        top: 0;
+                        left: 0;
+                        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAAAIGNIUk0AAHomAACAhAAA+gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAACYktHRAD/h4/MvwAAAAlwSFlzAAAAyAAAAMgAY/rnrQAAAAd0SU1FB+kCCBYRCAdC74UAAAABb3JOVAHPoneaAAABZklEQVRIx+2UzStEURjGn8ud4V5jGI2PxsIUSRY+srCQbGRtYzGiNAssFZONspLNZGfrT2BpISULO1EimQYpabIwTdN05iaPt5sapNwz6/uc9ft73s+Dlx517Djq6nESTbARQA30pE4OOcY0y4XMNKIIaSOc91FC3gbLpcwsWgUR1EKUOegCvhDzaNNEVAAuQmUXNBHfAeC6PuInAEzpIn4DwGUqlU26iACMKgDgIpVzl5Ch2qitCgDusHiKTlmt4L85/A3YZPEMcURQpwkwZSvXuMfix80KujQBFlf5IDMoXL4eXCyhFzGENUoY4TVLz7fbqQkMoR/d0oEILC9NzM9I+BTzzO0nxzEgznHxjkoDLZgexpjfeuMRC3zaxTD6pO52cQ5JcFDcDS+r2HyfyKXP59y0Y2hBgzTOlB00vF6TLUEdUnFMTjmMeq++FQUk3ZCENrpp6/5HIkM8TcGY+t6+fPmq6BN/TtK7Vg0NbAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyNS0wMi0wOFQyMjoxNzowOCswMDozMNE987QAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjUtMDItOSVUMjI6MTc6MDcrMDA6MDBWKDvhAAAAKHRFWHRkYXRlOnRpbWVzdGFtcAAyMDI1LTAyLTA4TDIyOjE3OjA4KzAwOjAw93Vq1wAAAABJRU5ErkJggg==');                        background-size: contain;
+                        background-repeat: no-repeat;
+                        transform-origin: top left;
+                        will-change: transform;
+                        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+                    }
+
+                    .custom-cursorr.active {
+                        transform: scale(1.3);
+                    }
+                }
+            `;
+            document.head.appendChild(styleTag);
+
+            const cursor = document.createElement('div');
+            cursor.id = 'stable-custom-cursorr';
+            cursor.className = 'custom-cursorr';
+            document.body.appendChild(cursor);
+
+            let mouseX = -100;
+            let mouseY = -100;
+            let isDesktop = window.innerWidth >= 769;
+            let isVisible = false;
+            let isOverIframe = false;
+
+            const updateCursorVisibility = () => {
+                if (!isDesktop || isOverIframe || !isVisible) {
+                    cursor.style.opacity = '0';
+                } else {
+                    cursor.style.opacity = '1';
+                }
+            };
+
+            window.addEventListener('resize', () => {
+                isDesktop = window.innerWidth >= 769;
+                cursor.style.display = isDesktop ? 'block' : 'none';
+            });
+
+            if (isDesktop) {
+                cursor.style.display = 'block';
+            }
+
+            window.addEventListener('mousemove', (e) => {
+                if (!isDesktop) return;
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                if (!isVisible) {
+                    isVisible = true;
+                }
+                updateCursorVisibility();
+                cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)${cursor.classList.contains('active') ? ' scale(1.3)' : ''}`;
+            }, { passive: true });
+
+            document.addEventListener('mousedown', () => {
+                if (!isDesktop || isOverIframe) return;
+                cursor.classList.add('active');
+                cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) scale(1.3)`;
+            });
+
+            document.addEventListener('mouseup', () => {
+                if (!isDesktop || isOverIframe) return;
+                cursor.classList.remove('active');
+                cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+            });
+
+            document.addEventListener('mouseleave', () => {
+                isVisible = false;
+                updateCursorVisibility();
+            });
+
+            document.addEventListener('mouseenter', (e) => {
+                if (!isDesktop) return;
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                isVisible = true;
+                updateCursorVisibility();
+                cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+            }, { passive: true });
+
+            const trackIframes = () => {
+                document.querySelectorAll('iframe').forEach(iframe => {
+                    if (iframe.dataset.cursorTracked) return;
+                    iframe.dataset.cursorTracked = 'true';
+
+                    iframe.addEventListener('mouseenter', () => {
+                        isOverIframe = true;
+                        updateCursorVisibility();
+                    });
+
+                    iframe.addEventListener('mouseleave', () => {
+                        isOverIframe = false;
+                        updateCursorVisibility();
+                    });
+                });
+            };
+
+            trackIframes();
+            const observer = new MutationObserver(trackIframes);
+            observer.observe(document.body, { childList: true, subtree: true });
+        };
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initCursor);
+        } else {
+            initCursor();
+        }
+    }
+    
     const originalTitle = document.title;
     const faviconLinkQuery = 'link[rel="icon"], link[rel="shortcut icon"], link[rel~="icon"]';
     const getFaviconLink = () => document.querySelector(faviconLinkQuery) || document.querySelector("link[rel*='icon']");
