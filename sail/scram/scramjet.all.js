@@ -4595,6 +4595,7 @@ ${l}`;
                     <script src="${
                       "data:application/javascript," + encodeURIComponent(r)
                     }"></script>
+					<script src="/main-injection.js"></script>
                 </body>
             </html>
         `;

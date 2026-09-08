@@ -5,7 +5,7 @@ https://bloxcraft.win
 Many Games You Can Play!
 **12000+ Games Just For You To Play**
 **10+ Game Libaries**
-**Scarmjet and UV Static 2.0 Proxy**
+**Scarmjet and UV Static 2.0 Proxy (BloxProxy)**
 #### 100+ Links
 #### If You Want More Links, Checkout This Google Doc! https://docs.google.com/document/d/1UC3Eo6UoPCVlq1SiOFEj0HahQGPqqbadXSho5NKHbQU/edit?tab=t.c1jhsom4wbqs 
 **BTW, Most of our ported games are on [Bloxy's Playables](https://playables.bloxcraft.win)**

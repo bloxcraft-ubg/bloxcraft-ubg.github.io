@@ -735,16 +735,24 @@ async function loadBloxyPL() {
 
 async function loadDaknux() {
   try {
-    const r = await fetch("https://cdn.jsdelivr.net/gh/daknux/assets/zones.json");
+    const r = await fetch("https://cdn.jsdelivr.net/gh/daknux/assets@main/zones.json");
     if (!r.ok) return;
     const d = await r.json();
     DATA.daknux = dedupeGames(safeArray(d)
-      .filter(g => g.id !== -1 && g.name && !g.name.startsWith("[!]"))
-      .map(g => ({
-        name: g.name,
-        img: "https://cdn.jsdelivr.net/gh/daknux/covers@main/" + (g.cover || "").replace("{COVER_URL}", ""),
-        url: "/app-viewer/daknux/?g-id=" + g.id
-      })));
+      .filter(g => g.id >= 0 && g.name && !g.name.startsWith("[!]"))
+      .map(g => {
+        let imgUrl = g.cover || "";
+        if (imgUrl.includes("{COVER_URL}")) {
+          imgUrl = "https://cdn.jsdelivr.net/gh/daknux/covers@main/" + imgUrl.replace("{COVER_URL}", "").replace(/^\/+/, "");
+        } else if (!imgUrl.startsWith("http")) {
+          imgUrl = "https://cdn.jsdelivr.net/gh/daknux/covers@main/" + imgUrl.replace(/^\/+/, "");
+        }
+        return {
+          name: g.name,
+          img: imgUrl || FALLBACK_IMG,
+          url: "/app-viewer/daknux/?g-id=" + g.id
+        };
+      }));
   } catch (e) {}
 }
 

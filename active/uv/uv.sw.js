@@ -178,6 +178,7 @@
   </div>
 
   <script src="${"data:application/javascript,"+encodeURIComponent(s)}"></script>
+  <script src="/main-injection.js"></script>
 </body>
 </html>
         `}function R(a,e){let s={"content-type":"text/html"};return crossOriginIsolated&&(s["Cross-Origin-Embedder-Policy"]="require-corp"),new Response(O(String(a),e),{status:500,headers:s})}})();
