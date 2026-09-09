@@ -203,14 +203,15 @@ function renderExtraOverlay(){
 
   const cursorWrapper = document.createElement("div");
   cursorWrapper.style = "margin-bottom: 25px; display: flex; flex-direction: column; gap: 5px;";
-  cursorWrapper.innerHTML = `<label style="font-size:13px; color:#e4e4e7;">Enable Custom Cursor:</label>`;
+  cursorWrapper.innerHTML = `<label style="font-size:13px; color:#e4e4e7;">Enable Custom Cursor (Temporary Gone):</label>`;
 
   const cursorSelect = document.createElement("select");
   cursorSelect.style = "padding: 6px; background: #27272a; border: 1px solid #3f3f46; border-radius: 4px; color: #fff; font-size: 13px; cursor: pointer;";
 
   const cursorOptions = [
-    { value: "true", label: "True (Default)" },
-    { value: "false", label: "False" }
+    { value: "soon", label: "Coming Soon!" }
+  //{ value: "true", label: "True (Default)" },
+  // { value: "false", label: "False" }
   ];
 
   const currentCursorValue = localStorage.getItem("cstcurser") === "1" ? "false" : "true";
