@@ -508,5 +508,11 @@
     "name": "Undertale Yellow",
     "img": "/gameFiles/!__PORTABLES__!/IMG/Undertale Yellow.png",
     "url": "/app-viewer/?view=/gameFiles/!__PORTABLES__!/games/Undertale Yellow.html"
+  },
+  {
+    "name": "Minecraft 26.2",
+    "img": "https://cdn.jsdelivr.net/gh/tharun-official-web/games@main/minecraft.jpg",
+    "url": "/gameFiles/!_RANDOMS_!/mcg-selection.html"
   }
+  
 ]
