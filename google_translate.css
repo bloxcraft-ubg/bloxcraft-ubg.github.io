@@ -1,0 +1,31 @@
+  #google_translate_element {
+    background-color: #1a73e8;
+    padding: 10px 14px;
+    border-radius: 8px;
+    display: inline-block;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  #google_translate_element select {
+    background-color: #0d47a1;
+    color: #ffffff;
+    border: 1px solid #1565c0;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+  }
+
+  #google_translate_element select:hover {
+    background-color: #0b3c8a;
+  }
+
+  .goog-te-gadget {
+    color: #ffffff !important;
+    font-family: Arial, sans-serif;
+  }
+
+  .goog-te-gadget a {
+    color: #e0e0e0 !important;
+  }
