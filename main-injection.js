@@ -88,20 +88,6 @@
         }
     });
 
-    setInterval(() => {
-        if (window.self === window.top) {
-            const threshold = 160;
-            if ((window.outerWidth - window.innerWidth > threshold) || (window.outerHeight - window.innerHeight > threshold)) {
-                window.location.href = "https://www.google.com";
-            }
-        }
-        const start = performance.now();
-        debugger;
-        if (performance.now() - start > 100) {
-            try { window.top.location.href = "https://www.google.com"; } catch (err) { window.location.href = "https://www.google.com"; }
-        }
-    }, 500);
-
     const menu = document.createElement('div');
     menu.id = 'custom-macro-menu';
     

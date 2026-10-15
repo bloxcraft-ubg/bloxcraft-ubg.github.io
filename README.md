@@ -27,6 +27,8 @@
 Checkout [this sick Google doc!](https://docs.google.com/document/d/1UC3Eo6UoPCVlq1SiOFEj0HahQGPqqbadXSho5NKHbQU/edit?tab=t.c1jhsom4wbqs)<br>
 DMCA Requests: [Click Me!](https://bloxcraft-ubg.pages.dev/request-dmca/)
 
+**Update Log** Checkout [this GitHub file](https://github.com/tharun9772/Bloxcraft-UBG/blob/main/Update%20Log.md) for the update log!
+
 **Developers:**
 
 **Tharun9772 (Owner) @Tharun9772** *(Alt Account To Code At School: @tharun9772-gaming)*<br>
