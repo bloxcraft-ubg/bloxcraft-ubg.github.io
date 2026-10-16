@@ -1,0 +1,23 @@
+  .goog-te-gadget {
+    color: transparent !important;
+    font-size: 0px !important;
+  }
+
+  .goog-te-gadget span,
+  .goog-te-gadget a,
+  .goog-te-gadget img {
+    display: none !important;
+  }
+
+  .goog-te-gadget::after {
+    content: "Powered by Google, Used on Bloxcraft UBG";
+    display: block;
+    color: #D3D3D3;
+    font-size: 10px;
+    font-weight: 500;
+    margin-top: 6px;
+  }
+
+  .goog-te-banner-frame {
+    display: none !important;
+  }
