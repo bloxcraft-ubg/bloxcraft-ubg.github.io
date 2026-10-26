@@ -512,7 +512,7 @@
   {
     "name": "Minecraft 26.2",
     "img": "https://cdn.jsdelivr.net/gh/tharun-official-web/games@main/minecraft.jpg",
-    "url": "/gameFiles/!_RANDOMS_!/mcg-selection.html"
+    "url": "/app-viewer/?view=/gameFiles/!_RANDOMS_!/mcg-selection.html"
   }
   
 ]
